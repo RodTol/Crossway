@@ -12,3 +12,6 @@
 
 #Gradle files
 /.gradle
+
+#Build files
+/build
