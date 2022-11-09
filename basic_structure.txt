@@ -1,0 +1,26 @@
+BOARD:
+•	NODE Nodes (19x19)
+
+PIECE:
+•	Bool Colour: black or white
+
+NODE:
+•	PIECE Pedina: pedina (init null)
+•	Bool Playable: yes or no
+SetPedina(Colour)-> new pedina colour
+SetPlayable()->
+
+PLAYER:
+•	Bool Colour: Black or white
+•	Position: (nxn)
+•	Clicked_Position: (nxn)
+SetColour() -> 
+Click() ->
+
+TURN:
+•	PLAYER Player: black or white
+•	BOARD Board
+UpdateBoard(input)->
+
+MAIN
+While not Victory
