@@ -5,9 +5,11 @@ PIECE:
 •	Bool Colour: black or white
 
 NODE:
-•	PIECE Pedina: pedina (init null)
+•   int x: x position on the board
+•   int y: y position on the board
+•	PIECE piece: piece (init null)
 •	Bool Playable: yes or no
-SetPedina(Colour)-> new pedina colour
+SetPiece(Colour)-> new piece colour
 SetPlayable()->
 
 PLAYER:
