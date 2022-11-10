@@ -1,4 +1,4 @@
-package it.units.crossway.start;
+package it.units.crossway.launcher;
 
 public class Main {
     public static void main(String[] args) {

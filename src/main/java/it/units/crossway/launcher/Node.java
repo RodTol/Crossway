@@ -1,4 +1,4 @@
-package it.units.crossway.start;
+package it.units.crossway.launcher;
 
 public class Node {
     //coordinates of the node
