@@ -7,7 +7,7 @@ public class Board {
     /*Creation of matrices of references of NOde type*/
     Node[][] nodes =  new Node[getN_Rows()][getN_Columns()];
 
-    Board() {
+    public Board() {
         /*Creation of N_ROWS*N_COLUMNS instances*/
         for (int row = 0; row < nodes.length; row++) {
             for (int col = 0; col < nodes[row].length; col++) {
