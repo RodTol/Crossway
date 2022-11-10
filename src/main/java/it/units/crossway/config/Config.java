@@ -1,11 +1,14 @@
 package it.units.crossway.config;
 
 public class Config {
-    public static final int N_ROWS;
-    public static final int N_COLUMNS;
+    private static final int N_ROWS = 19;
+    private static final int N_COLUMNS = 19;
 
-    static {
-        N_ROWS = 19;
-        N_COLUMNS = 19;
+    public static int getN_Rows() {
+        return N_ROWS;
+    }
+
+    public static int getN_Columns() {
+        return N_COLUMNS;
     }
 }

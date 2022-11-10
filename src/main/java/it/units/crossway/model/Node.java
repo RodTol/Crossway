@@ -2,20 +2,26 @@ package it.units.crossway.model;
 
 public class Node {
     //coordinates of the node
-    public int x;
-    public int y;
+    private int r;
+    private int c;
     //piece on the node
-    public Piece piece = null;
+    private Piece piece;
     //boolean which identifies if the player can place a piece on this node
-    public boolean playable = true;
+    private boolean playable;
 
-
-    public int getX() {
-        return x;
+    public Node(int row, int col) {
+        r = row;
+        c = col;
+        piece = null;
+        playable = true;
     }
 
-    public int getY() {
-        return y;
+    public int getR() {
+        return r;
+    }
+
+    public int getC() {
+        return c;
     }
 
     public Piece getPiece() {
@@ -26,12 +32,12 @@ public class Node {
         return playable;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setR(int r) {
+        this.r = r;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setC(int c) {
+        this.c = c;
     }
 
     public void setPiece(Piece piece) {
