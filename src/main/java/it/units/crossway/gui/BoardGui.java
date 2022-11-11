@@ -5,6 +5,8 @@ import it.units.crossway.controller.Controller;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class BoardGui extends JPanel {
     private static final int PIECE_SIZE = 40;
@@ -13,6 +15,7 @@ public class BoardGui extends JPanel {
     public BoardGui(Controller controller) {
         super(new BorderLayout());
         this.controller = controller;
+        addMouseMotionListener(new BoardMouseMotionListener());
     }
 
     @Override
@@ -34,4 +37,21 @@ public class BoardGui extends JPanel {
             g.drawLine(0, y, Config.getBoardHeight(), y);
         }
     }
+
+
+
+    private static class BoardMouseMotionListener implements MouseMotionListener {
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            // not needed in our case
+        }
+
+        public void mouseMoved(MouseEvent e) {
+            System.out.println(e.getPoint());
+        }
+    }
 }
+
+
+
