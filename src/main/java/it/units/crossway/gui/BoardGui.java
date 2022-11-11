@@ -16,7 +16,7 @@ public class BoardGui extends JPanel {
     public BoardGui(Controller controller) {
         super(new BorderLayout());
         this.controller = controller;
-        this.ghostPosition= new Point(100,100);
+        this.ghostPosition= null;
         addMouseMotionListener(new BoardMouseMotionListener());
     }
 
@@ -71,7 +71,12 @@ public class BoardGui extends JPanel {
 
         @Override
         public void mouseMoved(MouseEvent e) {
-
+            Point point = e.getPoint();
+            Point newPosition = positionToNodePx(point);
+            if (!newPosition.equals(ghostPosition)) {
+                ghostPosition = newPosition;
+                repaint();
+            }
         }
 
     }
