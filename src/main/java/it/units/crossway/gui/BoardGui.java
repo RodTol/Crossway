@@ -1,6 +1,6 @@
 package it.units.crossway.gui;
 
-import it.units.crossway.config.Config;
+import it.units.crossway.utils.Config;
 import it.units.crossway.controller.Controller;
 
 import javax.swing.JPanel;

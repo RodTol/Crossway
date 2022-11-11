@@ -1,4 +1,4 @@
-package it.units.crossway.config;
+package it.units.crossway.utils;
 
 public class Config {
     public static final int N_ROWS = 19;

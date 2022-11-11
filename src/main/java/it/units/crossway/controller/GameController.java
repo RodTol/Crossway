@@ -1,6 +1,5 @@
 package it.units.crossway.controller;
 
-import it.units.crossway.config.Config;
 import it.units.crossway.model.Board;
 
 public class GameController implements Controller {

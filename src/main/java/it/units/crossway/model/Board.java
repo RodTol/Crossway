@@ -1,6 +1,6 @@
 package it.units.crossway.model;
 
-import static it.units.crossway.config.Config.*;
+import static it.units.crossway.utils.Config.*;
 
 public class Board {
 
@@ -27,5 +27,6 @@ public class Board {
 
     public void placePiece(int r, int c, boolean colour) {
         nodes[r][c].setPiece(new Piece(colour));
+        /*Update playable state*/
     }
 }

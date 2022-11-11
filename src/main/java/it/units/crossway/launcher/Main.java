@@ -1,12 +1,11 @@
 package it.units.crossway.launcher;
 
-import it.units.crossway.config.Config;
+import it.units.crossway.utils.Config;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.GameController;
 import it.units.crossway.gui.BoardGui;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Main {
@@ -22,5 +21,6 @@ public class Main {
         frame.setLocation(500, 200);    // location where frame appears
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
     }
 }
