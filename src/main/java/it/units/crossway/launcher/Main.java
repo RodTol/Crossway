@@ -6,6 +6,7 @@ import it.units.crossway.controller.GameController;
 import it.units.crossway.gui.BoardGui;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Main {

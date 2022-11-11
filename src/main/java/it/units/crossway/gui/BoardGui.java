@@ -11,10 +11,12 @@ import java.awt.event.MouseMotionListener;
 public class BoardGui extends JPanel {
     private static final int PIECE_SIZE = 40;
     private Controller controller;
+    private Point ghostPosition;
 
     public BoardGui(Controller controller) {
         super(new BorderLayout());
         this.controller = controller;
+        this.ghostPosition= null;
         addMouseMotionListener(new BoardMouseMotionListener());
     }
 
@@ -27,30 +29,36 @@ public class BoardGui extends JPanel {
     }
 
     private void drawVerticalLines(Graphics g) {
-        for (int x = Config.CELL_SIZE; x < Config.BOARD_HEIGHT; x += Config.CELL_SIZE) {
-            g.drawLine(x, 0, x, Config.BOARD_HEIGHT);
+        for (int x = Config.BOARD_MARGIN; x < Config.BOARD_HEIGHT-Config.BOARD_MARGIN; x += Config.CELL_SIZE) {
+            g.drawLine(x, Config.BOARD_MARGIN, x, Config.BOARD_HEIGHT-Config.BOARD_MARGIN);
         }
+        g.drawLine(Config.BOARD_WIDTH-Config.BOARD_MARGIN, Config.BOARD_MARGIN, Config.BOARD_WIDTH-Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN);
     }
 
     private void drawHorizontalLines(Graphics g) {
-        for (int y = Config.CELL_SIZE; y < Config.BOARD_WIDTH; y += Config.CELL_SIZE) {
-            g.drawLine(0, y, Config.BOARD_HEIGHT, y);
+        for (int y = Config.BOARD_MARGIN; y < Config.BOARD_WIDTH-Config.BOARD_MARGIN; y += Config.CELL_SIZE) {
+            g.drawLine(Config.BOARD_MARGIN, y, Config.BOARD_HEIGHT-Config.BOARD_MARGIN, y);
         }
+        g.drawLine(Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN);
     }
 
 
 
-    private static class BoardMouseMotionListener implements MouseMotionListener {
+    private class BoardMouseMotionListener implements MouseMotionListener {
 
         @Override
         public void mouseDragged(MouseEvent e) {
             // not needed in our case
         }
 
+        @Override
         public void mouseMoved(MouseEvent e) {
-            System.out.println(e.getPoint());
+
         }
+
     }
+
+
 }
 
 
