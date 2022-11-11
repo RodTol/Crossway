@@ -9,13 +9,13 @@ public class BoardTest {
 
     @Test
     void get_initial_playable_state() {
-        Board board = new Board();
+        Board board = new Board(19, 19);
         assertTrue(board.getNodePlayable(1, 1));
     }
 
     @Test
     void coord_check_board_vs_node(){
-        Board board = new Board();
+        Board board = new Board(19, 19);
         for (int row = 0; row < board.nodes.length; row++) {
             for (int col = 0; col < board.nodes[row].length; col++) {
                 assertEquals(row, board.nodes[row][col].getR());

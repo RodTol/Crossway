@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 mvc:
 
 model -> model
@@ -94,3 +95,101 @@ metod: override di canPlacePedina  richiama board.canPlacePedina(Position positi
 
 
 
+=======
+mvc:
+
+model -> model
+view -> gui/interazione con utente (se famo da terminale invece che con gui non cambi tutto)
+control -> interazione tra le due
+
+________________________________________________________________________________________________________
+
+
+package config:
+
+- Config (classe statica)
+NUM_RIGHE = 19
+NUM_COLONNE = 19
+CELLSIZE = 15px   (x es)
+
+
+
+
+
+
+package model:
+
+
+- Board 
+ctor:   Board(NUM_RIGHE, NUM_COLONNE)
+field:	private Pedina[][] = new Pedina[NUM_RIGHE][NUM_COLONNE]
+method: canPlacePedina(Position position, Color color)    ->    boolean
+
+- Pedina					??????????????????????
+ctor:	Pedina(colour)
+fields:	Color = colour
+
+
+- Position     // casella o nodo
+ctor: Position(riga, colonna)
+
+
+
+
+
+
+- GameLauncher
+main:
+Controller controller = new GameController()
+BoardGui gameBoard = new BoardGui(controller)        # board gui parla solo con controller
+JFrame frame = new JFrame()
+frame.add(gameBoard)
+size...
+set visible...
+
+
+
+
+
+
+package gui
+
+
+- BoardGui extends Jpanel ....				# BoardGui parla solo con controller. x info lato gui bisogna chiedere al controller -> vai in interfaccia controller, metti metodo e lo implementi poi in GameController
+ctor: BoardGui(controller)
+ctor implementation: MouseListener      -> richiama canPlacePedina del Controller, se sì allora diesgna pupoletto. se NO, devo convertire 
+ctor implementation: ClickListener	-> 
+field: currentColor = black    -> inizializzato a nero, cambia ogni volta che clicco.  -> concettualizza il concetto di turno
+field: controller 
+field: canPlacePedina = True   -> viene cambiato ad ogni mouse move in base al canPlacePedina del Controller
+field: List<Pedina> pedineGui = new ArrayList<>()   # inizialmente è lista vuolta. paint disegna solo le pedineGui presenti nella lista
+method: paint() ....controller.getDimensions()...    (x disegnare tabella)			# x sapere quante righe mi servono, in BoardGui chiamerò controller.getDimension(), in Controller metto metodo getDimensions, in GameController lo implemento
+method: pxToPositionConverter((x,y)) -> return new Position(riga, colonna)    (ex (1,4))		  											in GameController metodo getDimensions: return board.getDimesjion()   chiama metodo  getDimensions in board: pedine[length], pedine[0].length          # due metodi con stesso nome ma in posizioni diverse xk sono disaccpooiati così se cambio uno no cambia anche l'altro
+method: placePedina()
+
+
+- PedinaGui
+ctor: PedinaGui(Position  (POSITION DI MODEL), Color)
+field: Position
+field: Color
+
+
+
+
+package controller 
+
+- interface Controller
+method: canPlacePedina(Position position, colore)
+method: PlacePedina()
+
+- GameController implements Controller
+ctor:	vuoto
+field: 	Board(config.NUM_RIGHE, config.NUM_COLONNE)
+metod: override di canPlacePedina  richiama board.canPlacePedina(Position position)    NB: sono due metodi con stesso nome ma un in board, uno in controller
+
+
+
+
+
+
+>>>>>>> 129edabbdcb78008d8eb9b73dab61bef18a9f969
