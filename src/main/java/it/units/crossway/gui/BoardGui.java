@@ -19,13 +19,19 @@ public class BoardGui extends JPanel {
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
         drawVerticalLines(g);
-        //drawHorizontalLines(g);
+        drawHorizontalLines(g);
 
     }
 
     private void drawVerticalLines(Graphics g) {
-        for (int x = Config.getCellSize(); x < Config.getBoardHeight(); x += Config.getCellSize()){
+        for (int x = Config.getCellSize(); x < Config.getBoardHeight(); x += Config.getCellSize()) {
             g.drawLine(x, 0, x, Config.getBoardHeight());
+        }
+    }
+
+    private void drawHorizontalLines(Graphics g) {
+        for (int y = Config.getCellSize(); y < Config.getBoardWidth(); y += Config.getCellSize()) {
+            g.drawLine(0, y, Config.getBoardHeight(), y);
         }
     }
 }
