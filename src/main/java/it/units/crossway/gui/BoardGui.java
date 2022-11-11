@@ -16,7 +16,7 @@ public class BoardGui extends JPanel {
     public BoardGui(Controller controller) {
         super(new BorderLayout());
         this.controller = controller;
-        this.ghostPosition= null;
+        this.ghostPosition= new Point(100,100);
         addMouseMotionListener(new BoardMouseMotionListener());
     }
 
@@ -25,7 +25,7 @@ public class BoardGui extends JPanel {
         g.setColor(Color.BLACK);
         drawVerticalLines(g);
         drawHorizontalLines(g);
-
+        drawGhost(g);
     }
 
     private void drawVerticalLines(Graphics g) {
@@ -42,6 +42,24 @@ public class BoardGui extends JPanel {
         g.drawLine(Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN);
     }
 
+    private void drawGhost(Graphics g) {
+        System.err.println(ghostPosition);
+        if (ghostPosition != null) {
+            Color color = Color.RED;
+            g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), 70));
+            Point point = positionToNodePx(ghostPosition);
+
+            //x,y are not the center of the circle but top left corner, so we have to convert to proper position
+            int x = point.x - (PIECE_SIZE / 2);
+            int y = point.y - (PIECE_SIZE / 2);
+            g.fillOval(x, y, PIECE_SIZE, PIECE_SIZE);
+        }
+    }
+
+
+    private Point positionToNodePx(Point currentPosition) {
+        return new Point(100,100);
+    }
 
 
     private class BoardMouseMotionListener implements MouseMotionListener {
@@ -57,6 +75,7 @@ public class BoardGui extends JPanel {
         }
 
     }
+
 
 
 }
