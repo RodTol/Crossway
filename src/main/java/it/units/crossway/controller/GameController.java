@@ -8,7 +8,7 @@ public class GameController implements Controller {
     public int p;
 
     public GameController() {
-        this.board = new Board(Config.getN_Rows(), Config.getN_Columns());
+        this.board = new Board(Config.N_ROWS, Config.N_COLUMNS);
     }
 
     public Board getBoard() {

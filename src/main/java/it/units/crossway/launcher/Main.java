@@ -17,7 +17,7 @@ public class Main {
         frame.setTitle("Crossway");
         frame.setLayout(new BorderLayout());
         frame.getContentPane().add(boardGui, BorderLayout.CENTER);
-        frame.setSize(new Dimension(Config.getFrameWidth(), Config.getFrameHeight()));
+        frame.setSize(new Dimension(Config.FRAME_WIDTH, Config.FRAME_HEIGHT));
         frame.setLocation(500, 200);    // location where frame appears
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);

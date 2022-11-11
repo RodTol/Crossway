@@ -27,14 +27,14 @@ public class BoardGui extends JPanel {
     }
 
     private void drawVerticalLines(Graphics g) {
-        for (int x = Config.getCellSize(); x < Config.getBoardHeight(); x += Config.getCellSize()) {
-            g.drawLine(x, 0, x, Config.getBoardHeight());
+        for (int x = Config.CELL_SIZE; x < Config.BOARD_HEIGHT; x += Config.CELL_SIZE) {
+            g.drawLine(x, 0, x, Config.BOARD_HEIGHT);
         }
     }
 
     private void drawHorizontalLines(Graphics g) {
-        for (int y = Config.getCellSize(); y < Config.getBoardWidth(); y += Config.getCellSize()) {
-            g.drawLine(0, y, Config.getBoardHeight(), y);
+        for (int y = Config.CELL_SIZE; y < Config.BOARD_WIDTH; y += Config.CELL_SIZE) {
+            g.drawLine(0, y, Config.BOARD_HEIGHT, y);
         }
     }
 

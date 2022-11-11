@@ -1,4 +1,4 @@
-package it.units.crossway.model;
+package it.units.crossway.controller;
 
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.GameController;
