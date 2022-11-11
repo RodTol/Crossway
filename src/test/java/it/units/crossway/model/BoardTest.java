@@ -1,21 +1,25 @@
 package it.units.crossway.model;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
     @Test
     void get_initial_playable_state() {
-        Board board = new Board(19, 19);
+        Board board = new Board();
         assertTrue(board.getNodePlayable(1, 1));
     }
 
     @Test
+    void get_initial_is_empty(){
+        Board board = new Board();
+        assertTrue(board.isNodeEmpty(1,1));
+    }
+
+    @Test
     void coord_check_board_vs_node(){
-        Board board = new Board(19, 19);
+        Board board = new Board();
         for (int row = 0; row < board.nodes.length; row++) {
             for (int col = 0; col < board.nodes[row].length; col++) {
                 assertEquals(row, board.nodes[row][col].getR());
@@ -23,4 +27,12 @@ public class BoardTest {
             }
         }
     }
+
+    @Test
+    void check_placed_piece() {
+        Board board = new Board();
+        board.placePiece(8, 8, false);
+        assertFalse(board.isNodeEmpty(8,8));
+    }
+
 }
