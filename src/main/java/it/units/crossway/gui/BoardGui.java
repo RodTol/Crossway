@@ -11,10 +11,12 @@ import java.awt.event.MouseMotionListener;
 public class BoardGui extends JPanel {
     private static final int PIECE_SIZE = 40;
     private Controller controller;
+    private Point ghostPosition;
 
     public BoardGui(Controller controller) {
         super(new BorderLayout());
         this.controller = controller;
+        this.ghostPosition= null;
         addMouseMotionListener(new BoardMouseMotionListener());
     }
 
@@ -42,7 +44,7 @@ public class BoardGui extends JPanel {
 
 
 
-    private static class BoardMouseMotionListener implements MouseMotionListener {
+    private class BoardMouseMotionListener implements MouseMotionListener {
 
         @Override
         public void mouseDragged(MouseEvent e) {
@@ -53,6 +55,7 @@ public class BoardGui extends JPanel {
         public void mouseMoved(MouseEvent e) {
 
         }
+
     }
 
 
