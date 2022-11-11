@@ -1,5 +1,7 @@
 package it.units.crossway.model;
 
+import it.units.crossway.exceptions.NullPieceException;
+
 public class Node {
     //coordinates of the node
     private int r;
@@ -46,5 +48,15 @@ public class Node {
 
     public void setPlayable(boolean playable) {
         this.playable = playable;
+    }
+
+
+    public boolean getColour() throws NullPieceException{
+        if (piece == null){
+            throw new NullPieceException(r,c);
+        }
+        else {
+            return piece.colour;
+        }
     }
 }
