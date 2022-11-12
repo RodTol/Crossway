@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Board {
 
-    /*Creation of matrices of references of NOde type*/
+    /*Matrix of Pieces*/
     private Piece[][] pieces;
 
     public Board(int Nrows, int Ncolumns) {
