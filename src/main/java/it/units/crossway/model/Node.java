@@ -2,6 +2,8 @@ package it.units.crossway.model;
 
 import it.units.crossway.exceptions.NullPieceException;
 
+import java.awt.*;
+
 public class Node {
     //coordinates of the node
     private int r;
@@ -51,12 +53,12 @@ public class Node {
     }
 
 
-    public boolean getColour() throws NullPieceException{
+    public Color getColour() throws NullPieceException{
         if (piece == null){
             throw new NullPieceException(r,c);
         }
         else {
-            return piece.colour;
+            return piece.color;
         }
     }
 }

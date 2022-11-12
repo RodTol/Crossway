@@ -8,7 +8,6 @@ public class NodeTest {
     @Test
     void check_piece_colour(){
         Node node = new Node(1,2);
-
         NullPieceException a = assertThrows(NullPieceException.class, () -> {node.getColour();});
     }
 }

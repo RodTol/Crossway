@@ -81,6 +81,25 @@ public class BoardGui extends JPanel {
         }
     }
 
+    /*This function compute the position of the nodes in coordinate format
+     * for the x-axis. Package private*/
+    ArrayList<Integer> getXNodePositions() {
+        ArrayList<Integer> XNodePos = new ArrayList<Integer>();
+        for (int x=Config.BOARD_MARGIN; x<=Config.BOARD_WIDTH; x+=Config.CELL_SIZE) {
+            XNodePos.add(x);
+        }
+        return XNodePos;
+    }
+    /*This function compute the position of the nodes in coordinate format
+     * for the y-axis. Package private*/
+    ArrayList<Integer> getYNodePositions() {
+        ArrayList<Integer> YNodePos = new ArrayList<Integer>();
+        for (int y=Config.BOARD_MARGIN; y<= Config.BOARD_HEIGHT; y+=Config.CELL_SIZE) {
+            YNodePos.add(y);
+        }
+        return YNodePos;
+    }
+
     private Point positionToNodePx(Point currentPosition) {
         ArrayList<Integer> XNodePositions = getXNodePositions();
         int xminDistance = 10000;
@@ -110,8 +129,7 @@ public class BoardGui extends JPanel {
         PiecePosition newPoint = new PiecePosition(row, column);
         System.out.println(" px-> pos -------------- ");
         System.out.println(node);
-        System.out.println(newPoint)
-        ;
+        System.out.println(newPoint);
         return new PiecePosition(row, column);
     }
 
@@ -127,21 +145,6 @@ public class BoardGui extends JPanel {
         return new Point(Xpx,Ypx);
     }
 
-    private ArrayList<Integer> getXNodePositions() {
-        ArrayList<Integer> XNodePos = new ArrayList<Integer>();
-        for (int x=Config.BOARD_MARGIN; x<=Config.BOARD_WIDTH; x+=Config.CELL_SIZE) {
-            XNodePos.add(x);
-        }
-        return XNodePos;
-    }
-
-    private ArrayList<Integer> getYNodePositions() {
-        ArrayList<Integer> YNodePos = new ArrayList<Integer>();
-        for (int y=Config.BOARD_MARGIN; y<= Config.BOARD_HEIGHT; y+=Config.CELL_SIZE) {
-            YNodePos.add(y);
-        }
-        return YNodePos;
-    }
 
     private class BoardMouseMotionListener implements MouseMotionListener {
 
