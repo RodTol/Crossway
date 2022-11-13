@@ -1,18 +1,19 @@
 package it.units.crossway.controller;
 
+import it.units.crossway.model.Piece;
 import it.units.crossway.utils.Config;
 import it.units.crossway.model.Board;
-import it.units.crossway.model.PiecePosition;
+import it.units.crossway.model.Coordinates;
 
 import java.awt.*;
 
 public class GameController implements Controller {
     private Board board;
-    private Color currentColor;
+    private Color CurrentUserColor;
 
     public GameController() {
         this.board = new Board(Config.N_ROWS, Config.N_COLUMNS);
-        this.currentColor = Color.BLACK;
+        this.CurrentUserColor = Color.BLACK;
     }
 
     @Override
@@ -22,16 +23,21 @@ public class GameController implements Controller {
 
     @Override
     public Color getCurrentColor() {
-        return this.currentColor;
+        return this.CurrentUserColor;
     }
 
     @Override
-    public boolean canPlace(Color playerColor, PiecePosition position) {
+    public boolean canPlace(Color playerColor, Coordinates position) {
         return true;
     }
 
     @Override
-    public boolean place(Color playerColor, PiecePosition position) {
+    public boolean place(Color playerColor, Coordinates position) {
+        try {
+            board.place(position, new Piece(playerColor));
+        } catch (Exception e) {
+            return false;
+        }
         return true;
     }
 

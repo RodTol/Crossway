@@ -10,7 +10,7 @@ public class BoardTest {
     @Test
     void get_initial_playable_state() {
         Board board = new Board(19, 19);
-        assertTrue(board.getNodePlayable(1, 1));
+        assertTrue(board.isNodePlayable(1, 1));
     }
 
 //    @Test

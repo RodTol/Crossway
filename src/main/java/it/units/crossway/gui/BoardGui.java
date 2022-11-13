@@ -2,8 +2,7 @@ package it.units.crossway.gui;
 
 import it.units.crossway.utils.Config;
 import it.units.crossway.controller.Controller;
-import it.units.crossway.model.Piece;
-import it.units.crossway.model.PiecePosition;
+import it.units.crossway.model.Coordinates;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -11,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BoardGui extends JPanel {
@@ -122,26 +120,15 @@ public class BoardGui extends JPanel {
         return new Point(ClosestXPos, ClosestYPos);
     }
 
-    private PiecePosition nodePxToPosition(Point node) {
+    private Coordinates nodePxToPosition(Point node) {
         int row = (int) ((node.getX() - Config.BOARD_MARGIN) / Config.CELL_SIZE)+1;
         int column = (int) ((node.getY() - Config.BOARD_MARGIN) / Config.CELL_SIZE)+1;
-
-        PiecePosition newPoint = new PiecePosition(row, column);
-        System.out.println(" px-> pos -------------- ");
-        System.out.println(node);
-        System.out.println(newPoint);
-        return new PiecePosition(row, column);
+        return new Coordinates(row, column);
     }
 
-    private Point nodePositionToPx(PiecePosition position) {
+    private Point nodePositionToPx(Coordinates position) {
         int Xpx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getRow()-1);
         int Ypx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getColumn()-1);
-
-        Point newPoint = new Point(Xpx, Ypx);
-        System.out.println(" pos -> px --___________ ");
-        System.out.println(position);
-        System.out.println(newPoint);
-
         return new Point(Xpx,Ypx);
     }
 
@@ -158,7 +145,7 @@ public class BoardGui extends JPanel {
             Point point = e.getPoint();
             Point newPosition = positionToNodePx(point);
             if (!newPosition.equals(ghostPosition)) {
-                PiecePosition position = nodePxToPosition(newPosition);
+                Coordinates position = nodePxToPosition(newPosition);
                 if (controller.canPlace(playerColor, position)) {
                     ghostPosition = newPosition;
                 }
@@ -176,7 +163,7 @@ public class BoardGui extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             Point node = e.getPoint();
-            PiecePosition position =  nodePxToPosition(positionToNodePx(node));
+            Coordinates position =  nodePxToPosition(positionToNodePx(node));
             if (controller.canPlace(playerColor, position)) {
                 if (controller.place(playerColor, position)) {
                     pieces.add(new PieceGui(playerColor, position));

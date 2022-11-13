@@ -3,12 +3,12 @@ package it.units.crossway.model;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class PiecePosition {
+public class Coordinates {
 
     private int row;
     private int column;
 
-    public PiecePosition(int row, int column) {
+    public Coordinates(int row, int column) {
         this.row = row;
         this.column = column;
     }
@@ -23,13 +23,13 @@ public class PiecePosition {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof PiecePosition)) {
+        if (!(obj instanceof Coordinates)) {
             return false;
         }
         if (obj == this) {
             return true;
         }
-        PiecePosition o = (PiecePosition) obj;
+        Coordinates o = (Coordinates) obj;
         return new EqualsBuilder()
                 .append(row, o.row)
                 .append(column, o.column)

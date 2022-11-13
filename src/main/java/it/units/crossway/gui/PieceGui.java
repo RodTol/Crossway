@@ -1,14 +1,13 @@
 package it.units.crossway.gui;
 
-import it.units.crossway.model.PiecePosition;
+import it.units.crossway.model.Coordinates;
 
 import java.awt.*;
 
 public class PieceGui {
     private Color color;
-    private PiecePosition position;
-
-    public PieceGui(Color color, PiecePosition position) {
+    private Coordinates position;
+    public PieceGui(Color color, Coordinates position) {
         this.color = color;
         this.position = position;
     }
@@ -17,7 +16,7 @@ public class PieceGui {
         return color;
     }
 
-    public PiecePosition getPosition() {
+    public Coordinates getPosition() {
         return position;
     }
 }

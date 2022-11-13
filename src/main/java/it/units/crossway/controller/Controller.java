@@ -1,7 +1,7 @@
 package it.units.crossway.controller;
 
 import it.units.crossway.model.Board;
-import it.units.crossway.model.PiecePosition;
+import it.units.crossway.model.Coordinates;
 
 import java.awt.*;
 
@@ -10,7 +10,7 @@ public interface Controller {
 
     Color getCurrentColor();
 
-    boolean canPlace(Color playerColor, PiecePosition position);
+    boolean canPlace(Color playerColor, Coordinates position);
 
-    boolean place(Color playerColor, PiecePosition position);
+    boolean place(Color playerColor, Coordinates position);
 }
