@@ -110,8 +110,7 @@ public class BoardGui extends JPanel {
         PiecePosition newPoint = new PiecePosition(row, column);
         System.out.println(" px-> pos -------------- ");
         System.out.println(node);
-        System.out.println(newPoint)
-        ;
+        System.out.println(newPoint);
         return new PiecePosition(row, column);
     }
 
@@ -175,10 +174,14 @@ public class BoardGui extends JPanel {
             Point node = e.getPoint();
             PiecePosition position =  nodePxToPosition(positionToNodePx(node));
             if (controller.canPlace(playerColor, position)) {
-                if (controller.place(playerColor, position)) {
-                    pieces.add(new PieceGui(playerColor, position));
-                    playerColor = controller.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
-                    repaint();
+                Status status = controller.place();
+                switch (status.getCondition()) {
+                    case PLACED :
+                        PlacedInfo statusInfo = status.getCondition().getInfo();
+                        pieces.add(new PieceGui(playerColor, position));
+                        playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
+                        repaint();
+                        break;
                 }
             }
         }
