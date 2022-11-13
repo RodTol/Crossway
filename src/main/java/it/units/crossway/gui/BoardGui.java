@@ -1,5 +1,6 @@
 package it.units.crossway.gui;
 
+import it.units.crossway.controller.Status;
 import it.units.crossway.utils.Config;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.model.Coordinates;
@@ -168,7 +169,7 @@ public class BoardGui extends JPanel {
                 Status status = controller.place();
                 switch (status.getCondition()) {
                     case PLACED :
-                        PlacedInfo statusInfo = status.getCondition().getInfo();
+                        ColorInfo statusInfo = ((ColorInfo) status.getInfo());
                         pieces.add(new PieceGui(playerColor, position));
                         playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
                         repaint();

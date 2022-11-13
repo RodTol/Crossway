@@ -41,14 +41,5 @@ public class GameController implements Controller {
         return true;
     }
 
-    @Override
-    public void changeTurn() {
-        if (this.currentColor == Color.WHITE) {
-            this.currentColor = Color.BLACK;
-        } else if (this.currentColor == Color.BLACK) {
-            this.currentColor = Color.WHITE;
-        }
-    }
-
 
 }
