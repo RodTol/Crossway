@@ -13,4 +13,6 @@ public interface Controller {
     boolean canPlace(Color playerColor, PiecePosition position);
 
     boolean place(Color playerColor, PiecePosition position);
+
+    public void changeTurn();
 }
