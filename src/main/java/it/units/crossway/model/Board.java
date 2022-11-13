@@ -1,23 +1,27 @@
 package it.units.crossway.model;
 
 
-import javax.swing.text.Position;
 import java.awt.*;
 
 public class Board {
 
-    /*Creation of matrices of references of NOde type*/
-    private Piece[][] pieces;
+    /*Matrix of Pieces*/
+    private Node[][] nodes;
 
     public Board(int Nrows, int Ncolumns) {
-        this.pieces = new Piece[Nrows][Ncolumns];
+        this.nodes = new Node[Nrows][Ncolumns];
     }
 
-    public boolean getNodePlayable(int r, int c) {
+    public boolean isNodePlayable(int r, int c) {
+        /*Controllo 8 pedine attorno per capire se giocabile*/
         return true;
     }
 
-    public boolean canPlace(Color color, PiecePosition position) {
+    public void place(Coordinates c, Piece piece) {
+        nodes[c.getRow()][c.getColumn()].setPiece(piece);
+    }
+
+    public boolean canPlace(Color color, Coordinates position) {
         return true;
     }
 }
