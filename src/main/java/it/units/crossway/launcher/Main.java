@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Controller controller = new GameController();
         BoardGui boardGui = new BoardGui(controller);
+        boardGui.setBackground(Color.LIGHT_GRAY);
 
         JFrame frame = new JFrame();
         frame.setTitle("Crossway");

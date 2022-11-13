@@ -1,9 +1,12 @@
 package it.units.crossway.model;
 
+import java.awt.*;
+
 public class Piece {
-    //colour of the piece, 0 being black and 1 being white
-    public boolean colour;
-    public Piece(boolean a) {
-        this.colour = a;
+
+    public Color color;
+
+    public Piece(Color color) {
+        this.color = color;
     }
 }
