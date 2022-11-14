@@ -26,28 +26,28 @@ public class Board {
         int r = coordinates.getRow();
         int c = coordinates.getColumn();
 
-        if (!nodes[r-1][c-1].isNodeEmpty() && nodes[r-1][c-1].getPiece().color == playerColor) {
+        if (r!=0 && c!=0 && !nodes[r-1][c-1].isNodeEmpty() && nodes[r-1][c-1].getPiece().color == playerColor) {
             if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c-1].isNodeEmpty() &&
                     nodes[r-1][c].getPiece().color == nodes[r][c-1].getPiece().color &&
                     nodes[r-1][c].getPiece().color != playerColor) {
                 return false;
             }
         }
-        if (!nodes[r-1][c+1].isNodeEmpty() && nodes[r-1][c+1].getPiece().color == playerColor) {
+        if (r!=0 && c!=NColumns-1 && !nodes[r-1][c+1].isNodeEmpty() && nodes[r-1][c+1].getPiece().color == playerColor) {
             if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c+1].isNodeEmpty() &&
                     nodes[r-1][c].getPiece().color == nodes[r][c+1].getPiece().color &&
                     nodes[r-1][c].getPiece().color != playerColor) {
                 return false;
             }
         }
-        if (!nodes[r+1][c-1].isNodeEmpty() && nodes[r+1][c-1].getPiece().color == playerColor) {
+        if (c!=0 && r!=NRows-1 && !nodes[r+1][c-1].isNodeEmpty() && nodes[r+1][c-1].getPiece().color == playerColor) {
             if (!nodes[r][c-1].isNodeEmpty() && !nodes[r+1][c].isNodeEmpty() &&
                     nodes[r][c-1].getPiece().color == nodes[r+1][c].getPiece().color &&
                     nodes[r][c-1].getPiece().color != playerColor) {
                 return false;
             }
         }
-        if (!nodes[r+1][c+1].isNodeEmpty() && nodes[r+1][c+1].getPiece().color == playerColor) {
+        if (r!=NRows-1 && c!=NColumns-1 && !nodes[r+1][c+1].isNodeEmpty() && nodes[r+1][c+1].getPiece().color == playerColor) {
             if (!nodes[r][c+1].isNodeEmpty() && !nodes[r+1][c].isNodeEmpty() &&
                     nodes[r][c+1].getPiece().color == nodes[r+1][c].getPiece().color &&
                     nodes[r][c+1].getPiece().color != playerColor) {
