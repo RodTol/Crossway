@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
@@ -19,6 +18,25 @@ public class BoardTest {
                 assertTrue(board.canPlace(coord, Config.N_ROWS, Config.N_COLUMNS, Color.BLACK));
             }
         }
+    }
+
+    @Test
+    void canPlaceIllegalPosition(){
+        Board board = new Board(Config.N_ROWS, Config.N_COLUMNS);
+        Coordinates coord1 = new Coordinates(1,1);
+        Coordinates coord2 = new Coordinates(1,2);
+        Coordinates coord3 = new Coordinates(2,1);
+        Coordinates coord4 = new Coordinates(2,2);
+
+        Piece piece1 = new Piece(Color.BLACK);
+        Piece piece2 = new Piece(Color.WHITE);
+        Piece piece3 = new Piece(Color.WHITE);
+
+        board.place(coord1, piece1);
+        board.place(coord2, piece2);
+        board.place(coord3, piece3);
+
+        assertFalse(board.canPlace(coord4,Config.N_ROWS,Config.N_COLUMNS,Color.BLACK));
     }
 
     //@Test
