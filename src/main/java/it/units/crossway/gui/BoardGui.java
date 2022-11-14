@@ -166,12 +166,13 @@ public class BoardGui extends JPanel {
             Point node = e.getPoint();
             Coordinates position =  nodePxToPosition(positionToNodePx(node));
             if (controller.canPlace(playerColor, position)) {
-                Status status = controller.place();
+                PieceGui piece = new PieceGui(controller.getCurrentColor(), position);
+                Status status = controller.place(piece, position);
                 switch (status.getCondition()) {
                     case PLACED :
-                        ColorInfo statusInfo = ((ColorInfo) status.getInfo());
-                        pieces.add(new PieceGui(playerColor, position));
-                        playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
+                        //ColorInfo statusInfo = ((ColorInfo) status.getInfo());
+                        pieces.add(piece);
+                        //playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
                         repaint();
                         break;
                 }

@@ -18,10 +18,15 @@ public class Board {
     }
 
     public void place(Coordinates c, Piece piece) {
+        nodes[c.getRow()][c.getColumn()] = new Node();
         nodes[c.getRow()][c.getColumn()].setPiece(piece);
     }
 
     public boolean canPlace(Color color, Coordinates position) {
         return true;
+    }
+
+    public boolean isWin() {
+        return false;
     }
 }

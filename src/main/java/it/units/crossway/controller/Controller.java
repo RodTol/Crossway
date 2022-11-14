@@ -1,5 +1,6 @@
 package it.units.crossway.controller;
 
+import it.units.crossway.gui.PieceGui;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
 
@@ -12,5 +13,5 @@ public interface Controller {
 
     boolean canPlace(Color playerColor, Coordinates position);
 
-    boolean place(Color playerColor, Coordinates position);
+    Status place(PieceGui piece, Coordinates position);
 }

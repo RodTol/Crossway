@@ -1,5 +1,6 @@
 package it.units.crossway.model;
 
+import it.units.crossway.utils.Config;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +10,7 @@ public class BoardTest {
 
     @Test
     void get_initial_playable_state() {
-        Board board = new Board(19, 19);
+        Board board = new Board(Config.N_ROWS, Config.N_COLUMNS);
         assertTrue(board.isNodePlayable(1, 1));
     }
 
