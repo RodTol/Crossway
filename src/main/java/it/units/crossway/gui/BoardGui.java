@@ -133,6 +133,21 @@ public class BoardGui extends JPanel {
         return new Point(Xpx,Ypx);
     }
 
+    public void handleMouseClicked(Coordinates position) {
+        if (controller.canPlace(playerColor, position)) {
+            PieceGui piece = new PieceGui(controller.getCurrentColor(), position);
+            Status status = controller.place(piece, position);
+            switch (status.getCondition()) {
+                case PLACED :
+                    //ColorInfo statusInfo = ((ColorInfo) status.getInfo());
+                    pieces.add(piece);
+                    //playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
+                    repaint();
+                    break;
+            }
+        }
+    }
+
 
     private class BoardMouseMotionListener implements MouseMotionListener {
 
@@ -165,19 +180,9 @@ public class BoardGui extends JPanel {
         public void mouseClicked(MouseEvent e) {
             Point node = e.getPoint();
             Coordinates position =  nodePxToPosition(positionToNodePx(node));
-            if (controller.canPlace(playerColor, position)) {
-                PieceGui piece = new PieceGui(controller.getCurrentColor(), position);
-                Status status = controller.place(piece, position);
-                switch (status.getCondition()) {
-                    case PLACED :
-                        //ColorInfo statusInfo = ((ColorInfo) status.getInfo());
-                        pieces.add(piece);
-                        //playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
-                        repaint();
-                        break;
-                }
-            }
+            handleMouseClicked(position);
         }
+
 
         @Override
         public void mousePressed(MouseEvent e) {

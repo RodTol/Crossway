@@ -29,4 +29,6 @@ public class Board {
     public boolean isWin() {
         return false;
     }
+
+    public Node getNode(Coordinates c) {return nodes[c.getRow()][c.getColumn()];}
 }

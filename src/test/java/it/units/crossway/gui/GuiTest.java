@@ -1,5 +1,6 @@
 package it.units.crossway.gui;
 
+import it.units.crossway.model.Coordinates;
 import it.units.crossway.utils.Config;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.GameController;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class GuiTest {
@@ -32,6 +34,16 @@ public class GuiTest {
             assertEquals(Config.BOARD_MARGIN + test_c[i]*Config.CELL_SIZE, YNodePositions.get(test_c[i]));
         }
 
+    }
+
+    @Test
+    void Click_perform_place () {
+        Coordinates test_point = new Coordinates(14, 18);
+        Controller controller = new GameController();
+
+        BoardGui boardGui = new BoardGui(controller);
+        boardGui.handleMouseClicked(test_point);
+        assertTrue(controller.getBoard().getNode(test_point).hasPiece());
     }
 
    /*@Test
