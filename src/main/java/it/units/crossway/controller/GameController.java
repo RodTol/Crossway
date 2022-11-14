@@ -26,11 +26,14 @@ public class GameController implements Controller {
         return this.CurrentUserColor;
     }
 
+    /*Stessa roba di place. Metti pedina al posti di colore*/
     @Override
     public boolean canPlace(Color playerColor, Coordinates position) {
         return true;
     }
 
+    /*Metti al posto di color una pieceGUi perche chiedi se puoi piazzare una pedina
+    * un colore*/
     @Override
     public boolean place(Color playerColor, Coordinates position) {
         try {
