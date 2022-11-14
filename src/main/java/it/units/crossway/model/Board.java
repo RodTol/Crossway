@@ -12,6 +12,7 @@ public class Board {
         this.nodes = new Node[NRows][NColumns];
         for (int row = 0; row < nodes.length; row++) {
             for (int col = 0; col < nodes[row].length; col++) {
+                //se volete qua si possono creare le coordinate e usare quelle ma a me sembra strano
                 nodes[row][col] = new Node();
             }
         }
@@ -21,7 +22,10 @@ public class Board {
         return nodes;
     }
 
-    public boolean canPlace(int r, int c, int NRows, int NColumns, Color playerColor) {
+    public boolean canPlace(Coordinates coordinates, int NRows, int NColumns, Color playerColor) {
+        int r = coordinates.getRow();
+        int c = coordinates.getColumn();
+
         if (!nodes[r-1][c-1].isNodeEmpty() && nodes[r-1][c-1].getPiece().color == playerColor) {
             if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c-1].isNodeEmpty() &&
                     nodes[r-1][c].getPiece().color == nodes[r][c-1].getPiece().color &&
