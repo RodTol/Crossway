@@ -19,6 +19,13 @@ public class Node {
         this.piece = piece;
     }
 
-    /*Metti hasPiece*/
+    public boolean isNodeEmpty(){
+        if (this.piece == null){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 }
