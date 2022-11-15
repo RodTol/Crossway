@@ -144,6 +144,7 @@ public class BoardGui extends JPanel {
             Status status = controller.place(piece, position);
             switch (status.getCondition()) {
                 case PLACED :
+                    /*Qua andra messo il cambio colore*/
                     //ColorInfo statusInfo = ((ColorInfo) status.getInfo());
                     pieces.add(piece);
                     System.out.println(controller.getCurrentColor() + " piece placed at "
