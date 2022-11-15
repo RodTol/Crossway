@@ -1,6 +1,6 @@
 package it.units.crossway.controller;
 
-import it.units.crossway.gui.PieceGui;
+import it.units.crossway.launcher.gui.PieceGui;
 import it.units.crossway.model.Piece;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
@@ -11,26 +11,21 @@ public class GameController implements Controller {
     private Board board;
     private Color currentUserColor;
 
-    public GameController() {
-        board = new Board();
+    public GameController(Board board) {
+        this.board = board;
         currentUserColor = Color.BLACK;
         System.out.println("Game Starts!");
     }
 
     @Override
-    public Board getBoard() {
-        return this.board;
-    }
-
-    @Override
     public Color getCurrentColor() {
-        return this.currentUserColor;
+        return currentUserColor;
     }
 
     /*This method asks the board if a position is playable
     * for a piece*/
     @Override
-    public boolean canPlace( Coordinates position) {
+    public boolean canPlace(Coordinates position) {
         return board.canPlace(position, new Piece(currentUserColor));
     }
 
