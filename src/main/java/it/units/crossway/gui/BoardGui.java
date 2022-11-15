@@ -99,6 +99,8 @@ public class BoardGui extends JPanel {
         return YNodePos;
     }
 
+    /*This function takes Point and assign the nearest node position
+    * in pixels*/
     private Point positionToNodePx(Point currentPosition) {
         ArrayList<Integer> XNodePositions = getXNodePositions();
         int xminDistance = 10000;
@@ -121,15 +123,18 @@ public class BoardGui extends JPanel {
         return new Point(ClosestXPos, ClosestYPos);
     }
 
-    private Coordinates nodePxToPosition(Point node) {
-        int row = (int) ((node.getX() - Config.BOARD_MARGIN) / Config.CELL_SIZE)+1;
-        int column = (int) ((node.getY() - Config.BOARD_MARGIN) / Config.CELL_SIZE)+1;
+    /*This function convert pixels into coordinates (row,column) with
+    * both extending from 0 to 18*/
+    private Coordinates nodePxToPosition(Point point) {
+        int row = (int) ((point.getX() - Config.BOARD_MARGIN) / Config.CELL_SIZE);
+        int column = (int) ((point.getY() - Config.BOARD_MARGIN) / Config.CELL_SIZE);
         return new Coordinates(row, column);
     }
 
+    /*Convert coordinates into pixels. Takes input with row and columns from 0 to 18*/
     private Point nodePositionToPx(Coordinates position) {
-        int Xpx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getRow()-1);
-        int Ypx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getColumn()-1);
+        int Xpx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getRow());
+        int Ypx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getColumn());
         return new Point(Xpx,Ypx);
     }
 
@@ -141,6 +146,8 @@ public class BoardGui extends JPanel {
                 case PLACED :
                     //ColorInfo statusInfo = ((ColorInfo) status.getInfo());
                     pieces.add(piece);
+                    System.out.println(controller.getCurrentColor() + " piece placed at "
+                            + position.getRow() + " " + position.getColumn());
                     //playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
                     repaint();
                     break;
