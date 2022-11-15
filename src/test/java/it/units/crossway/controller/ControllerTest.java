@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ControllerTest {
 
     @Test
-    void colorIsBlac() {
+    void colorIsBlack() {
         Controller controller = new GameController();
         assertEquals(controller.getCurrentColor(), Color.BLACK);
     }

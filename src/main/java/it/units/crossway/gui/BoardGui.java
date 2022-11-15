@@ -161,8 +161,10 @@ public class BoardGui extends JPanel {
 
     private class BoardMouseClickListener implements MouseListener {
 
+
         @Override
         public void mouseClicked(MouseEvent e) {
+            /*
             Point node = e.getPoint();
             Coordinates position =  nodePxToPosition(positionToNodePx(node));
             if (controller.canPlace(playerColor, position)) {
@@ -176,6 +178,8 @@ public class BoardGui extends JPanel {
                         break;
                 }
             }
+
+             */
         }
 
         @Override

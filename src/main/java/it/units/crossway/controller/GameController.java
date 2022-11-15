@@ -28,7 +28,8 @@ public class GameController implements Controller {
 
     @Override
     public boolean canPlace(Color playerColor, Coordinates position) {
-        return true;
+
+        return this.board.canPlace(position, Config.N_ROWS, Config.N_COLUMNS, playerColor);
     }
 
     @Override
