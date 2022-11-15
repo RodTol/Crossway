@@ -15,24 +15,20 @@ import java.util.List;
 
 public class BoardGui extends JPanel {
     private static final int PIECE_SIZE = 20;
-    private Controller controller;
-
+    private final Controller controller;
     private Point ghostPosition;
-
-    private Color playerColor;
-
     private List<PieceGui> pieces;
 
     public BoardGui(Controller controller) {
         super(new BorderLayout());
         this.controller = controller;
         this.ghostPosition= null;
-        this.playerColor = controller.getCurrentColor();
         this.pieces = new ArrayList<>();
         addMouseMotionListener(new BoardMouseMotionListener());
         addMouseListener(new BoardMouseClickListener());
     }
 
+    /*Method to draw the lines*/
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -58,10 +54,10 @@ public class BoardGui extends JPanel {
     }
 
     private void drawGhost(Graphics g) {
-        //System.err.println(ghostPosition);
+        Color playerColor = controller.getCurrentColor();
         if (ghostPosition != null) {
             g.setColor(new Color(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue(), 70));
-            Point point = positionToNodePx(ghostPosition);
+            Point point = closestNodetoPx(ghostPosition);
 
             //x,y are not the center of the circle but top left corner, so we have to convert to proper position
             int x = point.x - (PIECE_SIZE / 2);
@@ -70,6 +66,7 @@ public class BoardGui extends JPanel {
         }
     }
 
+    /*This method draws all my placed pieces*/
     private void drawPieces(Graphics g) {
         for (PieceGui piece : pieces) {
             g.setColor(piece.getColor());
@@ -101,7 +98,7 @@ public class BoardGui extends JPanel {
 
     /*This function takes Point and assign the nearest node position
     * in pixels*/
-    private Point positionToNodePx(Point currentPosition) {
+    private Point closestNodetoPx(Point currentPosition) {
         ArrayList<Integer> XNodePositions = getXNodePositions();
         int xminDistance = 10000;
         int ClosestXPos = 0;
@@ -140,18 +137,17 @@ public class BoardGui extends JPanel {
 
     public void handleMouseClicked(Coordinates position) {
         PieceGui piece = new PieceGui(controller.getCurrentColor(), position);
-        if (controller.canPlace(playerColor, position)) {
+        if (controller.canPlace(position)) {
             Status status = controller.place(piece);
             switch (status.getCondition()) {
                 case PLACED :
-                    /*Qua andra messo il cambio colore*/
-                    //ColorInfo statusInfo = ((ColorInfo) status.getInfo());
                     pieces.add(piece);
                     System.out.println(controller.getCurrentColor() + " piece placed at "
                             + position.getRow() + " " + position.getColumn());
-                    //playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
                     repaint();
                     break;
+                case WON :
+                    /*End-game*/
             }
         }
     }
@@ -167,10 +163,10 @@ public class BoardGui extends JPanel {
         @Override
         public void mouseMoved(MouseEvent e) {
             Point point = e.getPoint();
-            Point newPosition = positionToNodePx(point);
+            Point newPosition = closestNodetoPx(point);
             if (!newPosition.equals(ghostPosition)) {
                 Coordinates position = nodePxToPosition(newPosition);
-                if (controller.canPlace(playerColor, position)) {
+                if (controller.canPlace(position)) {
                     ghostPosition = newPosition;
                 }
                 else {
@@ -187,7 +183,7 @@ public class BoardGui extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             Point node = e.getPoint();
-            Coordinates position =  nodePxToPosition(positionToNodePx(node));
+            Coordinates position =  nodePxToPosition(closestNodetoPx(node));
             handleMouseClicked(position);
         }
 

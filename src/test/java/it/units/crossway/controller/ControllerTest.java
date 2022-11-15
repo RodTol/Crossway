@@ -18,7 +18,7 @@ public class ControllerTest {
 
     @Test void canPlace() {
         Controller controller = new GameController();
-        assertTrue(controller.canPlace(Color.BLACK, new Coordinates(1,3)));
+        assertTrue(controller.canPlace(new Coordinates(1,3)));
     }
 
 

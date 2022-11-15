@@ -30,8 +30,8 @@ public class GameController implements Controller {
     /*This method asks the board if a position is playable
     * for a piece*/
     @Override
-    public boolean canPlace(Color playerColor, Coordinates position) {
-        return board.canPlace(position, new Piece(playerColor));
+    public boolean canPlace( Coordinates position) {
+        return board.canPlace(position, new Piece(currentUserColor));
     }
 
     private boolean GameWon() {
@@ -50,7 +50,11 @@ public class GameController implements Controller {
     * checks if the Game is finished, and if it's the case can make something*/
     @Override
     public Status place(PieceGui piece) {
-        board.place(piece.getPosition(), new Piece(piece.getColor()));
+        try {
+            board.place(piece.getPosition(), new Piece(piece.getColor()));
+        } catch (Exception e) {
+            return Status.not_placed();
+        }
         if (GameWon()) {
             /*End game*/
             return Status.won();
