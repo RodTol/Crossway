@@ -32,6 +32,10 @@ public class Board {
         int c = coordinates.getColumn();
         Color playerColor = piece.getColor();
 
+        if (!nodes[r][c].isNodeEmpty()) {
+            return false;
+        }
+
         if (r!=0 && c!=0 && !nodes[r-1][c-1].isNodeEmpty() && nodes[r - 1][c - 1].getPiece().getColor() == playerColor) {
             if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c-1].isNodeEmpty() &&
                     nodes[r - 1][c].getPiece().getColor() == nodes[r][c - 1].getPiece().getColor() &&
