@@ -27,35 +27,37 @@ public class Board {
     public Node getNode(Coordinates c) {return nodes[c.getRow()][c.getColumn()];}
 
 
-    public boolean canPlace(Coordinates coordinates, int NRows, int NColumns, Color playerColor) {
+    public boolean canPlace(Coordinates coordinates, Piece piece) {
         int r = coordinates.getRow();
         int c = coordinates.getColumn();
+        Color playerColor = piece.getColor();
 
-        if (r!=0 && c!=0 && !nodes[r-1][c-1].isNodeEmpty() && nodes[r-1][c-1].getPiece().color == playerColor) {
+        if (r!=0 && c!=0 && !nodes[r-1][c-1].isNodeEmpty() && nodes[r - 1][c - 1].getPiece().getColor() == playerColor) {
             if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c-1].isNodeEmpty() &&
-                    nodes[r-1][c].getPiece().color == nodes[r][c-1].getPiece().color &&
-                    nodes[r-1][c].getPiece().color != playerColor) {
+                    nodes[r - 1][c].getPiece().getColor() == nodes[r][c - 1].getPiece().getColor() &&
+                    nodes[r - 1][c].getPiece().getColor() != playerColor) {
                 return false;
             }
         }
-        if (r!=0 && c!=NColumns-1 && !nodes[r-1][c+1].isNodeEmpty() && nodes[r-1][c+1].getPiece().color == playerColor) {
+        if (r!=0 && c!=Config.N_COLUMNS-1 && !nodes[r-1][c+1].isNodeEmpty() && nodes[r - 1][c + 1].getPiece().getColor() == playerColor) {
             if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c+1].isNodeEmpty() &&
-                    nodes[r-1][c].getPiece().color == nodes[r][c+1].getPiece().color &&
-                    nodes[r-1][c].getPiece().color != playerColor) {
+                    nodes[r - 1][c].getPiece().getColor() == nodes[r][c + 1].getPiece().getColor() &&
+                    nodes[r - 1][c].getPiece().getColor() != playerColor) {
                 return false;
             }
         }
-        if (c!=0 && r!=NRows-1 && !nodes[r+1][c-1].isNodeEmpty() && nodes[r+1][c-1].getPiece().color == playerColor) {
+        if (c!=0 && r!=Config.N_ROWS-1 && !nodes[r+1][c-1].isNodeEmpty() && nodes[r + 1][c - 1].getPiece().getColor() == playerColor) {
             if (!nodes[r][c-1].isNodeEmpty() && !nodes[r+1][c].isNodeEmpty() &&
-                    nodes[r][c-1].getPiece().color == nodes[r+1][c].getPiece().color &&
-                    nodes[r][c-1].getPiece().color != playerColor) {
+                    nodes[r][c - 1].getPiece().getColor() == nodes[r + 1][c].getPiece().getColor() &&
+                    nodes[r][c - 1].getPiece().getColor() != playerColor) {
                 return false;
             }
         }
-        if (r!=NRows-1 && c!=NColumns-1 && !nodes[r+1][c+1].isNodeEmpty() && nodes[r+1][c+1].getPiece().color == playerColor) {
+        if (r!=Config.N_ROWS-1 && c!=Config.N_COLUMNS-1 && !nodes[r+1][c+1].isNodeEmpty() &&
+                nodes[r + 1][c + 1].getPiece().getColor() == playerColor) {
             if (!nodes[r][c+1].isNodeEmpty() && !nodes[r+1][c].isNodeEmpty() &&
-                    nodes[r][c+1].getPiece().color == nodes[r+1][c].getPiece().color &&
-                    nodes[r][c+1].getPiece().color != playerColor) {
+                    nodes[r][c + 1].getPiece().getColor() == nodes[r + 1][c].getPiece().getColor() &&
+                    nodes[r][c + 1].getPiece().getColor() != playerColor) {
                 return false;
             }
         }

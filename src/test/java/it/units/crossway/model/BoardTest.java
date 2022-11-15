@@ -15,7 +15,7 @@ public class BoardTest {
         for (int row = 0; row < board.getNodes().length; row++) {
             for (int col = 0; col < board.getNodes()[row].length; col++) {
                 Coordinates coord = new Coordinates(row, col);
-                assertTrue(board.canPlace(coord, Config.N_ROWS, Config.N_COLUMNS, Color.BLACK));
+                assertTrue(board.canPlace(coord, new Piece(Color.BLACK)));
             }
         }
     }
@@ -36,7 +36,7 @@ public class BoardTest {
         board.place(coord2, piece2);
         board.place(coord3, piece3);
 
-        assertFalse(board.canPlace(coord4,Config.N_ROWS,Config.N_COLUMNS,Color.BLACK));
+        assertFalse(board.canPlace(coord4,new Piece(Color.BLACK)));
     }
 
 }

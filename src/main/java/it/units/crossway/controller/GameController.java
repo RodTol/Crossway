@@ -31,7 +31,7 @@ public class GameController implements Controller {
     @Override
     public boolean canPlace(Color playerColor, Coordinates position) {
 
-        return this.board.canPlace(position, Config.N_ROWS, Config.N_COLUMNS, playerColor);
+        return this.board.canPlace(position, new Piece(Color.BLACK));
     }
 
     /*Metti al posto di color una pieceGUi perche chiedi se puoi piazzare una pedina
