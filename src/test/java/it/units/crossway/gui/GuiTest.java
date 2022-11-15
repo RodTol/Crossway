@@ -46,11 +46,5 @@ public class GuiTest {
         assertFalse(controller.getBoard().getNode(test_point).isNodeEmpty());
     }
 
-   /*@Test
-    void PositionToNodePxConversion() {
-        Controller controller = new GameController();
-        BoardGui boardGui = new BoardGui(controller);
-        Point point = new Point()
-    }*/
 
 }

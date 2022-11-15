@@ -39,20 +39,4 @@ public class BoardTest {
         assertFalse(board.canPlace(coord4,Config.N_ROWS,Config.N_COLUMNS,Color.BLACK));
     }
 
-    //@Test
-    //void getInitialPlayableState() {
-        //Board board = new Board(19, 19);
-        //assertTrue(board.isNodePlayable(1, 1));
-    //}
-
-//    @Test
-//    void coord_check_board_vs_node(){
-//        Board board = new Board(19, 19);
-//        for (int row = 0; row < board.nodes.length; row++) {
-//            for (int col = 0; col < board.nodes[row].length; col++) {
-//                assertEquals(row, board.nodes[row][col].getR());
-//                assertEquals(col, board.nodes[row][col].getC());
-//            }
-//        }
-//    }
 }
