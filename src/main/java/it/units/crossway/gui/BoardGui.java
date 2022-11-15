@@ -139,9 +139,9 @@ public class BoardGui extends JPanel {
     }
 
     public void handleMouseClicked(Coordinates position) {
+        PieceGui piece = new PieceGui(controller.getCurrentColor(), position);
         if (controller.canPlace(playerColor, position)) {
-            PieceGui piece = new PieceGui(controller.getCurrentColor(), position);
-            Status status = controller.place(piece, position);
+            Status status = controller.place(piece);
             switch (status.getCondition()) {
                 case PLACED :
                     /*Qua andra messo il cambio colore*/

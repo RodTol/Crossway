@@ -2,7 +2,6 @@ package it.units.crossway.controller;
 
 import it.units.crossway.gui.PieceGui;
 import it.units.crossway.model.Piece;
-import it.units.crossway.utils.Config;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
 
@@ -10,11 +9,12 @@ import java.awt.*;
 
 public class GameController implements Controller {
     private Board board;
-    private Color CurrentUserColor;
+    private Color currentUserColor;
 
     public GameController() {
-        this.board = new Board();
-        this.CurrentUserColor = Color.BLACK;
+        board = new Board();
+        currentUserColor = Color.BLACK;
+        System.out.println("Game Starts!");
     }
 
     @Override
@@ -24,24 +24,38 @@ public class GameController implements Controller {
 
     @Override
     public Color getCurrentColor() {
-        return this.CurrentUserColor;
+        return this.currentUserColor;
     }
 
-    /*Stessa roba di place. Metti pedina al posti di colore*/
+    /*This method asks the board if a position is playable
+    * for a piece*/
     @Override
     public boolean canPlace(Color playerColor, Coordinates position) {
-
-        return this.board.canPlace(position, new Piece(Color.BLACK));
+        return board.canPlace(position, new Piece(playerColor));
     }
 
-    /*Metti al posto di color una pieceGUi perche chiedi se puoi piazzare una pedina
-    * un colore*/
+    private boolean GameWon() {
+        return board.isWin();
+    }
+
+    private void changeColor() {
+        if (currentUserColor.equals(Color.BLACK)) {
+            currentUserColor = Color.WHITE;
+        } else {
+            currentUserColor = Color.BLACK;
+        }
+    }
+
+    /*This method place a piece on the board from the input of the Gui. Then
+    * checks if the Game is finished, and if it's the case can make something*/
     @Override
-    public Status place(PieceGui piece, Coordinates position) {
-        board.place(position, new Piece(piece.getColor()));
-        if (board.isWin()) {
+    public Status place(PieceGui piece) {
+        board.place(piece.getPosition(), new Piece(piece.getColor()));
+        if (GameWon()) {
+            /*End game*/
             return Status.won();
         } else {
+            changeColor();
             return Status.placed();
         }
 

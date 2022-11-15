@@ -13,5 +13,5 @@ public interface Controller {
 
     boolean canPlace(Color playerColor, Coordinates position);
 
-    Status place(PieceGui piece, Coordinates position);
+    Status place(PieceGui piece);
 }
