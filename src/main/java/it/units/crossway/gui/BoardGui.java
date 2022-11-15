@@ -99,6 +99,8 @@ public class BoardGui extends JPanel {
         return YNodePos;
     }
 
+    /*This function takes Point and assign the nearest node position
+    * in pixels*/
     private Point positionToNodePx(Point currentPosition) {
         ArrayList<Integer> XNodePositions = getXNodePositions();
         int xminDistance = 10000;
@@ -121,16 +123,37 @@ public class BoardGui extends JPanel {
         return new Point(ClosestXPos, ClosestYPos);
     }
 
-    private Coordinates nodePxToPosition(Point node) {
-        int row = (int) ((node.getX() - Config.BOARD_MARGIN) / Config.CELL_SIZE)+1;
-        int column = (int) ((node.getY() - Config.BOARD_MARGIN) / Config.CELL_SIZE)+1;
+    /*This function convert pixels into coordinates (row,column) with
+    * both extending from 0 to 18*/
+    private Coordinates nodePxToPosition(Point point) {
+        int row = (int) ((point.getX() - Config.BOARD_MARGIN) / Config.CELL_SIZE);
+        int column = (int) ((point.getY() - Config.BOARD_MARGIN) / Config.CELL_SIZE);
         return new Coordinates(row, column);
     }
 
+    /*Convert coordinates into pixels. Takes input with row and columns from 0 to 18*/
     private Point nodePositionToPx(Coordinates position) {
-        int Xpx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getRow()-1);
-        int Ypx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getColumn()-1);
+        int Xpx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getRow());
+        int Ypx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getColumn());
         return new Point(Xpx,Ypx);
+    }
+
+    public void handleMouseClicked(Coordinates position) {
+        if (controller.canPlace(playerColor, position)) {
+            PieceGui piece = new PieceGui(controller.getCurrentColor(), position);
+            Status status = controller.place(piece, position);
+            switch (status.getCondition()) {
+                case PLACED :
+                    /*Qua andra messo il cambio colore*/
+                    //ColorInfo statusInfo = ((ColorInfo) status.getInfo());
+                    pieces.add(piece);
+                    System.out.println(controller.getCurrentColor() + " piece placed at "
+                            + position.getRow() + " " + position.getColumn());
+                    //playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
+                    repaint();
+                    break;
+            }
+        }
     }
 
 
@@ -161,26 +184,13 @@ public class BoardGui extends JPanel {
 
     private class BoardMouseClickListener implements MouseListener {
 
-
         @Override
         public void mouseClicked(MouseEvent e) {
-            /*
             Point node = e.getPoint();
             Coordinates position =  nodePxToPosition(positionToNodePx(node));
-            if (controller.canPlace(playerColor, position)) {
-                Status status = controller.place();
-                switch (status.getCondition()) {
-                    case PLACED :
-                        ColorInfo statusInfo = ((ColorInfo) status.getInfo());
-                        pieces.add(new PieceGui(playerColor, position));
-                        playerColor = statusInfo.getCurrentColor();    // bc place changes controller color, now I update playerColor in gui
-                        repaint();
-                        break;
-                }
-            }
-
-             */
+            handleMouseClicked(position);
         }
+
 
         @Override
         public void mousePressed(MouseEvent e) {

@@ -21,4 +21,6 @@ public class ControllerTest {
         assertTrue(controller.canPlace(Color.BLACK, new Coordinates(1,3)));
     }
 
+
+
 }

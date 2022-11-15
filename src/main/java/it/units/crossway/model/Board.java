@@ -22,6 +22,9 @@ public class Board {
         return nodes;
     }
 
+    public Node getNode(Coordinates c) {return nodes[c.getRow()][c.getColumn()];}
+
+
     public boolean canPlace(Coordinates coordinates, int NRows, int NColumns, Color playerColor) {
         int r = coordinates.getRow();
         int c = coordinates.getColumn();
@@ -58,7 +61,11 @@ public class Board {
     }
 
     public void place(Coordinates c, Piece piece) {
+        nodes[c.getRow()][c.getColumn()] = new Node();
         nodes[c.getRow()][c.getColumn()].setPiece(piece);
     }
 
+    public boolean isWin() {
+        return false;
+    }
 }

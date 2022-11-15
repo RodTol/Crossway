@@ -1,5 +1,6 @@
 package it.units.crossway.controller;
 
+import it.units.crossway.gui.PieceGui;
 import it.units.crossway.model.Piece;
 import it.units.crossway.utils.Config;
 import it.units.crossway.model.Board;
@@ -26,20 +27,24 @@ public class GameController implements Controller {
         return this.CurrentUserColor;
     }
 
+    /*Stessa roba di place. Metti pedina al posti di colore*/
     @Override
     public boolean canPlace(Color playerColor, Coordinates position) {
 
         return this.board.canPlace(position, Config.N_ROWS, Config.N_COLUMNS, playerColor);
     }
 
+    /*Metti al posto di color una pieceGUi perche chiedi se puoi piazzare una pedina
+    * un colore*/
     @Override
-    public boolean place(Color playerColor, Coordinates position) {
-        try {
-            board.place(position, new Piece(playerColor));
-        } catch (Exception e) {
-            return false;
+    public Status place(PieceGui piece, Coordinates position) {
+        board.place(position, new Piece(piece.getColor()));
+        if (board.isWin()) {
+            return Status.won();
+        } else {
+            return Status.placed();
         }
-        return true;
+
     }
 
 

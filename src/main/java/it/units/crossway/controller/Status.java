@@ -15,6 +15,11 @@ public class Status {
     public static Status placed() {
         return new Status(Condition.PLACED);
     }
+    public static Status won() {
+        return new Status(Condition.WON);
+    }
+    public static Status not_placed() {return new Status(Condition.NOT_PLACED);}
+
 }
 
 
