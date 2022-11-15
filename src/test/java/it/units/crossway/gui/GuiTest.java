@@ -5,14 +5,14 @@ import it.units.crossway.utils.Config;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.GameController;
 import it.units.crossway.gui.BoardGui;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GuiTest {
 
@@ -43,7 +43,7 @@ public class GuiTest {
 
         BoardGui boardGui = new BoardGui(controller);
         boardGui.handleMouseClicked(test_point);
-        assertTrue(controller.getBoard().getNode(test_point).hasPiece());
+        assertFalse(controller.getBoard().getNode(test_point).isNodeEmpty());
     }
 
    /*@Test
