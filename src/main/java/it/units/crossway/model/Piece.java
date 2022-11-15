@@ -14,7 +14,4 @@ public class Piece {
         return color;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
 }

@@ -1,4 +1,4 @@
-package it.units.crossway.gui;
+package it.units.crossway.launcher.gui;
 
 import it.units.crossway.model.Coordinates;
 
