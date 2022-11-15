@@ -13,7 +13,7 @@ public class GameController implements Controller {
     private Color CurrentUserColor;
 
     public GameController() {
-        this.board = new Board(Config.N_ROWS, Config.N_COLUMNS);
+        this.board = new Board();
         this.CurrentUserColor = Color.BLACK;
     }
 

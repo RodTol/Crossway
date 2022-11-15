@@ -11,7 +11,7 @@ public class BoardTest {
 
     @Test
     void canPlaceOnEmptyBoard(){
-        Board board = new Board(Config.N_ROWS,Config.N_COLUMNS);
+        Board board = new Board();
         for (int row = 0; row < board.getNodes().length; row++) {
             for (int col = 0; col < board.getNodes()[row].length; col++) {
                 Coordinates coord = new Coordinates(row, col);
@@ -22,7 +22,7 @@ public class BoardTest {
 
     @Test
     void canPlaceIllegalPosition(){
-        Board board = new Board(Config.N_ROWS, Config.N_COLUMNS);
+        Board board = new Board();
         Coordinates coord1 = new Coordinates(1,1);
         Coordinates coord2 = new Coordinates(1,2);
         Coordinates coord3 = new Coordinates(2,1);

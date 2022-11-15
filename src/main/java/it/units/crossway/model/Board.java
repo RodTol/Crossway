@@ -1,19 +1,21 @@
 package it.units.crossway.model;
 
 
+import it.units.crossway.utils.Config;
+
 import java.awt.*;
+import java.util.stream.Stream;
 
 public class Board {
 
     /*Matrix of Nodes*/
-    private Node[][] nodes;
+    private Node[][] nodes = new Node[Config.N_ROWS][Config.N_COLUMNS];
 
-    public Board(int NRows, int NColumns) {
-        this.nodes = new Node[NRows][NColumns];
-        for (int row = 0; row < nodes.length; row++) {
-            for (int col = 0; col < nodes[row].length; col++) {
-                //se volete qua si possono creare le coordinate e usare quelle ma a me sembra strano
-                nodes[row][col] = new Node();
+    /*If we want we can use streams*/
+    public Board() {
+        for (int r = 0; r < Config.N_ROWS; r++) {
+            for (int c = 0; c < Config.N_COLUMNS; c++) {
+                nodes[r][c] = new Node();
             }
         }
     }

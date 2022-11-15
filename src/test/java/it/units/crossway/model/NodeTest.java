@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class NodeTest {
     @Test
     void initialNodesAreEmpty(){
-        Board board = new Board(Config.N_ROWS,Config.N_COLUMNS);
+        Board board = new Board();
         //va fatto un ciclo sulle coordinate?
         for (int row = 0; row < board.getNodes().length; row++) {
             for (int col = 0; col < board.getNodes()[row].length; col++) {
@@ -22,7 +22,7 @@ public class NodeTest {
 
     @Test
     void notEmptyNode(){
-        Board board = new Board(Config.N_ROWS,Config.N_COLUMNS);
+        Board board = new Board();
         Coordinates coord = new Coordinates(1,2);
         Piece piece = new Piece(Color.BLACK);
         board.place(coord, piece);
