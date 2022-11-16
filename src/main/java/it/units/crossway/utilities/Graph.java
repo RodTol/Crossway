@@ -28,6 +28,12 @@ public class Graph {
     void addEdge(Piece piece1, Piece piece2){
         Vertex vertex1 = new Vertex(piece1);
         Vertex vertex2 = new Vertex(piece2);
+        if (!getAdjList().containsKey(vertex1)){
+            addVertex(piece1);
+        }
+        if (!getAdjList().containsKey(vertex2)){
+            addVertex(piece2);
+        }
         adjList.get(vertex1).add(vertex2);
         adjList.get(vertex2).add(vertex1);
     }
