@@ -74,6 +74,11 @@ public class Board {
     }
 
     public boolean isWin() {
+        /*If condition to exit before the winning analysis
+        * like: at least 19 pieces, at least one piece in row 0
+        * and row 19 for black*/
+        /*Create graphs. Only when necessary*/
+        /*Check graphs for winning*/
         return false;
     }
 }
