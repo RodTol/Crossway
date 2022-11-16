@@ -1,7 +1,6 @@
 package it.units.crossway.gui;
 
 import it.units.crossway.controller.Status;
-import it.units.crossway.utils.Config;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.model.Coordinates;
 
@@ -14,16 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardGui extends JPanel {
+    
     private static final int PIECE_SIZE = 20;
     private final Controller controller;
+    
+    private final BoardGuiSettings settings;
     private Point ghostPosition;
     private List<PieceGui> pieces;
 
-    public BoardGui(Controller controller) {
+    public BoardGui(Controller controller, BoardGuiSettings settings) {
         super(new BorderLayout());
         this.controller = controller;
+        this.settings = settings;
         this.ghostPosition= null;
         this.pieces = new ArrayList<>();
+        
         addMouseMotionListener(new BoardMouseMotionListener());
         addMouseListener(new BoardMouseClickListener());
     }
@@ -40,17 +44,17 @@ public class BoardGui extends JPanel {
     }
 
     private void drawVerticalLines(Graphics g) {
-        for (int x = Config.BOARD_MARGIN; x < Config.BOARD_HEIGHT-Config.BOARD_MARGIN; x += Config.CELL_SIZE) {
-            g.drawLine(x, Config.BOARD_MARGIN, x, Config.BOARD_HEIGHT-Config.BOARD_MARGIN);
+        for (int x = settings.getMargin(); x < settings.getHeight()-settings.getMargin(); x += settings.getCellSize()) {
+            g.drawLine(x, settings.getMargin(), x, settings.getHeight()-settings.getMargin());
         }
-        g.drawLine(Config.BOARD_WIDTH-Config.BOARD_MARGIN, Config.BOARD_MARGIN, Config.BOARD_WIDTH-Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN);
+        g.drawLine(settings.getWidth()-settings.getMargin(), settings.getMargin(), settings.getWidth()-settings.getMargin(), settings.getHeight()-settings.getMargin());
     }
 
     private void drawHorizontalLines(Graphics g) {
-        for (int y = Config.BOARD_MARGIN; y < Config.BOARD_WIDTH-Config.BOARD_MARGIN; y += Config.CELL_SIZE) {
-            g.drawLine(Config.BOARD_MARGIN, y, Config.BOARD_HEIGHT-Config.BOARD_MARGIN, y);
+        for (int y = settings.getMargin(); y < settings.getWidth()-settings.getMargin(); y += settings.getCellSize()) {
+            g.drawLine(settings.getMargin(), y, settings.getHeight()-settings.getMargin(), y);
         }
-        g.drawLine(Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN, Config.BOARD_HEIGHT-Config.BOARD_MARGIN);
+        g.drawLine(settings.getMargin(), settings.getHeight()-settings.getMargin(), settings.getHeight()-settings.getMargin(), settings.getHeight()-settings.getMargin());
     }
 
     private void drawGhost(Graphics g) {
@@ -81,7 +85,7 @@ public class BoardGui extends JPanel {
      * for the x-axis. Package private*/
     ArrayList<Integer> getXNodePositions() {
         ArrayList<Integer> XNodePos = new ArrayList<Integer>();
-        for (int x=Config.BOARD_MARGIN; x<=Config.BOARD_WIDTH; x+=Config.CELL_SIZE) {
+        for (int x=settings.getMargin(); x<=settings.getWidth(); x+=settings.getCellSize()) {
             XNodePos.add(x);
         }
         return XNodePos;
@@ -90,7 +94,7 @@ public class BoardGui extends JPanel {
      * for the y-axis. Package private*/
     ArrayList<Integer> getYNodePositions() {
         ArrayList<Integer> YNodePos = new ArrayList<Integer>();
-        for (int y=Config.BOARD_MARGIN; y<= Config.BOARD_HEIGHT; y+=Config.CELL_SIZE) {
+        for (int y=settings.getMargin(); y<= settings.getHeight(); y+=settings.getCellSize()) {
             YNodePos.add(y);
         }
         return YNodePos;
@@ -123,15 +127,15 @@ public class BoardGui extends JPanel {
     /*This function convert pixels into coordinates (row,column) with
     * both extending from 0 to 18*/
     private Coordinates nodePxToPosition(Point point) {
-        int row = (int) ((point.getX() - Config.BOARD_MARGIN) / Config.CELL_SIZE);
-        int column = (int) ((point.getY() - Config.BOARD_MARGIN) / Config.CELL_SIZE);
+        int row = (int) ((point.getX() - settings.getMargin()) / settings.getCellSize());
+        int column = (int) ((point.getY() - settings.getMargin()) / settings.getCellSize());
         return new Coordinates(row, column);
     }
 
     /*Convert coordinates into pixels. Takes input with row and columns from 0 to 18*/
     private Point nodePositionToPx(Coordinates position) {
-        int Xpx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getRow());
-        int Ypx = Config.BOARD_MARGIN + Config.CELL_SIZE * (position.getColumn());
+        int Xpx = settings.getMargin() + settings.getCellSize() * (position.getRow());
+        int Ypx = settings.getMargin() + settings.getCellSize() * (position.getColumn());
         return new Point(Xpx,Ypx);
     }
 

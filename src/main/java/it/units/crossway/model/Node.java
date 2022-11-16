@@ -1,7 +1,5 @@
 package it.units.crossway.model;
 
-import it.units.crossway.exceptions.NullPieceException;
-
 import java.awt.*;
 
 public class Node {
