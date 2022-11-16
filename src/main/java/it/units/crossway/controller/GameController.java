@@ -10,10 +10,14 @@ import java.awt.*;
 public class GameController implements Controller {
     private Board board;
     private Color currentUserColor;
+    private Player blackPlayer;
+    private Player whitePlayer;
 
     public GameController(Board board) {
         this.board = board;
         currentUserColor = Color.BLACK;
+        blackPlayer = new Player(Color.BLACK);
+        whitePlayer = new Player(Color.WHITE);
         System.out.println("Game Starts!");
     }
 
@@ -23,6 +27,14 @@ public class GameController implements Controller {
     }
 
     public Board getBoard() {return board;}
+    @Override
+    public void setNameWhitePlayer(String name) {
+        this.whitePlayer.setName(name);
+    }
+    @Override
+    public void setNameBlackPlayer(String name) {
+        this.blackPlayer.setName(name);
+    }
 
     /*This method asks the board if a position is playable
     * for a piece*/
@@ -52,6 +64,7 @@ public class GameController implements Controller {
         } catch (Exception e) {
             return Status.not_placed();
         }
+        /*Add piece to respective graph*/
         if (GameWon()) {
             /*End game*/
             return Status.won();

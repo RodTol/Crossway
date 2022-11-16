@@ -10,6 +10,8 @@ public interface Controller {
 
     Color getCurrentColor();
     Board getBoard();
+    void setNameWhitePlayer(String name);
+    void setNameBlackPlayer(String name);
 
     boolean canPlace(Coordinates position);
 
