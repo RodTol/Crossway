@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GraphTest {
@@ -18,6 +19,11 @@ public class GraphTest {
         piece = new Piece(Color.BLACK);
         vertex = new Vertex(piece);
         graph = new Graph();
+    }
+
+    @Test
+    void emptyGraph(){
+        assertFalse(graph.getAdjList().containsKey(vertex));
     }
 
     @Test

@@ -2,7 +2,6 @@ package it.units.crossway.utilities;
 
 import it.units.crossway.model.Piece;
 import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Vertex {
     Piece value;
@@ -27,8 +26,6 @@ public class Vertex {
 
     @Override
     public int hashCode(){
-        return new HashCodeBuilder()
-                .append(value)
-                .toHashCode();
+        return value.hashCode();
     }
 }
