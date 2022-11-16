@@ -1,7 +1,5 @@
 package it.units.crossway.gui;
 
-import it.units.crossway.launcher.gui.BoardGui;
-import it.units.crossway.launcher.gui.BoardGuiSettings;
 import it.units.crossway.controller.Controller;
 
 import org.junit.jupiter.api.BeforeEach;

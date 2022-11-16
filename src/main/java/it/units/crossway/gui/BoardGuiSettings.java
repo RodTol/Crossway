@@ -1,4 +1,4 @@
-package it.units.crossway.launcher.gui;
+package it.units.crossway.gui;
 
 import it.units.crossway.controller.Controller;
 

@@ -1,10 +1,10 @@
 package it.units.crossway.launcher;
 
-import it.units.crossway.launcher.gui.BoardGuiSettings;
+import it.units.crossway.gui.BoardGuiSettings;
 import it.units.crossway.model.Board;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.GameController;
-import it.units.crossway.launcher.gui.BoardGui;
+import it.units.crossway.gui.BoardGui;
 
 import javax.swing.*;
 import java.awt.*;
