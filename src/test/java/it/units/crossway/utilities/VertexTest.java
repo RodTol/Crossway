@@ -21,11 +21,18 @@ public class VertexTest {
 
     @Test
     void reflexivity(){
-        assertTrue(vertex==vertex);
+        assertTrue(vertex.equals(vertex));
     }
 
     @Test
     void otherObjectEqualsVertex(){
         assertFalse(vertex.equals(piece));
     }
+
+    @Test
+    void equalVertices(){
+        Vertex vertex2 = new Vertex(piece);
+        assertTrue(vertex.equals(vertex2));
+    }
+
 }
