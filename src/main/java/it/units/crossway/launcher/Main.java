@@ -15,7 +15,6 @@ public class Main {
         Controller controller = new GameController(board);
         BoardGui boardGui = new BoardGui(controller, new BoardGuiSettings(Config.BOARD_MARGIN, Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
         boardGui.setBackground(Color.LIGHT_GRAY);
-
         JFrame frame = new JFrame();
         frame.setTitle("Crossway");
         frame.setLayout(new BorderLayout());

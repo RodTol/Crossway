@@ -1,6 +1,5 @@
 package it.units.crossway.controller;
 
-import com.sun.source.tree.ModuleTree;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
 import org.junit.jupiter.api.BeforeEach;
