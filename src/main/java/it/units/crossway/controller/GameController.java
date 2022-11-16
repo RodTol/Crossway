@@ -22,6 +22,8 @@ public class GameController implements Controller {
         return currentUserColor;
     }
 
+    public Board getBoard() {return board;}
+
     /*This method asks the board if a position is playable
     * for a piece*/
     @Override

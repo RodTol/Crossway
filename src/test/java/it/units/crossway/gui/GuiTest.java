@@ -2,6 +2,7 @@ package it.units.crossway.gui;
 
 import it.units.crossway.controller.Controller;
 
+import it.units.crossway.model.Coordinates;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -37,12 +38,7 @@ public class GuiTest {
 
     }
 
-//    @Test
-//    void Click_perform_place () {
-//        Coordinates test_point = new Coordinates(14, 18);
-//        boardGui.handleMouseClicked(test_point);
-//        assertFalse(controller.getBoard().getNode(test_point).isNodeEmpty());
-//    }
+
 
 
 }
