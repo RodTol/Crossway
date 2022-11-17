@@ -17,6 +17,7 @@ public class Main {
         //StartingGui startingGui = new StartingGui(controller);
         /*Settings for StartingGui like below*/
         BoardGui boardGui = new BoardGui(controller, new BoardGuiSettings(Config.BOARD_MARGIN, Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
+        /*BoardGui set_up (facciamo una function ?)*/
         boardGui.setBackground(Color.LIGHT_GRAY);
         JFrame frame = new JFrame();
         frame.setTitle("Crossway");
