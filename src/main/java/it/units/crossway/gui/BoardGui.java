@@ -146,8 +146,8 @@ public class BoardGui extends JPanel {
             switch (status.getCondition()) {
                 case PLACED :
                     pieces.add(piece);
-                    System.out.println(controller.getCurrentColor() + " piece placed at "
-                            + position.getRow() + " " + position.getColumn());
+                    /*System.out.println(controller.getCurrentColor() + " piece placed at "
+                            + position.getRow() + " " + position.getColumn());*/
                     repaint();
                     break;
                 case WON :
