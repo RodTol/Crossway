@@ -29,6 +29,7 @@ application {
 }
 
 testlogger {
-    theme 'plain' // project level
+    theme 'standard' // project level
+    showSimpleNames = false
     slowThreshold 5000
 }
