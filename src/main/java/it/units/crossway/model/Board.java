@@ -1,5 +1,8 @@
 package it.units.crossway.model;
+import it.units.crossway.utilities.Graph;
+
 import java.awt.*;
+import java.util.List;
 
 
 public class Board {
@@ -75,8 +78,15 @@ public class Board {
         nodes[c.getRow()][c.getColumn()].setPiece(piece);
     }
 
-    public boolean isWin() {
-
-        return false;
+    public Graph toGraph(Color color) {
+        Graph graph = new Graph();
+        for (int r = 0; r < nodes.length; r++) {
+            for (int c = 0; c < nodes.length; c++) {
+                if (nodes[r][c].getPiece().getColor().equals(color)) {
+                    graph.addVertex(new Coordinates(r, c));
+                }
+            }
+        }
+        return graph;
     }
 }

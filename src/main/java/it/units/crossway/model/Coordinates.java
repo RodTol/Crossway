@@ -21,6 +21,16 @@ public class Coordinates {
         return column;
     }
 
+    /*Da decidere di chi sarà*/
+    public boolean isNeighbour(Coordinates other) {
+        if (Math.abs(other.row - this.row) < 2) {
+            if (Math.abs(other.column - this.column) < 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Coordinates)) {
