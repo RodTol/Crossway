@@ -9,6 +9,8 @@ import java.awt.*;
 
 public class GameController implements Controller {
     private Board board;
+
+    // private WinEvaluator winEvaluator;
     private Color currentUserColor;
 
     public GameController(Board board) {
@@ -45,13 +47,15 @@ public class GameController implements Controller {
     * checks if the Game is finished, and if it's the case can make something*/
     @Override
     public Status place(PieceGui piece) {
+        // WinEvaluator winEvaluator = new WinEvaluator(board.toGraph());     se creo grafo ogni volta + riga 57
         try {
             board.place(piece.getPosition(), new Piece(piece.getColor()));
         } catch (Exception e) {
             return Status.not_placed();
         }
-        if (GameWon()) {
-            /*End game*/
+        // winEvaluator.add(new EvaluatorPiece(piece.getPosition(), piece.getColor());           se ho già grafo in memoria  + riga 58
+        if (GameWon()) {                // if (winEvaluator.hasWon(new EvaluatorPiece(piece.getPosition(), piece.getColor()))       se creo grafo ogni volta.
+            /*End game*/                // if (winEvaluator.hasWon(piece.getColor()              se ho il grafo in memoria. mi serve solo il colore
             return Status.won();
         } else {
             changeColor();
