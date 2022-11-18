@@ -40,8 +40,17 @@ public class GraphTest {
     @DisplayName("Insertion in empty Graph")
     void insertVertexEmptyGraph() {
         graph.insert(coordinates);
-        System.out.println(graph.getAdjList().get(new Vertex(coordinates)).toString());
-        assertTrue(graph.getAdjList().get(vertex).isEmpty());
+        assertTrue(graph.getAdjList().get(new Vertex(coordinates)).isEmpty());
+    }
+
+    @Test
+    @DisplayName("Insertion test")
+    void insertGraph() {
+        graph.insert(coordinates);
+        graph.insert(new Coordinates(2,4));
+        assertTrue(graph.getAdjList().get(new Vertex(coordinates)).isEmpty());
+        graph.insert(new Coordinates(1,1));
+        assertEquals(new Vertex(new Coordinates(1,1)), graph.getAdjList().get(new Vertex(coordinates)).get(0));
     }
 
     @Test
