@@ -78,6 +78,11 @@ public class Board {
         nodes[c.getRow()][c.getColumn()].setPiece(piece);
     }
 
+    public boolean hasAtLeastOneinRow(int index, Color color) {
+        return false;
+    }
+
+
     public Graph toGraph(Color color) {
         Graph graph = new Graph();
         for (int r = 0; r < nodes.length; r++) {
