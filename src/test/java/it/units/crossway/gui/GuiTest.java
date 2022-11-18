@@ -2,7 +2,9 @@ package it.units.crossway.gui;
 
 import it.units.crossway.controller.Controller;
 
+import it.units.crossway.model.Coordinates;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Test on Gui")
 public class GuiTest {
 
     private BoardGui boardGui;
@@ -20,10 +23,7 @@ public class GuiTest {
     }
 
     @Test
-    void mouseMotion() {
-    }
-
-    @Test
+    @DisplayName("Coordinates coherence")
     void Nodes_correct_coordinates() {
         ArrayList<Integer> XNodePositions = boardGui.getXNodePositions();
         ArrayList<Integer> YNodePositions = boardGui.getYNodePositions();
@@ -37,12 +37,7 @@ public class GuiTest {
 
     }
 
-//    @Test
-//    void Click_perform_place () {
-//        Coordinates test_point = new Coordinates(14, 18);
-//        boardGui.handleMouseClicked(test_point);
-//        assertFalse(controller.getBoard().getNode(test_point).isNodeEmpty());
-//    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package it.units.crossway.launcher;
 
 import it.units.crossway.gui.BoardGuiSettings;
+import it.units.crossway.gui.StartingGui;
 import it.units.crossway.model.Board;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.GameController;
@@ -13,9 +14,11 @@ public class Main {
     public static void main(String[] args) {
         Board board = new Board( Config.N_ROWS, Config.N_COLUMNS);
         Controller controller = new GameController(board);
+        //StartingGui startingGui = new StartingGui(controller);
+        /*Settings for StartingGui like below*/
         BoardGui boardGui = new BoardGui(controller, new BoardGuiSettings(Config.BOARD_MARGIN, Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
+        /*BoardGui set_up (facciamo una function ?)*/
         boardGui.setBackground(Color.LIGHT_GRAY);
-
         JFrame frame = new JFrame();
         frame.setTitle("Crossway");
         frame.setLayout(new BorderLayout());

@@ -2,6 +2,7 @@ package it.units.crossway.model;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -16,6 +17,7 @@ public class BoardTest {
         board = new Board(5,5);
     }
     @Test
+    @DisplayName("Empty Board")
     void canPlaceOnEmptyBoard(){
         for (int row = 0; row < board.getNodes().length; row++) {
             for (int col = 0; col < board.getNodes()[row].length; col++) {
@@ -26,21 +28,22 @@ public class BoardTest {
     }
 
     @Test
+    @DisplayName("Illegal position")
     void canPlaceIllegalPosition(){
-        Coordinates coord1 = new Coordinates(1,1);
-        Coordinates coord2 = new Coordinates(1,2);
-        Coordinates coord3 = new Coordinates(2,1);
-        Coordinates coord4 = new Coordinates(2,2);
+        Coordinates cord1 = new Coordinates(1,1);
+        Coordinates cord2 = new Coordinates(1,2);
+        Coordinates cord3 = new Coordinates(2,1);
+        Coordinates cord4 = new Coordinates(2,2);
 
         Piece piece1 = new Piece(Color.BLACK);
         Piece piece2 = new Piece(Color.WHITE);
         Piece piece3 = new Piece(Color.WHITE);
 
-        board.place(coord1, piece1);
-        board.place(coord2, piece2);
-        board.place(coord3, piece3);
+        board.place(cord1, piece1);
+        board.place(cord2, piece2);
+        board.place(cord3, piece3);
 
-        assertFalse(board.canPlace(coord4,new Piece(Color.BLACK)));
+        assertFalse(board.canPlace(cord4,new Piece(Color.BLACK)));
     }
 
 }

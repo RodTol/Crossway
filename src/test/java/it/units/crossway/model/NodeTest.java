@@ -1,5 +1,6 @@
 package it.units.crossway.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -8,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class NodeTest {
     @Test
+    @DisplayName("Initial node is empty")
     void initialNodesAreEmpty(){
         Board board = new Board(4, 5);
         //va fatto un ciclo sulle coordinate?
@@ -19,6 +21,7 @@ public class NodeTest {
     }
 
     @Test
+    @DisplayName("Place is working")
     void notEmptyNode(){
         Board board = new Board(4, 5);
         Coordinates coord = new Coordinates(1,2);
