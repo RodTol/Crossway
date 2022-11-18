@@ -37,6 +37,14 @@ public class GraphTest {
     }
 
     @Test
+    @DisplayName("Insertion in empty Graph")
+    void insertVertexEmptyGraph() {
+        graph.insert(coordinates);
+        System.out.println(graph.getAdjList().get(vertex).toString());
+        assertTrue(graph.getAdjList().get(vertex).isEmpty());
+    }
+
+    @Test
     @DisplayName("DFS")
     void depthFirstSearch(){
         Coordinates coordinates2 = new Coordinates(0,1);
