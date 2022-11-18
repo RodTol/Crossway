@@ -2,10 +2,7 @@ package it.units.crossway.utilities;
 
 import it.units.crossway.model.Piece;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
     //We define a graph through an adjacency list
@@ -35,5 +32,24 @@ public class Graph {
             adjList.get(vertex2).add(vertex1);
         }
     }
+
+    Set<Piece> DepthFirstSearch(Piece startPiece){
+        Set<Piece> visitedPieces = new LinkedHashSet<Piece>();
+        Stack<Piece> pieceStack = new Stack<Piece>();
+
+        pieceStack.push(startPiece);
+
+        while (!pieceStack.isEmpty()){
+            Piece currentPiece = pieceStack.pop();
+            if (!visitedPieces.contains(currentPiece)){
+                visitedPieces.add(currentPiece);
+                for (Vertex v : getAdjList().get(new Vertex(currentPiece))) {
+                    pieceStack.push(v.value);
+                }
+            }
+        }
+        return visitedPieces;
+    }
+
 
 }
