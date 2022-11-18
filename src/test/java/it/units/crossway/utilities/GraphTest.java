@@ -40,7 +40,7 @@ public class GraphTest {
     @DisplayName("Insertion in empty Graph")
     void insertVertexEmptyGraph() {
         graph.insert(coordinates);
-        System.out.println(graph.getAdjList().get(vertex).toString());
+        System.out.println(graph.getAdjList().get(new Vertex(coordinates)).toString());
         assertTrue(graph.getAdjList().get(vertex).isEmpty());
     }
 
