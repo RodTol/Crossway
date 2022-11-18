@@ -2,6 +2,7 @@ package it.units.crossway.utilities;
 
 import it.units.crossway.model.Coordinates;
 import it.units.crossway.model.Piece;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.util.*;
 
@@ -62,5 +63,18 @@ public class Graph {
         return visitedCoordinates;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Graph)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        Graph o = (Graph) obj;
+        return new EqualsBuilder()
+                .append(adjList, o.adjList)
+                .isEquals();
+    }
 
 }

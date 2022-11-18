@@ -1,11 +1,13 @@
 package it.units.crossway.model;
 
+import it.units.crossway.utilities.Graph;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,6 +46,23 @@ public class BoardTest {
         board.place(cord3, piece3);
 
         assertFalse(board.canPlace(cord4,new Piece(Color.BLACK)));
+    }
+
+    @Test
+    @DisplayName("toGraph Test")
+    void graphCreation() {
+        Coordinates[] TestCoordinates = {new Coordinates(0,2), new Coordinates(1,2)
+        , new Coordinates(2,2), new Coordinates(3,1), new Coordinates(4, 4)
+        };
+        Graph testGraph = new Graph();
+        Color color = Color.BLACK;
+
+        for (Coordinates coordinates : TestCoordinates) {
+            testGraph.insert(coordinates);
+            board.place(coordinates, new Piece(color));
+        }
+
+        assertEquals(testGraph, board.toGraph(Color.BLACK));
     }
 
 }

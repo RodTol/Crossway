@@ -82,8 +82,8 @@ public class Board {
         Graph graph = new Graph();
         for (int r = 0; r < nodes.length; r++) {
             for (int c = 0; c < nodes.length; c++) {
-                if (nodes[r][c].getPiece().getColor().equals(color)) {
-                    graph.addVertex(new Coordinates(r, c));
+                if (!nodes[r][c].isNodeEmpty() && nodes[r][c].getPiece().getColor().equals(color)) {
+                    graph.insert(new Coordinates(r, c));
                 }
             }
         }
