@@ -1,6 +1,6 @@
 package it.units.crossway.model;
 import java.awt.*;
-import java.util.stream.Stream;
+
 
 public class Board {
 
@@ -28,7 +28,7 @@ public class Board {
     * concept. So we make that part of the GameController*/
     public boolean canPlace(Coordinates coordinates, Piece piece) {
         int nRows = nodes.length;
-        int nColums = nodes[0].length;
+        int nColumns = nodes[0].length;
 
         int r = coordinates.getRow();
         int c = coordinates.getColumn();
@@ -45,7 +45,7 @@ public class Board {
                 return false;
             }
         }
-        if (r!=0 && c!=nColums-1 && !nodes[r-1][c+1].isNodeEmpty() && nodes[r - 1][c + 1].getPiece().getColor() == playerColor) {
+        if (r!=0 && c!= nColumns -1 && !nodes[r-1][c+1].isNodeEmpty() && nodes[r - 1][c + 1].getPiece().getColor() == playerColor) {
             if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c+1].isNodeEmpty() &&
                     nodes[r - 1][c].getPiece().getColor() == nodes[r][c + 1].getPiece().getColor() &&
                     nodes[r - 1][c].getPiece().getColor() != playerColor) {
@@ -59,7 +59,7 @@ public class Board {
                 return false;
             }
         }
-        if (r!=nRows-1 && c!=nColums-1 && !nodes[r+1][c+1].isNodeEmpty() &&
+        if (r!=nRows-1 && c!= nColumns -1 && !nodes[r+1][c+1].isNodeEmpty() &&
                 nodes[r + 1][c + 1].getPiece().getColor() == playerColor) {
             if (!nodes[r][c+1].isNodeEmpty() && !nodes[r+1][c].isNodeEmpty() &&
                     nodes[r][c + 1].getPiece().getColor() == nodes[r + 1][c].getPiece().getColor() &&
