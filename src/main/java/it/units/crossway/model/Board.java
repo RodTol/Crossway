@@ -23,7 +23,9 @@ public class Board {
 
     public Node getNode(Coordinates c) {return nodes[c.getRow()][c.getColumn()];}
 
-
+    /*The board can decide if a piece can be placed upon itself
+    * but not if is a winner piece because that's a more abstracted
+    * concept. So we make that part of the GameController*/
     public boolean canPlace(Coordinates coordinates, Piece piece) {
         int nRows = nodes.length;
         int nColums = nodes[0].length;
@@ -74,11 +76,7 @@ public class Board {
     }
 
     public boolean isWin() {
-        /*If condition to exit before the winning analysis
-        * like: at least 19 pieces, at least one piece in row 0
-        * and row 19 for black*/
-        /*Create graphs. Only when necessary*/
-        /*Check graphs for winning*/
+
         return false;
     }
 }

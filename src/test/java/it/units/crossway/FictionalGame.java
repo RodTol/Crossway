@@ -9,6 +9,7 @@ import it.units.crossway.model.Coordinates;
 import it.units.crossway.model.Piece;
 import org.junit.Assert;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,8 +38,8 @@ public class FictionalGame {
     public void initial_conditions() {
         for (int r = 0; r < dim; r++) {
             for (int c = 0; c < dim; c++) {
-                Assert.assertTrue(board.canPlace(new Coordinates(r, c), new Piece(Color.BLACK)));
-                Assert.assertNull(board.getNode(new Coordinates (r,c)).getPiece());
+                Assertions.assertTrue(board.canPlace(new Coordinates(r, c), new Piece(Color.BLACK)));
+                Assertions.assertNull(board.getNode(new Coordinates(r,c)).getPiece());
             }
         }
     }

@@ -2,6 +2,7 @@ package it.units.crossway.utilities;
 
 import it.units.crossway.model.Coordinates;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashSet;
@@ -15,6 +16,7 @@ public class GraphTest {
     private Graph graph;
 
     @BeforeEach
+    @DisplayName("Tests on Graph class")
     public void setup(){
         coordinates = new Coordinates(0,0);
         vertex = new Vertex(coordinates);
@@ -22,17 +24,20 @@ public class GraphTest {
     }
 
     @Test
+    @DisplayName("Empty graph at initialisation")
     void emptyGraph(){
         assertFalse(graph.getAdjList().containsKey(vertex));
     }
 
     @Test
+    @DisplayName("Add vertex")
     void addVertexToEmptyGraph(){
         graph.addVertex(coordinates);
         assertTrue(graph.getAdjList().containsKey(vertex));
     }
 
     @Test
+    @DisplayName("DFS")
     void depthFirstSearch(){
         Coordinates coordinates2 = new Coordinates(0,1);
         Coordinates coordinates3 = new Coordinates(0,2);
