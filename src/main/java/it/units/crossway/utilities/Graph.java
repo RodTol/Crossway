@@ -17,13 +17,13 @@ public class Graph {
         return adjList;
     }
 
-    void addVertex(Coordinates coordinates){
+    public void addVertex(Coordinates coordinates){
         Vertex vertex = new Vertex(coordinates);
         ArrayList<Vertex> adjVertices = new ArrayList<Vertex>();
         adjList.putIfAbsent(vertex,adjVertices);
     }
 
-    void addEdge(Coordinates coordinates1, Coordinates coordinates2) {
+    public void addEdge(Coordinates coordinates1, Coordinates coordinates2) {
         Vertex vertex1 = new Vertex(coordinates1);
         Vertex vertex2 = new Vertex(coordinates2);
         if (!getAdjList().containsKey(vertex1)) {
@@ -34,7 +34,15 @@ public class Graph {
         }
     }
 
-    Set<Coordinates> DepthFirstSearch(Coordinates startCoordinates){
+    public void insert(Coordinates coordinates) {
+        this.addVertex(coordinates);
+        for (Vertex vertex: adjList.keySet()) {
+
+        }
+    }
+
+
+    public Set<Coordinates> DepthFirstSearch(Coordinates startCoordinates){
         Set<Coordinates> visitedCoordinates = new LinkedHashSet<>();
         Stack<Coordinates> coordinatesStack = new Stack<>();
 

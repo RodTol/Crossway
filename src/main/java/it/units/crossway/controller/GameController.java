@@ -66,7 +66,7 @@ public class GameController implements Controller {
 
     }
     private boolean GameWon() {
-        return board.isWin();
+        return false;
     }
 
     private void changeColor() {
