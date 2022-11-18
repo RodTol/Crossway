@@ -1,13 +1,18 @@
 package it.units.crossway.utilities;
 
-import it.units.crossway.model.Piece;
+import it.units.crossway.model.Coordinates;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 public class Vertex {
-    Piece value;
+    private Coordinates value;
 
-    public Vertex(Piece piece){
-        this.value = piece;
+    public Vertex(Coordinates value){
+        this.value = value;
+    }
+
+
+    public Coordinates getValue() {
+        return value;
     }
 
     @Override

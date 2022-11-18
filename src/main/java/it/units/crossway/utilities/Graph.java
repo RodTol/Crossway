@@ -1,5 +1,6 @@
 package it.units.crossway.utilities;
 
+import it.units.crossway.model.Coordinates;
 import it.units.crossway.model.Piece;
 
 import java.util.*;
@@ -16,15 +17,15 @@ public class Graph {
         return adjList;
     }
 
-    void addVertex(Piece piece){
-        Vertex vertex = new Vertex(piece);
+    void addVertex(Coordinates coordinates){
+        Vertex vertex = new Vertex(coordinates);
         ArrayList<Vertex> adjVertices = new ArrayList<Vertex>();
         adjList.putIfAbsent(vertex,adjVertices);
     }
 
-    void addEdge(Piece piece1, Piece piece2) {
-        Vertex vertex1 = new Vertex(piece1);
-        Vertex vertex2 = new Vertex(piece2);
+    void addEdge(Coordinates coordinates1, Coordinates coordinates2) {
+        Vertex vertex1 = new Vertex(coordinates1);
+        Vertex vertex2 = new Vertex(coordinates2);
         if (!getAdjList().containsKey(vertex1)) {
             //exception?
         } else {
@@ -33,22 +34,22 @@ public class Graph {
         }
     }
 
-    Set<Piece> DepthFirstSearch(Piece startPiece){
-        Set<Piece> visitedPieces = new LinkedHashSet<Piece>();
-        Stack<Piece> pieceStack = new Stack<Piece>();
+    Set<Coordinates> DepthFirstSearch(Coordinates startCoordinates){
+        Set<Coordinates> visitedCoordinates = new LinkedHashSet<>();
+        Stack<Coordinates> coordinatesStack = new Stack<>();
 
-        pieceStack.push(startPiece);
+        coordinatesStack.push(startCoordinates);
 
-        while (!pieceStack.isEmpty()){
-            Piece currentPiece = pieceStack.pop();
-            if (!visitedPieces.contains(currentPiece)){
-                visitedPieces.add(currentPiece);
-                for (Vertex v : getAdjList().get(new Vertex(currentPiece))) {
-                    pieceStack.push(v.value);
+        while (!coordinatesStack.isEmpty()){
+            Coordinates currentCoordinates = coordinatesStack.pop();
+            if (!visitedCoordinates.contains(currentCoordinates)){
+                visitedCoordinates.add(currentCoordinates);
+                for (Vertex v : getAdjList().get(new Vertex(currentCoordinates))) {
+                    coordinatesStack.push(v.getValue());
                 }
             }
         }
-        return visitedPieces;
+        return visitedCoordinates;
     }
 
 

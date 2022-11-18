@@ -1,11 +1,9 @@
 package it.units.crossway.utilities;
 
-import it.units.crossway.model.Piece;
+import it.units.crossway.model.Coordinates;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -13,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GraphTest {
     private Vertex vertex;
-    private Piece piece;
+    private Coordinates coordinates;
     private Graph graph;
 
     @BeforeEach
     public void setup(){
-        piece = new Piece(Color.BLACK);
-        vertex = new Vertex(piece);
+        coordinates = new Coordinates(0,0);
+        vertex = new Vertex(coordinates);
         graph = new Graph();
     }
 
@@ -30,32 +28,32 @@ public class GraphTest {
 
     @Test
     void addVertexToEmptyGraph(){
-        graph.addVertex(piece);
+        graph.addVertex(coordinates);
         assertTrue(graph.getAdjList().containsKey(vertex));
     }
 
     @Test
     void depthFirstSearch(){
-        Piece piece2 = new Piece(Color.BLACK);
-        Piece piece3 = new Piece(Color.BLACK);
-        Piece piece4 = new Piece(Color.BLACK);
+        Coordinates coordinates2 = new Coordinates(0,1);
+        Coordinates coordinates3 = new Coordinates(0,2);
+        Coordinates coordinates4 = new Coordinates(1,1);
 
-        graph.addVertex(piece);
-        graph.addVertex(piece2);
-        graph.addVertex(piece3);
-        graph.addVertex(piece4);
+        graph.addVertex(coordinates);
+        graph.addVertex(coordinates2);
+        graph.addVertex(coordinates3);
+        graph.addVertex(coordinates4);
 
-        graph.addEdge(piece,piece2);
-        graph.addEdge(piece2,piece3);
-        graph.addEdge(piece2,piece4);
+        graph.addEdge(coordinates,coordinates2);
+        graph.addEdge(coordinates2,coordinates3);
+        graph.addEdge(coordinates2,coordinates4);
 
-        Set<Piece> outputSet = new LinkedHashSet<>();
-        Set<Piece> expectedSet = new LinkedHashSet<>();
-        expectedSet.add(piece);
-        expectedSet.add(piece2);
-        expectedSet.add(piece3);
-        expectedSet.add(piece4);
-        outputSet = graph.DepthFirstSearch(piece);
+        Set<Coordinates> outputSet = new LinkedHashSet<>();
+        Set<Coordinates> expectedSet = new LinkedHashSet<>();
+        expectedSet.add(coordinates);
+        expectedSet.add(coordinates2);
+        expectedSet.add(coordinates3);
+        expectedSet.add(coordinates4);
+        outputSet = graph.DepthFirstSearch(coordinates);
         assertEquals(expectedSet,outputSet);
     }
 }
