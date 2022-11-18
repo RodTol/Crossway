@@ -37,7 +37,9 @@ public class Graph {
     public void insert(Coordinates coordinates) {
         this.addVertex(coordinates);
         for (Vertex vertex: adjList.keySet()) {
-
+            if (vertex.getValue().isNeighbour(coordinates)) {
+                this.addEdge(vertex.getValue(), coordinates);
+            }
         }
     }
 
