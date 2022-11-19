@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CheckGuiModelCommunication {
 
-    private int dim = 1 ;
-    private Board board = new Board(1, 1);
+    private int dim = 2 ;
+    private Board board = new Board(dim, dim);
     private Controller controller = new GameController(board);
     private BoardGui boardGui = new BoardGui(controller, new BoardGuiSettings(dim, dim, 500, 40));
 
