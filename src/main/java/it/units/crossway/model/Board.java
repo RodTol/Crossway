@@ -41,6 +41,15 @@ public class Board {
         return total;
     }
 
+    public boolean hasAtLeastOneinRow(int index, Color color) {
+        for (Node node: nodes[index] ) {
+            if (node.getPiece() != null && node.getPiece().getColor().equals(color)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /*The board can decide if a piece can be placed upon itself
     * but not if is a winner piece because that's a more abstracted
     * concept. So we make that part of the GameController*/
@@ -92,11 +101,6 @@ public class Board {
         nodes[c.getRow()][c.getColumn()] = new Node();
         nodes[c.getRow()][c.getColumn()].setPiece(piece);
     }
-
-    public boolean hasAtLeastOneinRow(int index, Color color) {
-        return false;
-    }
-
 
     public Graph toGraph(Color color) {
         Graph graph = new Graph();
