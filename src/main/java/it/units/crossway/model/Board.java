@@ -33,7 +33,7 @@ public class Board {
         int total = 0;
         for (int r = 0; r < nodes.length; r++) {
             for (int c = 0; c < nodes.length; c++) {
-                if (nodes[r][c].getPiece().getColor().equals(color)) {
+                if (nodes[r][c].getPiece() != null && nodes[r][c].getPiece().getColor().equals(color)) {
                     total++;
                 }
             }
