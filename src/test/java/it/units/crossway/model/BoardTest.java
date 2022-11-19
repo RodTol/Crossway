@@ -36,15 +36,15 @@ public class BoardTest {
 
     @ParameterizedTest
     @DisplayName("Counting pieces")
-    @ValueSource(ints = {0,1})
-    void CountNumbOfPieces (int input) {
+    @ValueSource(booleans = {true,false})
+    void CountNumbOfPieces (boolean input) {
         Coordinates[] TestCoordinates = {new Coordinates(0,2), new Coordinates(1,2)
                 , new Coordinates(2,2), new Coordinates(3,1), new Coordinates(4, 4)
         };
 
         Color color;
 
-        if (input == 0) {
+        if (input) {
             color = BLACK;
         } else  {
             color = WHITE;
