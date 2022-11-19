@@ -13,13 +13,32 @@ public class WinController {
         this.color = color;
     }
 
-
+    /*Non puoi accedere ai dati della board, ma solo
+     * chiamare i suoi metodi.
+     * Quindi fai tipo has at least e haspiece in row(index of row)*/
     public boolean check() {
-        if (color.equals(Color.BLACK)) {
-            /*Non puoi accedere ai dati della board, ma solo
-            * chiamare i suoi metodi.
-            * Quindi fai tipo has at least e haspiece in row(index of row)*/
+        if (!minNofPieces()) {
+            return false;
         }
+
+        if (color.equals(Color.BLACK)) {
+            blackCheck();
+        } else {
+            whiteCheck();
+        }
+        return false;
+    }
+
+    private boolean minNofPieces() {
+        board.NumbOfPieces(color);
+        return false;
+    }
+
+    private boolean blackCheck() {
+        return false;
+    }
+
+    private boolean whiteCheck() {
         return false;
     }
 }

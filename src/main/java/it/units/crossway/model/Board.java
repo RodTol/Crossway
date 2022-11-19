@@ -26,6 +26,21 @@ public class Board {
 
     public Node getNode(Coordinates c) {return nodes[c.getRow()][c.getColumn()];}
 
+    /*Vale la pena farlo ? A sto punto non conviene
+    * vedere quanto è grande il grafo (O(19) per costruirlo
+    * + O(1) di quanto è lunga la lista) */
+    public int NumbOfPieces (Color color) {
+        int total = 0;
+        for (int r = 0; r < nodes.length; r++) {
+            for (int c = 0; c < nodes.length; c++) {
+                if (nodes[r][c].getPiece().getColor().equals(color)) {
+                    total++;
+                }
+            }
+        }
+        return total;
+    }
+
     /*The board can decide if a piece can be placed upon itself
     * but not if is a winner piece because that's a more abstracted
     * concept. So we make that part of the GameController*/
