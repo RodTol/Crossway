@@ -54,8 +54,7 @@ public class GameController implements Controller {
         } catch (Exception e) {
             return Status.not_placed();
         }
-
-        WinController winController = new WinController(board, currentUserColor);
+        WinController winController = new WinController(board, piece.getColor());
         if (winController.check()) {
             /*End game*/
             return Status.won();
