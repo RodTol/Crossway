@@ -5,11 +5,15 @@ import it.units.crossway.utilities.Graph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.awt.*;
 
 
 import static java.awt.Color.BLACK;
+
+import static java.awt.Color.WHITE;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
@@ -30,20 +34,27 @@ public class BoardTest {
         }
     }
 
-    @Test
-    @DisplayName("Counting black pieces")
-    void CountNumbOfPieces () {
+    @ParameterizedTest
+    @DisplayName("Counting pieces")
+    @ValueSource(ints = {0,1})
+    void CountNumbOfPieces (int input) {
         Coordinates[] TestCoordinates = {new Coordinates(0,2), new Coordinates(1,2)
                 , new Coordinates(2,2), new Coordinates(3,1), new Coordinates(4, 4)
         };
 
-        Color color = BLACK;
+        Color color;
+
+        if (input == 0) {
+            color = BLACK;
+        } else  {
+            color = WHITE;
+        }
 
         for (Coordinates coordinates : TestCoordinates) {
             board.place(coordinates, new Piece(color));
         }
 
-        assertEquals(5, board.NumbOfPieces(BLACK));
+        assertEquals(5, board.NumbOfPieces(color));
     }
 
     @Test
@@ -55,8 +66,8 @@ public class BoardTest {
         Coordinates cord4 = new Coordinates(2,2);
 
         Piece piece1 = new Piece(BLACK);
-        Piece piece2 = new Piece(Color.WHITE);
-        Piece piece3 = new Piece(Color.WHITE);
+        Piece piece2 = new Piece(WHITE);
+        Piece piece3 = new Piece(WHITE);
 
         board.place(cord1, piece1);
         board.place(cord2, piece2);
