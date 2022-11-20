@@ -15,40 +15,56 @@ class WinControllerTest {
     WinController winController;
     Board board;
     /*Come faccio a fare il test sui due colori?*/
-    Color color = Color.BLACK;
+    Color color;
 
     @BeforeEach
     @DisplayName("WinController test on 3x3 board")
     void setUp() {
         board = new Board(3,3);
-
-        int[] rows = new int[]{0, 2};
-        int[] cols = new int[]{1, 2};
-
-        for (int i = 0; i< rows.length; i++) {
-            board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
-        }
-        winController = new WinController(board,color);
     }
 
     @Test
     @DisplayName("Enough pieces")
     void enoughPieces()
     {
-        board.place(new Coordinates(1,1), new Piece(color));
+        color = Color.BLACK;
+
+        int[] rows = new int[]{0, 1, 2};
+        int[] cols = new int[]{1, 1, 2};
+
+        for (int i = 0; i< rows.length; i++) {
+            board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
+        }
+        winController = new WinController(board,color);
         Assertions.assertTrue(winController.minNofPieces());
     }
 
     @Test
-    @DisplayName("One piece for each")
-    void oneForEachRowOrColumn()
+    @DisplayName("Black Test")
+    void blackTest()
     {
-        board.place(new Coordinates(1,1), new Piece(color));
-        if (color.equals(Color.BLACK)) {
-            Assertions.assertTrue(winController.blackCheck());
-        } else {
-            Assertions.assertFalse(winController.whiteCheck());
+        color = Color.BLACK;
+        int[] rows = new int[]{0, 1, 2};
+        int[] cols = new int[]{1, 1, 2};
+        for (int i = 0; i< rows.length; i++) {
+            board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
+        winController = new WinController(board,color);
+        Assertions.assertTrue(winController.blackCheck());
+    }
+
+    @Test
+    @DisplayName("White Test")
+    void whiteTest()
+    {
+        color = Color.WHITE;
+        int[] rows = new int[]{1, 1, 2};
+        int[] cols = new int[]{0, 1, 2};
+        for (int i = 0; i< rows.length; i++) {
+            board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
+        }
+        winController = new WinController(board,color);
+        Assertions.assertTrue(winController.whiteCheck());
     }
 
 

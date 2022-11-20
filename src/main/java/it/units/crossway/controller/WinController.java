@@ -1,12 +1,13 @@
 package it.units.crossway.controller;
 
 import it.units.crossway.model.Board;
+import it.units.crossway.utilities.Graph;
 
 import java.awt.*;
 
 public class WinController {
-    private Board board;
-    private Color color;
+    private final Board board;
+    private final Color color;
 
     public WinController(Board board, Color color) {
         this.board = board;
@@ -22,23 +23,39 @@ public class WinController {
         }
 
         if (color.equals(Color.BLACK)) {
-            blackCheck();
+            return blackCheck();
         } else {
-            whiteCheck();
+            return whiteCheck();
         }
-        return false;
     }
 
-    private boolean minNofPieces() {
-        board.NumbOfPieces(color);
-        return false;
+    boolean minNofPieces() {
+        return board.NumbOfPieces(color) >= board.getNodes().length;
     }
 
-    private boolean blackCheck() {
-        return false;
+    boolean blackCheck() {
+        for (int i = 0; i < board.getNodes().length; i++) {
+            if (!board.hasAtLeastOneInRow(i, color)) {
+                return false;
+            }
+        }
+
+        Graph graph = board.toGraph(color);
+
+        return true;
     }
 
-    private boolean whiteCheck() {
-        return false;
+    boolean whiteCheck() {
+        for (int i = 0; i < board.getNodes().length; i++) {
+            if (!board.hasAtLeastOneinColumn(i, color)) {
+                return false;
+            }
+        }
+
+        Graph graph = board.toGraph(color);
+
+        return true;
     }
+
+
 }
