@@ -2,8 +2,6 @@ package it.units.crossway.model;
 import it.units.crossway.utilities.Graph;
 
 import java.awt.*;
-import java.util.List;
-
 
 public class Board {
 
@@ -31,9 +29,9 @@ public class Board {
     * + O(1) di quanto è lunga la lista) */
     public int NumbOfPieces (Color color) {
         int total = 0;
-        for (int r = 0; r < nodes.length; r++) {
+        for (Node[] row : nodes) {
             for (int c = 0; c < nodes.length; c++) {
-                if (nodes[r][c].getPiece() != null && nodes[r][c].getPiece().getColor().equals(color)) {
+                if (row[c].getPiece() != null && row[c].getPiece().getColor().equals(color)) {
                     total++;
                 }
             }
@@ -41,8 +39,22 @@ public class Board {
         return total;
     }
 
-    public boolean hasAtLeastOneinRow(int index, Color color) {
-        for (Node node: nodes[index] ) {
+    public boolean hasAtLeastOneInRow(int index, Color color) {
+        for (Node node : nodes[index] ) {
+            if (node.getPiece() != null && node.getPiece().getColor().equals(color)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasAtLeastOneinColumn(int index, Color color) {
+        Node[] Column = new Node[nodes[0].length];
+        for (int i = 0; i < nodes[0].length; i++) {
+            Column[i] = nodes[i][index];
+        }
+
+        for (Node node: Column ) {
             if (node.getPiece() != null && node.getPiece().getColor().equals(color)) {
                 return true;
             }
