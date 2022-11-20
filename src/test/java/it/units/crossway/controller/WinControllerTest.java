@@ -3,40 +3,55 @@ package it.units.crossway.controller;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
 import it.units.crossway.model.Piece;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 class WinControllerTest {
 
     WinController winController;
     Board board;
-    Color color;
+    Color color = Color.WHITE;
 
     @BeforeEach
     @DisplayName("WinController test on 3x3 board")
     void setUp() {
         board = new Board(3,3);
 
-        int[] rows = new int[]{0, 1, 2};
-        int[] cols = new int[]{1, 1, 2};
+        int[] rows = new int[]{0, 2};
+        int[] cols = new int[]{1, 2};
 
         for (int i = 0; i< rows.length; i++) {
-            board.place(new Coordinates(rows[i],cols[i]), new Piece(Color.BLACK));
+            board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
-
-        color = Color.BLACK;
+        winController = new WinController(board,color);
     }
+
+    @Test
+    @DisplayName("Enough pieces")
+    void enoughPieces()
+    {
+        board.place(new Coordinates(1,1), new Piece(color));
+        Assertions.assertTrue(winController.minNofPieces());
+    }
+
+    @Test
+    @DisplayName("One piece for each row")
+    void oneForEachRow()
+    {
+        board.place(new Coordinates(1,1), new Piece(color));
+        Assertions.assertTrue(winController.blackCheck());
+    }
+
 
     @Test
     @DisplayName("Win check")
     void winTest() {
-        winController = new WinController(board,color);
-        assertTrue(winController.check());
+        board.place(new Coordinates(1,1), new Piece(color));
+        Assertions.assertTrue(winController.check());
     }
 
 
