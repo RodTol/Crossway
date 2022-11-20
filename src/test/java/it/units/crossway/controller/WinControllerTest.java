@@ -14,7 +14,8 @@ class WinControllerTest {
 
     WinController winController;
     Board board;
-    Color color = Color.WHITE;
+    /*Come faccio a fare il test sui due colori?*/
+    Color color = Color.BLACK;
 
     @BeforeEach
     @DisplayName("WinController test on 3x3 board")
@@ -39,11 +40,15 @@ class WinControllerTest {
     }
 
     @Test
-    @DisplayName("One piece for each row")
-    void oneForEachRow()
+    @DisplayName("One piece for each")
+    void oneForEachRowOrColumn()
     {
         board.place(new Coordinates(1,1), new Piece(color));
-        Assertions.assertTrue(winController.blackCheck());
+        if (color.equals(Color.BLACK)) {
+            Assertions.assertTrue(winController.blackCheck());
+        } else {
+            Assertions.assertFalse(winController.whiteCheck());
+        }
     }
 
 
