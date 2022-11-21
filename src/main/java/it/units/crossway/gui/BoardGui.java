@@ -61,7 +61,7 @@ public class BoardGui extends JPanel {
         Color playerColor = controller.getCurrentColor();
         if (ghostPosition != null) {
             g.setColor(new Color(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue(), 70));
-            Point point = closestNodetoPx(ghostPosition);
+            Point point = closestNodeToPx(ghostPosition);
 
             //x,y are not the center of the circle but top left corner, so we have to convert to proper position
             int x = point.x - (PIECE_SIZE / 2);
@@ -84,7 +84,7 @@ public class BoardGui extends JPanel {
     /*This function compute the position of the nodes in coordinate format
      * for the x-axis. Package private*/
     ArrayList<Integer> getXNodePositions() {
-        ArrayList<Integer> XNodePos = new ArrayList<Integer>();
+        ArrayList<Integer> XNodePos = new ArrayList<>();
         for (int x=settings.getMargin(); x<=settings.getWidth(); x+=settings.getCellSize()) {
             XNodePos.add(x);
         }
@@ -93,7 +93,7 @@ public class BoardGui extends JPanel {
     /*This function compute the position of the nodes in coordinate format
      * for the y-axis. Package private*/
     ArrayList<Integer> getYNodePositions() {
-        ArrayList<Integer> YNodePos = new ArrayList<Integer>();
+        ArrayList<Integer> YNodePos = new ArrayList<>();
         for (int y=settings.getMargin(); y<= settings.getHeight(); y+=settings.getCellSize()) {
             YNodePos.add(y);
         }
@@ -102,22 +102,22 @@ public class BoardGui extends JPanel {
 
     /*This function takes Point and assign the nearest node position
     * in pixels*/
-    private Point closestNodetoPx(Point currentPosition) {
+    private Point closestNodeToPx(Point currentPosition) {
         ArrayList<Integer> XNodePositions = getXNodePositions();
-        int xminDistance = 10000;
+        int xMinDistance = 10000;
         int ClosestXPos = 0;
         for (int x : XNodePositions) {
-            if (Math.abs(x - currentPosition.x) < xminDistance) {
-                xminDistance = Math.abs(x - currentPosition.x);
+            if (Math.abs(x - currentPosition.x) < xMinDistance) {
+                xMinDistance = Math.abs(x - currentPosition.x);
                 ClosestXPos = x;
             }
         }
         ArrayList<Integer> YNodePositions = getYNodePositions();
-        int yminDistance = 10000;
+        int yMinDistance = 10000;
         int ClosestYPos = 0;
         for (int y : YNodePositions) {
-            if (Math.abs(y - currentPosition.y) < yminDistance) {
-                yminDistance = Math.abs(y - currentPosition.y);
+            if (Math.abs(y - currentPosition.y) < yMinDistance) {
+                yMinDistance = Math.abs(y - currentPosition.y);
                 ClosestYPos = y;
             }
         }
@@ -167,7 +167,7 @@ public class BoardGui extends JPanel {
         @Override
         public void mouseMoved(MouseEvent e) {
             Point point = e.getPoint();
-            Point newPosition = closestNodetoPx(point);
+            Point newPosition = closestNodeToPx(point);
             if (!newPosition.equals(ghostPosition)) {
                 Coordinates position = nodePxToPosition(newPosition);
                 if (controller.canPlace(position)) {
@@ -187,7 +187,7 @@ public class BoardGui extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             Point node = e.getPoint();
-            Coordinates position =  nodePxToPosition(closestNodetoPx(node));
+            Coordinates position =  nodePxToPosition(closestNodeToPx(node));
             handleMouseClicked(position);
         }
 

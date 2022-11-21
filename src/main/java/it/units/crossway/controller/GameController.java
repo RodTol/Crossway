@@ -56,7 +56,6 @@ public class GameController implements Controller {
         }
         WinController winController = new WinController(board, piece.getColor());
         if (winController.check()) {
-            /*End game*/
             return Status.won();
         } else {
             changeColor();
