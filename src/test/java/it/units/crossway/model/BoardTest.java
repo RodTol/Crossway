@@ -57,6 +57,50 @@ public class BoardTest {
         assertEquals(5, board.NumbOfPieces(color));
     }
 
+    @ParameterizedTest
+    @DisplayName("Piece in a row")
+    @ValueSource(booleans = {true,false})
+    void PiecesInARow (boolean input) {
+        Coordinates[] TestCoordinates = {new Coordinates(1,0), new Coordinates(1,2)
+                , new Coordinates(1,4), new Coordinates(2,1), new Coordinates(0, 4)
+        };
+        Color color;
+        if (input) {
+            color = BLACK;
+        } else  {
+            color = WHITE;
+        }
+
+        for (Coordinates coordinates : TestCoordinates) {
+            board.place(coordinates, new Piece(color));
+        }
+        for (int i = 0; i < 3; i++) {
+            assertEquals(TestCoordinates[i], board.piecesInRow(1,color).get(i));
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("Piece in a row")
+    @ValueSource(booleans = {true,false})
+    void PiecesInAColumn (boolean input) {
+        Coordinates[] TestCoordinates = {new Coordinates(1,2), new Coordinates(2,2)
+                , new Coordinates(3,2), new Coordinates(4,2), new Coordinates(2, 1)
+        };
+        Color color;
+        if (input) {
+            color = BLACK;
+        } else  {
+            color = WHITE;
+        }
+
+        for (Coordinates coordinates : TestCoordinates) {
+            board.place(coordinates, new Piece(color));
+        }
+        for (int i = 0; i < 4; i++) {
+            assertEquals(TestCoordinates[i], board.piecesInColumn(2,color).get(i));
+        }
+    }
+
     @Test
     @DisplayName("Illegal position")
     void canPlaceIllegalPosition(){
