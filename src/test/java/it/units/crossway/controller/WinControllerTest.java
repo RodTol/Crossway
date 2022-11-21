@@ -7,8 +7,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.awt.*;
+
+import static java.awt.Color.BLACK;
+import static java.awt.Color.WHITE;
 
 class WinControllerTest {
 
@@ -20,7 +25,7 @@ class WinControllerTest {
     @BeforeEach
     @DisplayName("WinController test on 3x3 board")
     void setUp() {
-        board = new Board(3,3);
+        board = new Board(4,4);
     }
 
     @Test
@@ -29,8 +34,8 @@ class WinControllerTest {
     {
         color = Color.BLACK;
 
-        int[] rows = new int[]{0, 1, 2};
-        int[] cols = new int[]{1, 1, 2};
+        int[] rows = new int[]{0, 1, 2, 3};
+        int[] cols = new int[]{1, 1, 2, 2};
 
         for (int i = 0; i< rows.length; i++) {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
@@ -44,8 +49,8 @@ class WinControllerTest {
     void blackTest()
     {
         color = Color.BLACK;
-        int[] rows = new int[]{0, 1, 2};
-        int[] cols = new int[]{1, 1, 2};
+        int[] rows = new int[]{0, 1, 2, 3};
+        int[] cols = new int[]{1, 1, 2, 2};
         for (int i = 0; i< rows.length; i++) {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
@@ -58,8 +63,8 @@ class WinControllerTest {
     void whiteTest()
     {
         color = Color.WHITE;
-        int[] rows = new int[]{1, 1, 2};
-        int[] cols = new int[]{0, 1, 2};
+        int[] rows = new int[]{1, 1, 2, 3};
+        int[] cols = new int[]{0, 1, 2, 3};
         for (int i = 0; i< rows.length; i++) {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
@@ -68,11 +73,32 @@ class WinControllerTest {
     }
 
 
-    @Test
+    @ParameterizedTest
     @DisplayName("Win check")
-    void winTest() {
-        board.place(new Coordinates(1,1), new Piece(color));
-        Assertions.assertTrue(winController.check());
+    @ValueSource(booleans = {true,false})
+    void winTest(boolean input) {
+
+        if (input) {
+            color = BLACK;
+        } else  {
+            color = WHITE;
+        }
+
+        int[] rows = new int[]{0, 0, 1, 2, 3, 3};
+        int[] cols = new int[]{1, 3, 1, 2, 0, 2};
+
+
+        for (int i = 0; i< rows.length; i++) {
+            board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
+        }
+        winController = new WinController(board,color);
+
+        if (input) {
+            Assertions.assertTrue(winController.check());
+        } else  {
+            Assertions.assertFalse(winController.check());
+        }
+
     }
 
 

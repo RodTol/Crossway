@@ -69,7 +69,7 @@ public class GraphTest {
         graph.addEdge(coordinates2,coordinates3);
         graph.addEdge(coordinates2,coordinates4);
 
-        Set<Coordinates> outputSet = new LinkedHashSet<>();
+        Set<Coordinates> outputSet;
         Set<Coordinates> expectedSet = new LinkedHashSet<>();
         expectedSet.add(coordinates);
         expectedSet.add(coordinates2);
