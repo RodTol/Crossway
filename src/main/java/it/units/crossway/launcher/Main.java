@@ -10,7 +10,7 @@ import it.units.crossway.gui.BoardGui;
 import javax.swing.*;
 import java.awt.*;
 
-public class Main {
+public class    Main {
     public static void main(String[] args) {
         Board board = new Board( Config.N_ROWS, Config.N_COLUMNS);
         Controller controller = new GameController(board);

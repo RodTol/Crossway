@@ -56,9 +56,12 @@ public class GameController implements Controller {
         }
         WinController winController = new WinController(board, piece.getColor());
         if (winController.check()) {
+            System.out.println("GAME WON!");
             return Status.won();
         } else {
             changeColor();
+            System.out.println("Piece placed in row:" + piece.getPosition().getRow()
+                    + " column: " + piece.getPosition().getColumn() );
             return Status.placed();
         }
 

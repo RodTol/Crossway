@@ -124,19 +124,30 @@ public class BoardGui extends JPanel {
         return new Point(ClosestXPos, ClosestYPos);
     }
 
+
+    //HO INVERTITO QUESTI DUE PER FAR COMBACIARE LE COORDINATE
+    /*Ha senso perchè gli assi vanno
+    * ------------->  X
+    * |
+    * |
+    * |
+    * |
+    * Y
+    * Quindi le x sono le colonne e le y le righe*/
+
     /*This function convert pixels into coordinates (row,column) with
     * both extending from 0 to 18*/
     private Coordinates nodePxToPosition(Point point) {
         int row = (int) ((point.getX() - settings.getMargin()) / settings.getCellSize());
         int column = (int) ((point.getY() - settings.getMargin()) / settings.getCellSize());
-        return new Coordinates(row, column);
+        return new Coordinates(column, row);
     }
 
     /*Convert coordinates into pixels. Takes input with row and columns from 0 to 18*/
     private Point nodePositionToPx(Coordinates position) {
         int Xpx = settings.getMargin() + settings.getCellSize() * (position.getRow());
         int Ypx = settings.getMargin() + settings.getCellSize() * (position.getColumn());
-        return new Point(Xpx,Ypx);
+        return new Point(Ypx,Xpx);
     }
 
     public void handleMouseClicked(Coordinates position) {
