@@ -14,19 +14,13 @@ public class    Main {
     public static void main(String[] args) {
         Board board = new Board( Config.N_ROWS, Config.N_COLUMNS);
         Controller controller = new GameController(board);
+
         //StartingGui startingGui = new StartingGui(controller);
-        /*Settings for StartingGui like below*/
+        //Window start
+
         BoardGui boardGui = new BoardGui(controller, new BoardGuiSettings(Config.BOARD_MARGIN, Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
-        /*BoardGui set_up (facciamo una function ?)*/
         boardGui.setBackground(Color.LIGHT_GRAY);
-        JFrame frame = new JFrame();
-        frame.setTitle("Crossway");
-        frame.setLayout(new BorderLayout());
-        frame.getContentPane().add(boardGui, BorderLayout.CENTER);
-        frame.setSize(new Dimension(Config.FRAME_WIDTH, Config.FRAME_HEIGHT));
-        frame.setLocation(500, 200);    // location where frame appears
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        Window game = new Window("Crossway", boardGui, Config.FRAME_WIDTH, Config.FRAME_HEIGHT);
 
     }
 }

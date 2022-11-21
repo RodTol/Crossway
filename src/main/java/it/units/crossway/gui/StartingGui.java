@@ -2,8 +2,10 @@ package it.units.crossway.gui;
 
 import it.units.crossway.controller.Controller;
 
-public class StartingGui {
-    private Controller controller;
+import javax.swing.*;
+
+public class StartingGui extends JPanel {
+    private final Controller controller;
 
     public StartingGui(Controller controller) {
         this.controller = controller;
