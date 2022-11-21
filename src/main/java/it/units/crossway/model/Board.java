@@ -2,6 +2,7 @@ package it.units.crossway.model;
 import it.units.crossway.utilities.Graph;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Board {
 
@@ -39,6 +40,33 @@ public class Board {
         return total;
     }
 
+    public ArrayList<Coordinates> piecesInRow(int index, Color color) {
+        ArrayList<Coordinates> pieces = new ArrayList<>();
+        for (int i = 0; i < nodes[index].length; i++) {
+            if (nodes[index][i].getPiece() != null &&
+                    nodes[index][i].getPiece().getColor().equals(color)) {
+                pieces.add(new Coordinates(index, i));
+            }
+        }
+        return pieces;
+    }
+
+    public ArrayList<Coordinates> piecesInColumn(int index, Color color) {
+        Node[] column = new Node[nodes.length];
+        for (int i = 0; i < nodes[0].length; i++) {
+            column[i] = nodes[i][index];
+        }
+
+        ArrayList<Coordinates> pieces = new ArrayList<>();
+        for (int i = 0; i < column.length; i++) {
+            if (column[i].getPiece() != null &&
+                    column[i].getPiece().getColor().equals(color)) {
+                pieces.add(new Coordinates(i, index));
+            }
+        }
+        return pieces;
+    }
+
     public boolean hasAtLeastOneInRow(int index, Color color) {
         for (Node node : nodes[index] ) {
             if (node.getPiece() != null && node.getPiece().getColor().equals(color)) {
@@ -48,13 +76,13 @@ public class Board {
         return false;
     }
 
-    public boolean hasAtLeastOneinColumn(int index, Color color) {
-        Node[] Column = new Node[nodes[0].length];
-        for (int i = 0; i < nodes[0].length; i++) {
-            Column[i] = nodes[i][index];
+    public boolean hasAtLeastOneInColumn(int index, Color color) {
+        Node[] column = new Node[nodes.length];
+        for (int i = 0; i < nodes.length; i++) {
+            column[i] = nodes[i][index];
         }
 
-        for (Node node: Column ) {
+        for (Node node: column) {
             if (node.getPiece() != null && node.getPiece().getColor().equals(color)) {
                 return true;
             }

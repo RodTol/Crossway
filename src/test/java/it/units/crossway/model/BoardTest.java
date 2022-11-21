@@ -80,7 +80,7 @@ public class BoardTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Piece in a row")
+    @DisplayName("Piece in a column")
     @ValueSource(booleans = {true,false})
     void PiecesInAColumn (boolean input) {
         Coordinates[] TestCoordinates = {new Coordinates(1,2), new Coordinates(2,2)

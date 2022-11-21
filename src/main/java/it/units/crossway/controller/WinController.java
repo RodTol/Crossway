@@ -1,9 +1,13 @@
 package it.units.crossway.controller;
 
 import it.units.crossway.model.Board;
+import it.units.crossway.model.Coordinates;
 import it.units.crossway.utilities.Graph;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Set;
+
 
 public class WinController {
     private final Board board;
@@ -14,9 +18,6 @@ public class WinController {
         this.color = color;
     }
 
-    /*Non puoi accedere ai dati della board, ma solo
-     * chiamare i suoi metodi.
-     * Quindi fai tipo has at least e haspiece in row(index of row)*/
     public boolean check() {
         if (!minNofPieces()) {
             return false;
@@ -41,13 +42,26 @@ public class WinController {
         }
 
         Graph graph = board.toGraph(color);
+        ArrayList<Coordinates> startingVertices;
+        startingVertices = board.piecesInRow(0,color);
 
-        return true;
+        for (Coordinates coordinates : startingVertices) {
+            Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);
+            if (depthFirstTree
+                    .stream()
+                    .filter(v -> v.getRow() == board.getNodes().length)
+                    .toList()
+                    .size() >= 1) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     boolean whiteCheck() {
         for (int i = 0; i < board.getNodes().length; i++) {
-            if (!board.hasAtLeastOneinColumn(i, color)) {
+            if (!board.hasAtLeastOneInColumn(i, color)) {
                 return false;
             }
         }
