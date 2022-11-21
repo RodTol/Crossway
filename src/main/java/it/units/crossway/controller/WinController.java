@@ -6,8 +6,8 @@ import it.units.crossway.utilities.Graph;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-
 
 public class WinController {
     private final Board board;
@@ -47,11 +47,12 @@ public class WinController {
 
         for (Coordinates coordinates : startingVertices) {
             Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);
-            if (depthFirstTree
+            List<Coordinates> filteredTree = depthFirstTree
                     .stream()
-                    .filter(v -> v.getRow() == board.getNodes().length)
-                    .toList()
-                    .size() >= 1) {
+                    .filter(v -> v.getRow() == board.getNodes().length - 1)
+                    .toList();
+
+            if ( filteredTree.size() >= 1) {
                 return true;
             }
         }
@@ -67,8 +68,22 @@ public class WinController {
         }
 
         Graph graph = board.toGraph(color);
+        ArrayList<Coordinates> startingVertices;
+        startingVertices = board.piecesInColumn(0,color);
 
-        return true;
+        for (Coordinates coordinates : startingVertices) {
+            Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);
+            List<Coordinates> filteredTree = depthFirstTree
+                    .stream()
+                    .filter(v -> v.getColumn() == board.getNodes().length - 1)
+                    .toList();
+
+            if ( filteredTree.size() >= 1) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
