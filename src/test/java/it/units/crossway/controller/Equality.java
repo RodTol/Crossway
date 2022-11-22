@@ -21,7 +21,7 @@ public class Equality {
     @BeforeEach
     @DisplayName("Tests on vertex class")
     public void setup(){
-        player = new Player(Color.BLACK);
+        player = new Player(1, Color.BLACK);
         board = new Board(1,1);
     }
 
@@ -40,7 +40,7 @@ public class Equality {
     @Test
     @DisplayName("Equal players")
     void equalPlayers(){
-        Player player2 = new Player(Color.BLACK);
+        Player player2 = new Player(2, Color.BLACK);
         assertTrue(player.equals(player2));
     }
 }

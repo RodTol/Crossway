@@ -27,6 +27,5 @@ public class    Main {
         frame.setLocation(500, 200);    // location where frame appears
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
     }
 }

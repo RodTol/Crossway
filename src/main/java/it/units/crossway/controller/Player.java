@@ -6,11 +6,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.awt.*;
 
-class Player {
+public class Player {
+    private final int id;
     private final Color color;
     private String name;
 
-    public Player(Color color) {
+    public Player(int id, Color color) {
+        this.id = id;
         this.color = color;
     }
 
@@ -48,4 +50,5 @@ class Player {
     public void setName(String name) {
         this.name = name;
     }
+
 }

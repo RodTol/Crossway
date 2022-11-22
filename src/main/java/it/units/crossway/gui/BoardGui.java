@@ -3,6 +3,7 @@ package it.units.crossway.gui;
 import it.units.crossway.controller.Status;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.model.Coordinates;
+import it.units.crossway.controller.Player;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -58,7 +59,8 @@ public class BoardGui extends JPanel {
     }
 
     private void drawGhost(Graphics g) {
-        Color playerColor = controller.getCurrentColor();
+        //Color playerColor = controller.getCurrentPlayer().getColor();
+        Color playerColor = controller.getCurrentPlayer().getColor();
         if (ghostPosition != null) {
             g.setColor(new Color(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue(), 70));
             Point point = closestNodeToPx(ghostPosition);
@@ -151,7 +153,7 @@ public class BoardGui extends JPanel {
     }
 
     public void handleMouseClicked(Coordinates position) {
-        PieceGui piece = new PieceGui(controller.getCurrentColor(), position);
+        PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
         if (controller.canPlace(position)) {
             Status status = controller.place(piece);
             switch (status.getCondition()) {

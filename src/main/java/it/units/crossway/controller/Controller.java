@@ -8,7 +8,7 @@ import java.awt.*;
 
 public interface Controller {
 
-    Color getCurrentColor();
+    Player getCurrentPlayer();
     Board getBoard();
     void setNameWhitePlayer(String name);
     void setNameBlackPlayer(String name);

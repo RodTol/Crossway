@@ -11,38 +11,39 @@ public class GameController implements Controller {
     private Board board;
 
     // private WinEvaluator winEvaluator;
-    private Color currentUserColor;
-    private Player blackPlayer;
-    private Player whitePlayer;
+    private Player player1;
+    private Player player2;
+    private Player currentPlayer;
+
 
     public GameController(Board board) {
         this.board = board;
-        currentUserColor = Color.BLACK;
-        blackPlayer = new Player(Color.BLACK);
-        whitePlayer = new Player(Color.WHITE);
+        player1 = new Player(1, Color.BLACK);
+        player2 = new Player(2, Color.WHITE);
+        currentPlayer = player1;
         System.out.println("Game Starts!");
     }
 
     @Override
-    public Color getCurrentColor() {
-        return currentUserColor;
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
     @Override
     public Board getBoard() {return board;}
     @Override
     public void setNameWhitePlayer(String name) {
-        this.whitePlayer.setName(name);
+        this.player2.setName(name);
     }
     @Override
     public void setNameBlackPlayer(String name) {
-        this.blackPlayer.setName(name);
+        this.player1.setName(name);
     }
 
     /*This method asks the board if a position is playable
     * for a piece*/
     @Override
     public boolean canPlace(Coordinates position) {
-        return board.canPlace(position, new Piece(currentUserColor));
+        return board.canPlace(position, new Piece(currentPlayer.getColor()));
     }
 
     /*This method place a piece on the board from the input of the Gui. Then
@@ -68,10 +69,10 @@ public class GameController implements Controller {
     }
 
     private void changeColor() {
-        if (currentUserColor.equals(Color.BLACK)) {
-            currentUserColor = Color.WHITE;
+        if (currentPlayer == player1) {
+            currentPlayer = player2;
         } else {
-            currentUserColor = Color.BLACK;
+            currentPlayer = player1;
         }
     }
 
