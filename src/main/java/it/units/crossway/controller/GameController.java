@@ -1,5 +1,6 @@
 package it.units.crossway.controller;
 
+import it.units.crossway.gui.BoardGui;
 import it.units.crossway.gui.PieceGui;
 import it.units.crossway.model.Piece;
 import it.units.crossway.model.Board;
@@ -9,7 +10,6 @@ import java.awt.*;
 
 public class GameController implements Controller {
     private Board board;
-
     // private WinEvaluator winEvaluator;
     private Player player1;
     private Player player2;
@@ -32,11 +32,21 @@ public class GameController implements Controller {
     public Board getBoard() {return board;}
 
     public String getWhiteName() {
-        return whitePlayer.getName();
+        if (player1.getColor().equals(Color.WHITE)) {
+            return player1.getName();
+        } else {
+            return player2.getName();
+
+        }
     }
 
     public String getBlackName() {
-        return blackPlayer.getName();
+        if (player1.getColor().equals(Color.BLACK)) {
+            return player1.getName();
+        } else {
+            return player2.getName();
+
+        }
     }
 
     @Override
@@ -46,6 +56,14 @@ public class GameController implements Controller {
     @Override
     public void setNameBlackPlayer(String name) {
         this.player1.setName(name);
+    }
+    @Override
+    public Player getPlayer1() {
+        return player1;
+    }
+    @Override
+    public Player getPlayer2() {
+        return player2;
     }
 
     /*This method asks the board if a position is playable
@@ -84,8 +102,5 @@ public class GameController implements Controller {
             currentPlayer = player1;
         }
     }
-
-
-
 
 }

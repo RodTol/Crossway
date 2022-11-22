@@ -26,7 +26,7 @@ public class ControllerTest {
     @Test
     @DisplayName("Start color is black")
     void startColorIsBlack() {
-        assertEquals(controller.getCurrentColor(), Color.BLACK);
+        assertEquals(controller.getCurrentPlayer().getColor(), Color.BLACK);
     }
 
     @Test

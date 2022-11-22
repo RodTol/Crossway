@@ -43,7 +43,7 @@ public class BoardGui extends JPanel {
         drawHorizontalLines(g);
         drawGhost(g);
         drawPieces(g);
-        drawNames(g);
+        drawNameDots(g);
     }
 
     private void drawVerticalLines(Graphics g) {
@@ -85,10 +85,20 @@ public class BoardGui extends JPanel {
         }
     }
 
-    private void drawNames(Graphics g) {
-        g.setColor(Color.BLACK);
+    private void drawNameDots(Graphics g) {
+        g.setColor(controller.getPlayer1().getColor());
         g.fillOval(30, 500, PIECE_SIZE, PIECE_SIZE);
-        player1Name = new JLabel(controller.)
+        g.setColor(controller.getPlayer2().getColor());
+        g.fillOval(300, 500, PIECE_SIZE, PIECE_SIZE);
+    }
+    private  void drawNames() {
+        player1Name = new JLabel(controller.getPlayer1().getName());
+        player1Name.setBounds(80, 495, 150, 30 );
+        this.add(player1Name);
+
+        player2Name = new JLabel(controller.getPlayer2().getName());
+        player2Name.setBounds(350, 495, 150, 30 );
+        this.add(player2Name);
     }
 
     /*This function compute the position of the nodes in coordinate format
