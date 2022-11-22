@@ -9,5 +9,5 @@ class Config {
     public static final int CELL_SIZE = BOARD_WIDTH/N_COLUMNS;
     public static final int BOARD_MARGIN = (BOARD_HEIGHT - (N_ROWS-1)*CELL_SIZE)/2;
     public static final int FRAME_WIDTH = BOARD_WIDTH + 8;
-    public static final int FRAME_HEIGHT = BOARD_HEIGHT + 40;
+    public static final int FRAME_HEIGHT = BOARD_HEIGHT + 80;
 }

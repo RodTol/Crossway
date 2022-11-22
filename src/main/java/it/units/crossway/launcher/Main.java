@@ -23,13 +23,14 @@ public class Main {
         frame.setVisible(true);
 
     }
+
     public static void main(String[] args) {
         Board board = new Board( Config.N_ROWS, Config.N_COLUMNS);
         Controller controller = new GameController(board);
 
         StartingGui startingGui = new StartingGui(controller);
         startingGui.setBackground(Color.LIGHT_GRAY);
-        createWindow("Player selection", 400, 200, 800, 400, startingGui);
+        createWindow("Player selection", 400, 215, 800, 400, startingGui);
 
         BoardGui boardGui = new BoardGui(controller, new BoardGuiSettings(Config.BOARD_MARGIN, Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
         boardGui.setBackground(Color.LIGHT_GRAY);
