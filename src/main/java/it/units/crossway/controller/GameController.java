@@ -29,6 +29,15 @@ public class GameController implements Controller {
     }
     @Override
     public Board getBoard() {return board;}
+
+    public String getWhiteName() {
+        return whitePlayer.getName();
+    }
+
+    public String getBlackName() {
+        return blackPlayer.getName();
+    }
+
     @Override
     public void setNameWhitePlayer(String name) {
         this.whitePlayer.setName(name);

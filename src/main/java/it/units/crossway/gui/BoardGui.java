@@ -16,7 +16,6 @@ public class BoardGui extends JPanel {
     
     private static final int PIECE_SIZE = 20;
     private final Controller controller;
-    
     private final BoardGuiSettings settings;
     private Point ghostPosition;
     private List<PieceGui> pieces;
