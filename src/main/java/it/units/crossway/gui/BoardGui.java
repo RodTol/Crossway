@@ -17,13 +17,14 @@ public class BoardGui extends JPanel {
     
     private static final int PIECE_SIZE = 20;
     private final Controller controller;
-    
     private final BoardGuiSettings settings;
     private Point ghostPosition;
     private List<PieceGui> pieces;
+    private JLabel player1Name;
+    private JLabel player2Name;
 
     public BoardGui(Controller controller, BoardGuiSettings settings) {
-        super(new BorderLayout());
+        this.setLayout(null);
         this.controller = controller;
         this.settings = settings;
         this.ghostPosition= null;
@@ -42,6 +43,7 @@ public class BoardGui extends JPanel {
         drawHorizontalLines(g);
         drawGhost(g);
         drawPieces(g);
+        drawNames(g);
     }
 
     private void drawVerticalLines(Graphics g) {
@@ -81,6 +83,12 @@ public class BoardGui extends JPanel {
             int y = point.y - (PIECE_SIZE / 2);
             g.fillOval(x, y, PIECE_SIZE, PIECE_SIZE);
         }
+    }
+
+    private void drawNames(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.fillOval(30, 500, PIECE_SIZE, PIECE_SIZE);
+        player1Name = new JLabel(controller.)
     }
 
     /*This function compute the position of the nodes in coordinate format
@@ -164,6 +172,7 @@ public class BoardGui extends JPanel {
                     repaint();
                     break;
                 case WON :
+                    pieces.add(piece);
                     /*End-game*/
             }
         }
