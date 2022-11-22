@@ -5,7 +5,7 @@ import it.units.crossway.controller.Controller;
 import it.units.crossway.model.Coordinates;
 import it.units.crossway.controller.Player;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -28,7 +28,7 @@ public class BoardGui extends JPanel {
         this.settings = settings;
         this.ghostPosition= null;
         this.pieces = new ArrayList<>();
-        
+
         addMouseMotionListener(new BoardMouseMotionListener());
         addMouseListener(new BoardMouseClickListener());
     }

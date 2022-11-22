@@ -101,6 +101,8 @@ public class Board {
         int c = coordinates.getColumn();
         Color playerColor = piece.getColor();
 
+
+
         if (!nodes[r][c].isNodeEmpty()) {
             return false;
         }
