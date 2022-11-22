@@ -1,5 +1,7 @@
 package it.units.crossway.model;
 
+import it.units.crossway.utilities.Vertex;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +10,35 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NodeTest {
+
+    Node node;
+    Piece piece;
+
+    @BeforeEach
+    @DisplayName("Coordinates test")
+    void setup() {
+        piece =new Piece(Color.BLACK);
+        node = new Node();
+    }
+
+    @Test
+    @DisplayName("Reflexivity")
+    void reflexivity(){
+        assertTrue(node.equals(node));
+    }
+
+    @Test
+    @DisplayName("Equal test")
+    void otherObjectEqualsVertex(){
+        assertFalse(node.equals(piece));
+    }
+
+    @Test
+    @DisplayName("Equal vertices")
+    void equalVertices(){
+        assertTrue(node.equals(new Node()));
+    }
+
     @Test
     @DisplayName("Initial node is empty")
     void initialNodesAreEmpty(){
