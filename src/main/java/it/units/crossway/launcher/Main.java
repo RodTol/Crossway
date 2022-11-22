@@ -12,12 +12,13 @@ import java.awt.*;
 
 public class Main {
 
-    private static void createWindow(String title,  int width, int height, JPanel content) {
+    private static void createWindow(String title,  int width, int height, int x_location, int y_location, JPanel content) {
         JFrame frame = new JFrame(title);
         frame.setLayout(new BorderLayout());
         frame.getContentPane().add(content, BorderLayout.CENTER);
         frame.setSize(new Dimension(width, height));
-        frame.setLocation(500, 200);    // location where frame appears
+        frame.setResizable(false);
+        frame.setLocation(x_location, y_location);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
@@ -28,11 +29,11 @@ public class Main {
 
         StartingGui startingGui = new StartingGui(controller);
         startingGui.setBackground(Color.LIGHT_GRAY);
-        createWindow("Player selection", 500, 500, startingGui);
+        createWindow("Player selection", 400, 200, 800, 400, startingGui);
 
         BoardGui boardGui = new BoardGui(controller, new BoardGuiSettings(Config.BOARD_MARGIN, Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
         boardGui.setBackground(Color.LIGHT_GRAY);
-        createWindow("Crossway", Config.FRAME_WIDTH, Config.FRAME_HEIGHT, boardGui);
+        createWindow("Crossway", Config.FRAME_WIDTH, Config.FRAME_HEIGHT, 750, 200, boardGui);
 
     }
 }
