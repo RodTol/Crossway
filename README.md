@@ -9,7 +9,7 @@ It is an implementation of the game Crossway in Java comprehensive of a Graphic
 User Interface.
 
 This project was developed following the principles of AGILE software developing and
-Test Driven Developing. Every part of the code was written on IntelliJ and Github was
+Test Driven Developing. Every part of the code was written on IntelliJ and GitHub was
 used as a version control system. Gradle was instead use for the testing.
 
 ### Rules of the game   

@@ -1,11 +1,13 @@
 package it.units.crossway.gui;
 
 import it.units.crossway.controller.Controller;
+import it.units.crossway.launcher.Main;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class StartingGui extends JPanel {
     private final Controller controller;
@@ -16,6 +18,7 @@ public class StartingGui extends JPanel {
 
     private JLabel white = new JLabel("White Player Name");
     private JLabel black = new JLabel("Black Player Name");
+    private JLabel warning = new JLabel("Insert valid name!");
 
     public StartingGui(Controller controller) {
         this.controller = controller;
@@ -36,6 +39,8 @@ public class StartingGui extends JPanel {
         clearButton.setBounds(210, 100, 170, 30 );
         clearButton.addActionListener(new clearListener());
         this.add(clearButton);
+        warning.setBounds(130, 140, 200, 25);
+        warning.setForeground(Color.RED);
 
         whitePLayerName.setHorizontalAlignment(JTextField.CENTER);
         blackPlayerName.setHorizontalAlignment(JTextField.CENTER);
@@ -43,8 +48,15 @@ public class StartingGui extends JPanel {
     }
 
     void handleLetSPlay(String white_name, String black_name) {
-        controller.setNameWhitePlayer(white_name);
-        controller.setNameBlackPlayer(black_name);
+        if (Objects.equals(white_name, "") || Objects.equals(black_name, "")) {
+            this.add(warning);
+            repaint();
+        } else {
+            controller.setNameWhitePlayer(white_name);
+            controller.setNameBlackPlayer(black_name);
+            JFrame parent = (JFrame) this.getTopLevelAncestor();
+            parent.dispose();
+        }
     }
 
     void handleClear() {

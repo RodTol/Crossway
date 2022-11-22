@@ -161,6 +161,7 @@ public class BoardGui extends JPanel {
                     repaint();
                     break;
                 case WON :
+                    pieces.add(piece);
                     /*End-game*/
             }
         }

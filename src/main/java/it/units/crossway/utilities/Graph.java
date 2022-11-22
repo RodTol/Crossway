@@ -1,7 +1,6 @@
 package it.units.crossway.utilities;
 
 import it.units.crossway.model.Coordinates;
-import it.units.crossway.model.Piece;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.util.*;
