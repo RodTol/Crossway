@@ -1,6 +1,5 @@
 package it.units.crossway.controller;
 
-import it.units.crossway.gui.BoardGui;
 import it.units.crossway.gui.PieceGui;
 import it.units.crossway.model.Piece;
 import it.units.crossway.model.Board;

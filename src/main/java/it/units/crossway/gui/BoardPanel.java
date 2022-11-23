@@ -3,7 +3,6 @@ package it.units.crossway.gui;
 import it.units.crossway.controller.Status;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.model.Coordinates;
-import it.units.crossway.controller.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,17 +12,17 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardGui extends JPanel {
+public class BoardPanel extends JPanel {
     
     private static final int PIECE_SIZE = 20;
     private final Controller controller;
-    private final BoardGuiSettings settings;
+    private final BoardPanelSettings settings;
     private Point ghostPosition;
     private List<PieceGui> pieces;
     private JLabel player1Name;
     private JLabel player2Name;
 
-    public BoardGui(Controller controller, BoardGuiSettings settings) {
+    public BoardPanel(Controller controller, BoardPanelSettings settings) {
         this.setLayout(null);
         this.controller = controller;
         this.settings = settings;

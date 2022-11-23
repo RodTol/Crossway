@@ -2,12 +2,11 @@ package it.units.crossway;
 
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.GameController;
-import it.units.crossway.gui.BoardGui;
+import it.units.crossway.gui.BoardPanel;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
 
 import it.units.crossway.model.Piece;
-import org.junit.Assert;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +21,7 @@ public class FictionalGame {
     private int dim = 4;
     private static Board board;
     private Controller controller;
-    private BoardGui boardGui;
+    private BoardPanel boardPanel;
 
     @BeforeEach
     @DisplayName("Fictional game initialisation on 4x4 board")
@@ -30,7 +29,7 @@ public class FictionalGame {
 
         board = new Board(dim, dim);
         controller = new GameController(board);
-        boardGui = Mockito.mock(BoardGui.class);
+        boardPanel = Mockito.mock(BoardPanel.class);
     }
 
     @Test

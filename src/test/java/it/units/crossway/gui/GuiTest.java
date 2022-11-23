@@ -2,7 +2,6 @@ package it.units.crossway.gui;
 
 import it.units.crossway.controller.Controller;
 
-import it.units.crossway.model.Coordinates;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,18 +14,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Test on Gui")
 public class GuiTest {
 
-    private BoardGui boardGui;
+    private BoardPanel boardPanel;
     @BeforeEach
     public void setup() {
         Controller controller = Mockito.mock(Controller.class);   // to mimic a controller object.
-        boardGui = new BoardGui(controller, new BoardGuiSettings(1, 40, 35, 2));
+        boardPanel = new BoardPanel(controller, new BoardPanelSettings(1, 40, 35, 2));
     }
 
     @Test
     @DisplayName("Coordinates coherence")
     void Nodes_correct_coordinates() {
-        ArrayList<Integer> XNodePositions = boardGui.getXNodePositions();
-        ArrayList<Integer> YNodePositions = boardGui.getYNodePositions();
+        ArrayList<Integer> XNodePositions = boardPanel.getXNodePositions();
+        ArrayList<Integer> YNodePositions = boardPanel.getYNodePositions();
         int[] test_r = {4 ,6 ,12, 15};
         int[] test_c = {1 ,11 ,14, 18};
 

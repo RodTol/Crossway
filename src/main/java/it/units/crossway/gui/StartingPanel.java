@@ -1,7 +1,6 @@
 package it.units.crossway.gui;
 
 import it.units.crossway.controller.Controller;
-import it.units.crossway.launcher.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class StartingGui extends JPanel {
+public class StartingPanel extends JPanel {
     private final Controller controller;
     private JTextField whitePLayerName = new JTextField(20);
     private JTextField blackPlayerName = new JTextField(20);
@@ -20,7 +19,7 @@ public class StartingGui extends JPanel {
     private JLabel black = new JLabel("Black Player Name");
     private JLabel warning = new JLabel("Insert valid name!");
 
-    public StartingGui(Controller controller) {
+    public StartingPanel(Controller controller) {
         this.controller = controller;
 
         this.setLayout(null);
