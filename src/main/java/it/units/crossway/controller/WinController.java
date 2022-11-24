@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class WinController {
     private final Board board;
@@ -51,7 +51,7 @@ public class WinController {
             List<Coordinates> filteredTree = depthFirstTree
                     .stream()
                     .filter(v -> v.getRow() == board.getNodes().length - 1)
-                    .toList();
+                    .collect(Collectors.toList());
 
             if ( filteredTree.size() >= 1) {
                 return true;
