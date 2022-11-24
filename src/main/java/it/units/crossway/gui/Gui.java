@@ -49,6 +49,10 @@ public class Gui {
         frame.setVisible(true);
     }
 
+    public BoardPanel getBoardPanel() {
+        return boardPanel;
+    }
+
     private void setupFrame(String title, int x_location, int y_location) {
         frame.setTitle(title);
         frame.setResizable(false);

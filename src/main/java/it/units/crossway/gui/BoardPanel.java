@@ -6,9 +6,6 @@ import it.units.crossway.model.Coordinates;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,14 +167,15 @@ public class BoardPanel extends JPanel {
         if (controller.canPlace(position)) {
             Status status = controller.place(piece);
             switch (status.getCondition()) {
-                case PLACED :
+                case PLACED -> {
                     pieces.add(piece);
                     repaint();
                     return status;
-                    //break;
-                case WON :
+                }
+                case WON -> {
                     pieces.add(piece);
                     return status;
+                }
             }
         }
         return Status.not_placed();
