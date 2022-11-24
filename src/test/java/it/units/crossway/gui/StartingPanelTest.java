@@ -30,7 +30,8 @@ class StartingPanelTest {
     @Test
     @DisplayName("Name Inputs")
     void areNameSaved() {
-        startingPanel.handleLetSPlay("USER_1", "USER_2");
+        /*Need to add test text to JText in order to procede*/
+        startingPanel.handleLetSPlay();
         assertEquals("USER_1", controller.getWhiteName());
         assertEquals("USER_2", controller.getBlackName());
     }

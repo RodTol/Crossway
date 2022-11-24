@@ -1,6 +1,7 @@
 package it.units.crossway.launcher;
 
 import it.units.crossway.gui.BoardPanelSettings;
+import it.units.crossway.gui.Gui;
 import it.units.crossway.gui.StartingPanel;
 import it.units.crossway.model.Board;
 import it.units.crossway.controller.Controller;
@@ -27,13 +28,15 @@ public class Main {
         Board board = new Board( Config.N_ROWS, Config.N_COLUMNS);
         Controller controller = new GameController(board);
 
-        StartingPanel startingPanel = new StartingPanel(controller);
-        startingPanel.setBackground(Color.LIGHT_GRAY);
+        Gui gui = new Gui(controller, new BoardPanelSettings(Config.BOARD_MARGIN,
+                Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
+
+
+        /*StartingPanel startingPanel = new StartingPanel(controller);
         createWindow("Player selection", 400, 215, 800, 400, startingPanel);
 
         BoardPanel boardPanel = new BoardPanel(controller, new BoardPanelSettings(Config.BOARD_MARGIN, Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
-        boardPanel.setBackground(Color.LIGHT_GRAY);
-        createWindow("Crossway", Config.FRAME_WIDTH, Config.FRAME_HEIGHT, 750, 200, boardPanel);
+        createWindow("Crossway", Config.FRAME_WIDTH, Config.FRAME_HEIGHT, 750, 200, boardPanel);*/
 
     }
 }

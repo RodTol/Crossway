@@ -33,10 +33,8 @@ public class StartingPanel extends JPanel {
         blackPlayerName.setBounds(180, 50, 200, 25);
         this.add(blackPlayerName);
         letSPlayButton.setBounds(10, 100, 170, 30 );
-        letSPlayButton.addActionListener(new letsPlayListener());
         this.add(letSPlayButton);
         clearButton.setBounds(210, 100, 170, 30 );
-        clearButton.addActionListener(new clearListener());
         this.add(clearButton);
         warning.setBounds(130, 140, 200, 25);
         warning.setForeground(Color.RED);
@@ -46,15 +44,30 @@ public class StartingPanel extends JPanel {
 
     }
 
-    void handleLetSPlay(String white_name, String black_name) {
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(400, 180);
+    }
+
+    public JButton getLetSPlayButton() {
+        return letSPlayButton;
+    }
+
+    public JButton getClearButton() {
+        return clearButton;
+    }
+
+    boolean handleLetSPlay() {
+        String white_name = whitePLayerName.getText();
+        String black_name = blackPlayerName.getText();
         if (Objects.equals(white_name, "") || Objects.equals(black_name, "")) {
             this.add(warning);
             repaint();
+            return false;
         } else {
             controller.setNameWhitePlayer(white_name);
             controller.setNameBlackPlayer(black_name);
-            JFrame parent = (JFrame) this.getTopLevelAncestor();
-            parent.dispose();
+            return true;
         }
     }
 
@@ -63,19 +76,6 @@ public class StartingPanel extends JPanel {
         blackPlayerName.setText("");
     }
 
-    private class letsPlayListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            handleLetSPlay(whitePLayerName.getText(), blackPlayerName.getText());
-        }
-    }
-
-    private class clearListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            handleClear();
-        }
-    }
 
 
 

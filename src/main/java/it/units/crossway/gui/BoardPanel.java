@@ -33,6 +33,11 @@ public class BoardPanel extends JPanel {
         addMouseListener(new BoardMouseClickListener());
     }
 
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(settings.getWidth(), settings.getHeight()+45);
+    }
+
     /*Method to draw the lines*/
     @Override
     public void paintComponent(Graphics g) {
