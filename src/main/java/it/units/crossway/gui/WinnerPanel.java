@@ -7,13 +7,21 @@ import java.awt.*;
 
 public class WinnerPanel extends JPanel {
     private final Controller controller;
-    private JLabel congratulations = new JLabel();
+    private final JLabel congratulations = new JLabel();
+    private final JButton rematch = new JButton("Rematch");
+    private final JButton close = new JButton("Close");
 
     public WinnerPanel(Controller controller) {
         this.controller = controller;
-        congratulations.setBounds(10,30,280,25);
+
         this.setLayout(null);
+
+        congratulations.setBounds(10,20,280,25);
         this.add(congratulations);
+        rematch.setBounds(10,50, 120,30);
+        this.add(rematch);
+        close.setBounds(160,50, 120,30);
+        this.add(close);
     }
 
     @Override
@@ -22,7 +30,7 @@ public class WinnerPanel extends JPanel {
     }
 
     void setCongratulations() {
-        congratulations.setText("Congratulation " + controller.getCurrentPlayer().getName() + "! You have won!");
+        congratulations.setText("Congratulations " + controller.getCurrentPlayer().getName() + "! You have won!");
     }
 
 }

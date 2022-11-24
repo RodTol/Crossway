@@ -167,12 +167,12 @@ public class BoardPanel extends JPanel {
         if (controller.canPlace(position)) {
             Status status = controller.place(piece);
             switch (status.getCondition()) {
-                case PLACED -> {
+                case PLACED:  {
                     pieces.add(piece);
                     repaint();
                     return status;
                 }
-                case WON -> {
+                case WON:  {
                     pieces.add(piece);
                     return status;
                 }
