@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Test on class GameController")
 public class ControllerTest {
 
-    private Controller controller;
+    private GameController controller;
     private Board board;
 
     @BeforeEach
@@ -41,6 +41,13 @@ public class ControllerTest {
         // it verifies board.canPlace has been called once
         // First I verify the method returns the correct result
         // Second I verify the method is called
+    }
+
+    @Test
+    @DisplayName("atLeastOnePlacement test on empty board")
+    void atLeastOnePlacementEmptyBoard(){
+        Board board1 = new Board(19,19);
+        assertTrue(new GameController(board1).atLeastOnePlacement());
     }
 
 
