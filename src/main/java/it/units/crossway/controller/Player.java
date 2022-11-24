@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Player {
     private final int id;
-    private final Color color;
+    private Color color;
     private String name;
 
     public Player(int id, Color color) {
@@ -45,6 +45,10 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public void setName(String name) {
