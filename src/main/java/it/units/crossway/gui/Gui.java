@@ -1,17 +1,18 @@
 package it.units.crossway.gui;
 
 import it.units.crossway.controller.Controller;
+import it.units.crossway.controller.Status;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class Gui {
     private JFrame frame;
     private JPanel backgroundPanel;
     private StartingPanel startingPanel;
     private BoardPanel boardPanel;
+    private WinnerPanel winnerPanel;
     private BoardPanelSettings settings;
     private PageViewer cl;
 
@@ -24,6 +25,10 @@ public class Gui {
         settings = boardPanelSettings;
         boardPanel = new BoardPanel(controller, settings);
         boardPanel.setBackground(Color.LIGHT_GRAY);
+        boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
+        boardPanel.addMouseListener(new BoardMouseClickListener());
+
+        winnerPanel = new WinnerPanel(controller);
 
         backgroundPanel = new JPanel();
 
@@ -33,6 +38,7 @@ public class Gui {
         backgroundPanel.setLayout(cl);
         backgroundPanel.add(startingPanel, "1");
         backgroundPanel.add(boardPanel, "2");
+        backgroundPanel.add(winnerPanel,"3");
 
         cl.show(backgroundPanel,"1");
 
@@ -66,6 +72,41 @@ public class Gui {
         public void actionPerformed(ActionEvent e) {
             startingPanel.handleClear();
         }
+    }
+
+    private class BoardMouseMotionListener implements MouseMotionListener {
+        @Override
+        public void mouseDragged(MouseEvent e) {}
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            Point point = e.getPoint();
+            boardPanel.handleMouseMoved(point);
+        }
+    }
+
+
+    private class BoardMouseClickListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            Point node = e.getPoint();
+            Status status = boardPanel.handleMouseClicked(node);
+            switch (status.getCondition()) {
+                case WON:
+                    winnerPanel.setCongratulations();
+                    cl.show(backgroundPanel, "3");
+                    frame.pack();
+            }
+
+        }
+        @Override
+        public void mousePressed(MouseEvent e) {}
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) { }
     }
 
     private class PageViewer extends CardLayout {

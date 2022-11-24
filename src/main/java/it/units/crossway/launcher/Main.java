@@ -32,6 +32,8 @@ public class Main {
                 Config.BOARD_HEIGHT, Config.BOARD_WIDTH, Config.CELL_SIZE));
 
 
+
+
         /*StartingPanel startingPanel = new StartingPanel(controller);
         createWindow("Player selection", 400, 215, 800, 400, startingPanel);
 

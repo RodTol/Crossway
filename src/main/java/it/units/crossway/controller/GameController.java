@@ -86,7 +86,7 @@ public class GameController implements Controller {
             System.out.println("GAME WON!");
             return Status.won();
         } else {
-            changeColor();
+            changeTurn();
             System.out.println("Piece placed in row:" + piece.getPosition().getRow()
                     + " column: " + piece.getPosition().getColumn() );
             return Status.placed();
@@ -94,7 +94,7 @@ public class GameController implements Controller {
 
     }
 
-    private void changeColor() {
+    private void changeTurn() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
         } else {

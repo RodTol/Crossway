@@ -28,9 +28,6 @@ public class BoardPanel extends JPanel {
         this.settings = settings;
         this.ghostPosition= null;
         this.pieces = new ArrayList<>();
-
-        addMouseMotionListener(new BoardMouseMotionListener());
-        addMouseListener(new BoardMouseClickListener());
     }
 
     @Override
@@ -48,6 +45,10 @@ public class BoardPanel extends JPanel {
         drawGhost(g);
         drawPieces(g);
         drawNameDots(g);
+    }
+
+    Point getGhostPosition() {
+        return ghostPosition;
     }
 
     private void drawVerticalLines(Graphics g) {
@@ -126,7 +127,7 @@ public class BoardPanel extends JPanel {
 
     /*This function takes Point and assign the nearest node position
     * in pixels*/
-    private Point closestNodeToPx(Point currentPosition) {
+    Point closestNodeToPx(Point currentPosition) {
         ArrayList<Integer> XNodePositions = getXNodePositions();
         int xMinDistance = 10000;
         int ClosestXPos = 0;
@@ -148,20 +149,9 @@ public class BoardPanel extends JPanel {
         return new Point(ClosestXPos, ClosestYPos);
     }
 
-
-    //HO INVERTITO QUESTI DUE PER FAR COMBACIARE LE COORDINATE
-    /*Ha senso perchè gli assi vanno
-    * ------------->  X
-    * |
-    * |
-    * |
-    * |
-    * Y
-    * Quindi le x sono le colonne e le y le righe*/
-
     /*This function convert pixels into coordinates (row,column) with
     * both extending from 0 to 18*/
-    private Coordinates nodePxToPosition(Point point) {
+    Coordinates nodePxToPosition(Point point) {
         int row = (int) ((point.getX() - settings.getMargin()) / settings.getCellSize());
         int column = (int) ((point.getY() - settings.getMargin()) / settings.getCellSize());
         return new Coordinates(column, row);
@@ -174,83 +164,38 @@ public class BoardPanel extends JPanel {
         return new Point(Ypx,Xpx);
     }
 
-    public void handleMouseClicked(Coordinates position) {
+    public Status handleMouseClicked(Point node) {
+        Coordinates position =  nodePxToPosition(closestNodeToPx(node));
         PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
         if (controller.canPlace(position)) {
             Status status = controller.place(piece);
             switch (status.getCondition()) {
                 case PLACED :
                     pieces.add(piece);
-                    /*System.out.println(controller.getCurrentColor() + " piece placed at "
-                            + position.getRow() + " " + position.getColumn());*/
                     repaint();
-                    break;
+                    return status;
+                    //break;
                 case WON :
                     pieces.add(piece);
-                    /*End-game*/
+                    return status;
             }
         }
+        return Status.not_placed();
     }
 
-
-    private class BoardMouseMotionListener implements MouseMotionListener {
-
-        @Override
-        public void mouseDragged(MouseEvent e) {
-            // not needed in our case
-        }
-
-        @Override
-        public void mouseMoved(MouseEvent e) {
-            Point point = e.getPoint();
-            Point newPosition = closestNodeToPx(point);
-            if (!newPosition.equals(ghostPosition)) {
-                Coordinates position = nodePxToPosition(newPosition);
-                if (controller.canPlace(position)) {
-                    ghostPosition = newPosition;
-                }
-                else {
-                    ghostPosition = null;
-                }
-                repaint();
+    public void handleMouseMoved(Point point) {
+        Point newPosition = closestNodeToPx(point);
+        if (!newPosition.equals(getGhostPosition())) {
+            Coordinates position = nodePxToPosition(newPosition);
+            if (controller.canPlace(position)) {
+                ghostPosition = newPosition;
             }
+            else {
+                ghostPosition = null;
+            }
+            repaint();
         }
     }
-
-
-    private class BoardMouseClickListener implements MouseListener {
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            Point node = e.getPoint();
-            Coordinates position =  nodePxToPosition(closestNodeToPx(node));
-            handleMouseClicked(position);
-        }
-
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
-    }
-
-
-
 }
 
 
