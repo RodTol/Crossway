@@ -77,7 +77,7 @@ public class WinController {
             List<Coordinates> filteredTree = depthFirstTree
                     .stream()
                     .filter(v -> v.getColumn() == board.getNodes().length - 1)
-                    .toList();
+                    .collect(Collectors.toList());
 
             if ( filteredTree.size() >= 1) {
                 return true;
