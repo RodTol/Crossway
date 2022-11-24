@@ -1,7 +1,9 @@
 package it.units.crossway.controller;
 
+import it.units.crossway.gui.PieceGui;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
+import it.units.crossway.model.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,6 +52,21 @@ public class ControllerTest {
         assertTrue(new GameController(board1).atLeastOnePlacement());
     }
 
+    @Test
+    @DisplayName("atLeastOnePlacement test on board with no valid placements")
+    void atLeastOnePlacementNoPlacements(){
+        Board board1 = new Board(3,3);
+        GameController controller = new GameController(board1);
+        controller.place(new PieceGui(Color.BLACK,new Coordinates(0,0)));
+        controller.place(new PieceGui(Color.BLACK,new Coordinates(0,2)));
+        controller.place(new PieceGui(Color.BLACK,new Coordinates(2,0)));
+        controller.place(new PieceGui(Color.BLACK,new Coordinates(2,2)));
+        controller.place(new PieceGui(Color.WHITE,new Coordinates(0,1)));
+        controller.place(new PieceGui(Color.WHITE,new Coordinates(1,0)));
+        controller.place(new PieceGui(Color.WHITE,new Coordinates(1,2)));
+        controller.place(new PieceGui(Color.WHITE,new Coordinates(2,1)));
+        assertFalse(controller.atLeastOnePlacement());
+    }
 
 
 }
