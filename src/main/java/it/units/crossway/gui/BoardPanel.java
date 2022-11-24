@@ -93,9 +93,9 @@ public class BoardPanel extends JPanel {
         g.setColor(controller.getPlayer1().getColor());
         g.fillOval(30, 500, PIECE_SIZE, PIECE_SIZE);
         g.setColor(controller.getPlayer2().getColor());
-        g.fillOval(300, 500, PIECE_SIZE, PIECE_SIZE);
+        g.fillOval(280, 500, PIECE_SIZE, PIECE_SIZE);
     }
-    private  void drawNames() {
+    void drawNames() {
         player1Name = new JLabel(controller.getPlayer1().getName());
         player1Name.setBounds(80, 495, 150, 30 );
         this.add(player1Name);

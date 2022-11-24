@@ -53,6 +53,7 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (startingPanel.handleLetSPlay()) {
+                boardPanel.drawNames();
                 cl.show(backgroundPanel, "2");
                 setupFrame("Crossway", 750, 200);
                 frame.pack();
