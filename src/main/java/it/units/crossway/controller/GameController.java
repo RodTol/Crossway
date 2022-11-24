@@ -8,10 +8,10 @@ import it.units.crossway.model.Coordinates;
 import java.awt.*;
 
 public class GameController implements Controller {
-    private Board board;
+    private final Board board;
     // private WinEvaluator winEvaluator;
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private Player currentPlayer;
 
 
