@@ -24,6 +24,14 @@ public class WinnerPanel extends JPanel {
         this.add(close);
     }
 
+    public JButton getRematch() {
+        return rematch;
+    }
+
+    public JButton getClose() {
+        return close;
+    }
+
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(300, 100);

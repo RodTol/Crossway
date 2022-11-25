@@ -155,4 +155,12 @@ public class Board {
         }
         return graph;
     }
+
+    public void reset() {
+        for (int r = 0; r < nodes.length; r++) {
+            for (int c = 0; c < nodes[0].length; c++) {
+                nodes[r][c].setPiece(null);
+            }
+        }
+    }
 }

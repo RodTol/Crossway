@@ -18,4 +18,6 @@ public interface Controller {
     boolean canPlace(Coordinates position);
 
     Status place(PieceGui piece);
+
+    void reset();
 }

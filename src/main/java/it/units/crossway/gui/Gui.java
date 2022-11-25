@@ -1,5 +1,6 @@
 package it.units.crossway.gui;
 
+import it.units.crossway.controller.Condition;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.Status;
 
@@ -8,13 +9,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Gui {
-    private JFrame frame;
-    private JPanel backgroundPanel;
-    private StartingPanel startingPanel;
-    private BoardPanel boardPanel;
-    private WinnerPanel winnerPanel;
-    private BoardPanelSettings settings;
-    private PageViewer cl;
+    private final JFrame frame;
+    private final JPanel backgroundPanel;
+    private final StartingPanel startingPanel;
+    private final BoardPanel boardPanel;
+    private final WinnerPanel winnerPanel;
+    private final PageViewer cl;
+
+    private int currentPanel;
 
     public Gui(Controller controller, BoardPanelSettings boardPanelSettings) {
         startingPanel = new StartingPanel(controller);
@@ -22,13 +24,14 @@ public class Gui {
         startingPanel.getLetSPlayButton().addActionListener(new letsPlayListener());
         startingPanel.getClearButton().addActionListener(new clearListener());
 
-        settings = boardPanelSettings;
-        boardPanel = new BoardPanel(controller, settings);
+        boardPanel = new BoardPanel(controller, boardPanelSettings);
         boardPanel.setBackground(Color.LIGHT_GRAY);
         boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
         boardPanel.addMouseListener(new BoardMouseClickListener());
 
         winnerPanel = new WinnerPanel(controller);
+        winnerPanel.getClose().addActionListener(new closeListener());
+        winnerPanel.getRematch().addActionListener(new rematchListener());
 
         backgroundPanel = new JPanel();
 
@@ -41,6 +44,7 @@ public class Gui {
         backgroundPanel.add(winnerPanel,"3");
 
         cl.show(backgroundPanel,"1");
+        currentPanel = 1;
 
         setupFrame("Insert players names", 800, 400);
         frame.add(backgroundPanel, BorderLayout.CENTER);
@@ -53,10 +57,18 @@ public class Gui {
         return boardPanel;
     }
 
+    public int getCurrentPanel() {
+        return currentPanel;
+    }
+
     private void setupFrame(String title, int x_location, int y_location) {
         frame.setTitle(title);
         frame.setResizable(false);
         frame.setLocation(x_location, y_location);
+    }
+
+    private void resetGame() {
+        boardPanel.reset();
     }
 
     private class letsPlayListener implements ActionListener {
@@ -65,6 +77,7 @@ public class Gui {
             if (startingPanel.handleLetSPlay()) {
                 boardPanel.drawNames();
                 cl.show(backgroundPanel, "2");
+                currentPanel = 2;
                 setupFrame("Crossway", 750, 200);
                 frame.pack();
             }
@@ -95,11 +108,11 @@ public class Gui {
         public void mouseClicked(MouseEvent e) {
             Point node = e.getPoint();
             Status status = boardPanel.handleMouseClicked(node);
-            switch (status.getCondition()) {
-                case WON:
-                    winnerPanel.setCongratulations();
-                    cl.show(backgroundPanel, "3");
-                    frame.pack();
+            if (status.getCondition() == Condition.WON) {
+                winnerPanel.setCongratulations();
+                cl.show(backgroundPanel, "3");
+                currentPanel = 3;
+                frame.pack();
             }
 
         }
@@ -113,7 +126,24 @@ public class Gui {
         public void mouseExited(MouseEvent e) { }
     }
 
-    private class PageViewer extends CardLayout {
+    private class rematchListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            resetGame();
+            cl.show(backgroundPanel,"1");
+            currentPanel = 1;
+            frame.pack();
+        }
+    }
+
+    private class closeListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+        }
+    }
+
+    private static class PageViewer extends CardLayout {
         public Dimension preferredLayoutSize(Container parent) {
             Component current = findCurrentComponent(parent);
             if (current != null) {
@@ -135,4 +165,6 @@ public class Gui {
             return null;
         }
     }
+
+
 }

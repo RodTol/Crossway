@@ -94,6 +94,11 @@ public class GameController implements Controller {
 
     }
 
+    @Override
+    public void reset() {
+        board.reset();
+    }
+
     private void changeTurn() {
         if (currentPlayer == player1) {
             currentPlayer = player2;

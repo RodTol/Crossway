@@ -48,6 +48,13 @@ public class BoardPanel extends JPanel {
         return ghostPosition;
     }
 
+    void reset() {
+        this.remove(player1Name);
+        this.remove(player2Name);
+        pieces.clear();
+        controller.reset();
+    }
+
     private void drawVerticalLines(Graphics g) {
         for (int x = settings.getMargin(); x < settings.getHeight()-settings.getMargin(); x += settings.getCellSize()) {
             g.drawLine(x, settings.getMargin(), x, settings.getHeight()-settings.getMargin());
