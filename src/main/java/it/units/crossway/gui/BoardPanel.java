@@ -177,6 +177,14 @@ public class BoardPanel extends JPanel {
             switch (status.getCondition()) {
                 case PLACED:  {
                     pieces.add(piece);
+                    if (controller.getCurrentPlayer().getId()==1){
+                        player1Name.setForeground(Color.RED);
+                        player2Name.setForeground(Color.BLACK);
+                    }
+                    else{
+                        player2Name.setForeground(Color.RED);
+                        player1Name.setForeground(Color.BLACK);
+                    }
                     repaint();
                     return status;
                 }

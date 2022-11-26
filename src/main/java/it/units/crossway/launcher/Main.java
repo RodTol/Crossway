@@ -46,7 +46,7 @@ public class Main {
             }
         }
 
-        /*Delta pixel = 19, (0,0) = (16,16)*/
+        /*Delta pixel = 26, (0,0) = (16,16)*/
        System.out.println("Robot starts playing");
         for (int i = 0; i < 19; i++) {
             click(gui.getBoardPanel(), 16+26*4, 16 + i*26);
