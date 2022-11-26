@@ -18,6 +18,8 @@ public class BoardPanel extends JPanel {
     final private List<PieceGui> pieces;
     private JLabel player1Name;
     private JLabel player2Name;
+    private Color currentPlayerColor = new Color(39,78,19);
+    private final ImageIcon background = new ImageIcon("/home/rodolfo/Crossway/src/main/java/it/units/crossway/gui/background.png");
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
         this.setLayout(null);
@@ -35,13 +37,16 @@ public class BoardPanel extends JPanel {
     /*Method to draw the lines*/
     @Override
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
+        g.drawImage(background.getImage(), 0,0,null);
         g.setColor(Color.BLACK);
         drawVerticalLines(g);
         drawHorizontalLines(g);
         drawGhost(g);
         drawPieces(g);
         drawNameDots(g);
+
     }
 
     Point getGhostPosition() {
@@ -103,21 +108,23 @@ public class BoardPanel extends JPanel {
     void drawNames() {
         player1Name = new JLabel(controller.getPlayer1().getName());
         player1Name.setBounds(80, 495, 150, 30 );
-        player1Name.setForeground(Color.RED);
+        player1Name.setForeground(currentPlayerColor);
+        player1Name.setFont(new Font("Helvetica", Font.BOLD, 16));
         this.add(player1Name);
 
         player2Name = new JLabel(controller.getPlayer2().getName());
         player2Name.setBounds(350, 495, 150, 30 );
+        player2Name.setFont(new Font("Helvetica", Font.BOLD, 16));
         this.add(player2Name);
     }
 
     private void highlightCurrentPlayerName(){
         if (controller.getCurrentPlayer().getId()==1){
-            player1Name.setForeground(Color.RED);
+            player1Name.setForeground(currentPlayerColor);
             player2Name.setForeground(Color.BLACK);
         }
         else{
-            player2Name.setForeground(Color.RED);
+            player2Name.setForeground(currentPlayerColor);
             player1Name.setForeground(Color.BLACK);
         }
     }

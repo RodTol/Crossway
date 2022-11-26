@@ -25,7 +25,6 @@ public class Gui {
         startingPanel.getClearButton().addActionListener(new clearListener());
 
         boardPanel = new BoardPanel(controller, boardPanelSettings);
-        boardPanel.setBackground(Color.LIGHT_GRAY);
         boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
         boardPanel.addMouseListener(new BoardMouseClickListener());
 
