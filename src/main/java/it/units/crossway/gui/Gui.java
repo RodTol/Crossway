@@ -77,7 +77,7 @@ public class Gui {
                 boardPanel.drawNames();
                 cl.show(backgroundPanel, "2");
                 currentPanel = 2;
-                setupFrame("Crossway", 750, 200);
+                setupFrame("Crossway", 0, 0);
                 frame.pack();
             }
         }

@@ -18,7 +18,7 @@ public class BoardPanel extends JPanel {
     final private List<PieceGui> pieces;
     private JLabel player1Name;
     private JLabel player2Name;
-    private Color currentPlayerColor = new Color(39,78,19);
+    private Color currentPlayerColor = new Color(246,0,82);
     private final ImageIcon background = new ImageIcon("/home/rodolfo/Crossway/src/main/java/it/units/crossway/gui/background.png");
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
