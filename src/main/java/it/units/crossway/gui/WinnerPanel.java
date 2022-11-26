@@ -16,11 +16,12 @@ public class WinnerPanel extends JPanel {
 
         this.setLayout(null);
 
-        congratulations.setBounds(10,20,280,25);
+        congratulations.setBounds(10,15,280,50);
+        congratulations.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(congratulations);
-        rematch.setBounds(10,50, 120,30);
+        rematch.setBounds(10,80, 120,30);
         this.add(rematch);
-        close.setBounds(160,50, 120,30);
+        close.setBounds(160,80, 120,30);
         this.add(close);
     }
 
@@ -34,11 +35,11 @@ public class WinnerPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(300, 100);
+        return new Dimension(300, 130);
     }
 
     void setCongratulations() {
-        congratulations.setText("Congratulations " + controller.getCurrentPlayer().getName() + "! You have won!");
+        congratulations.setText("<html>Congratulations " + controller.getCurrentPlayer().getName() + "! You have won!</html>");
     }
 
 }
