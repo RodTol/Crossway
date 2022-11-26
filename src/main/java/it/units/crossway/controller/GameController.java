@@ -105,6 +105,9 @@ public class GameController implements Controller {
         } else {
             currentPlayer = player1;
         }
+        if (!atLeastOnePlacement()){
+            changeTurn();
+        }
     }
 
     private void usePieRule(){
@@ -112,7 +115,7 @@ public class GameController implements Controller {
         player2.setColor(Color.BLACK);
     }
 
-    public boolean atLeastOnePlacement(){
+    boolean atLeastOnePlacement(){
         for(int i=0; i<board.getNodes().length; i++) {
             for(int j=0; j<board.getNodes()[i].length; j++) {
                 if (board.canPlace(new Coordinates(i,j),new Piece(currentPlayer.getColor()))){
