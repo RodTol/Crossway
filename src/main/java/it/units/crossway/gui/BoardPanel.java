@@ -15,7 +15,7 @@ public class BoardPanel extends JPanel {
     private final Controller controller;
     private final BoardPanelSettings settings;
     private Point ghostPosition;
-    private List<PieceGui> pieces;
+    final private List<PieceGui> pieces;
     private JLabel player1Name;
     private JLabel player2Name;
 
@@ -111,6 +111,17 @@ public class BoardPanel extends JPanel {
         this.add(player2Name);
     }
 
+    private void highlightCurrentPlayerName(){
+        if (controller.getCurrentPlayer().getId()==1){
+            player1Name.setForeground(Color.RED);
+            player2Name.setForeground(Color.BLACK);
+        }
+        else{
+            player2Name.setForeground(Color.RED);
+            player1Name.setForeground(Color.BLACK);
+        }
+    }
+
     /*This function compute the position of the nodes in coordinate format
      * for the x-axis. Package private*/
     ArrayList<Integer> getXNodePositions() {
@@ -177,6 +188,7 @@ public class BoardPanel extends JPanel {
             switch (status.getCondition()) {
                 case PLACED:  {
                     pieces.add(piece);
+                    highlightCurrentPlayerName();
                     repaint();
                     return status;
                 }
