@@ -39,6 +39,10 @@ public class Player {
                 .toHashCode();
     }
 
+    public int getId() {
+        return id;
+    }
+
     public Color getColor() {
         return color;
     }
