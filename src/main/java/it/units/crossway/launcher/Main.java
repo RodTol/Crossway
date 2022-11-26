@@ -40,7 +40,6 @@ public class Main {
         while (gui.getCurrentPanel() == 1) {
             try {
                 Thread.sleep(3000);
-                //Any other code to execute after 5 min execution pause.
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
