@@ -46,11 +46,13 @@ public class Main {
         }
 
         /*Delta pixel = 26, (0,0) = (16,16)*/
+        /*
        System.out.println("Robot starts playing");
         for (int i = 0; i < 19; i++) {
             click(gui.getBoardPanel(), 16+26*4, 16 + i*26);
             click(gui.getBoardPanel(), 16+26*5, 16 + i*26 );
         }
+        */
     }
 }
 
