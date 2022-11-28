@@ -27,6 +27,7 @@ public class Gui {
         boardPanel = new BoardPanel(controller, boardPanelSettings);
         boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
         boardPanel.addMouseListener(new BoardMouseClickListener());
+        boardPanel.getPieRuleButton().addActionListener(new pieRuleListener());
 
         winnerPanel = new WinnerPanel(controller);
         winnerPanel.getClose().addActionListener(new closeListener());
@@ -68,6 +69,13 @@ public class Gui {
 
     private void resetGame() {
         boardPanel.reset();
+    }
+
+    private class pieRuleListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Pie Rule Button pressed!");
+        }
     }
 
     private class letsPlayListener implements ActionListener {

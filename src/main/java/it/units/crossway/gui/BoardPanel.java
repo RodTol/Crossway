@@ -198,6 +198,9 @@ public class BoardPanel extends JPanel {
         return new Point(Ypx,Xpx);
     }
 
+    public JButton getPieRuleButton() {
+        return pieRuleButton;
+    }
     public Status handleMouseClicked(Point node) {
         Coordinates position =  nodePxToPosition(closestNodeToPx(node));
         PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
