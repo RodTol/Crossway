@@ -18,6 +18,7 @@ public class BoardPanel extends JPanel {
     final private List<PieceGui> pieces;
     private JLabel player1Name;
     private JLabel player2Name;
+    private JButton pieRuleButton;
     private Color currentPlayerColor = new Color(246,0,82);
     private final ImageIcon background = new ImageIcon("/home/rodolfo/Crossway/src/main/java/it/units/crossway/gui/background.png");
 
@@ -27,6 +28,8 @@ public class BoardPanel extends JPanel {
         this.settings = settings;
         this.ghostPosition= null;
         this.pieces = new ArrayList<>();
+        this.pieRuleButton = new JButton("Pie Rule");
+        this.add(pieRuleButton);
     }
 
     @Override
@@ -46,7 +49,6 @@ public class BoardPanel extends JPanel {
         drawGhost(g);
         drawPieces(g);
         drawNameDots(g);
-
     }
 
     Point getGhostPosition() {
@@ -116,6 +118,15 @@ public class BoardPanel extends JPanel {
         player2Name.setBounds(350, 495, 150, 30 );
         player2Name.setFont(new Font("Helvetica", Font.BOLD, 16));
         this.add(player2Name);
+    }
+
+    void handlePieRuleButton(){
+        if(pieces.size() == 1) {
+            pieRuleButton.setBounds(80, 495, 150, 30);
+            pieRuleButton.setVisible(true);
+        } else {
+            pieRuleButton.setVisible(false);
+        }
     }
 
     private void highlightCurrentPlayerName(){
@@ -196,6 +207,7 @@ public class BoardPanel extends JPanel {
                 case PLACED:  {
                     pieces.add(piece);
                     highlightCurrentPlayerName();
+                    handlePieRuleButton();
                     repaint();
                     return status;
                 }
