@@ -20,7 +20,7 @@ public class BoardPanel extends JPanel {
     private JLabel player2Name;
     private JButton pieRuleButton;
     private Color currentPlayerColor = new Color(246,0,82);
-    private final ImageIcon background = new ImageIcon("/src/main/java/it/units/crossway/gui/background.png");
+    private final ImageIcon background = new ImageIcon("Pictures/background.png");
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
         this.setLayout(null);
