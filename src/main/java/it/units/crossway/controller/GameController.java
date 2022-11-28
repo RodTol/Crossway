@@ -126,4 +126,10 @@ public class GameController implements Controller {
         return false;
     }
 
+    public void applyPieRule() {
+        player1.setColor(Color.white);
+        player2.setColor(Color.black);
+        changeTurn();
+    }
+
 }
