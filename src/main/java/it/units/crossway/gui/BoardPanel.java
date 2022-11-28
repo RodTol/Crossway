@@ -19,7 +19,7 @@ public class BoardPanel extends JPanel {
     private JLabel player1Name;
     private JLabel player2Name;
     private JButton pieRuleButton;
-    private Color currentPlayerColor = new Color(246,0,82);
+    private Color currentPlayerColor = new Color(36,107,116);
     private final ImageIcon background = new ImageIcon("Pictures/background.png");
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
@@ -34,7 +34,7 @@ public class BoardPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(settings.getWidth(), settings.getHeight()+45);
+        return new Dimension(settings.getWidth(), settings.getHeight()+75);
     }
 
     /*Method to draw the lines*/
@@ -105,24 +105,24 @@ public class BoardPanel extends JPanel {
         g.setColor(controller.getPlayer1().getColor());
         g.fillOval(30, 500, PIECE_SIZE, PIECE_SIZE);
         g.setColor(controller.getPlayer2().getColor());
-        g.fillOval(280, 500, PIECE_SIZE, PIECE_SIZE);
+        g.fillOval(30, 540, PIECE_SIZE, PIECE_SIZE);
     }
     void drawNames() {
         player1Name = new JLabel(controller.getPlayer1().getName());
-        player1Name.setBounds(80, 495, 150, 30 );
+        player1Name.setBounds(80, 495, 200, 30 );
         player1Name.setForeground(currentPlayerColor);
-        player1Name.setFont(new Font("Helvetica", Font.BOLD, 16));
+        player1Name.setFont(new Font("Helvetica", Font.BOLD, 18));
         this.add(player1Name);
 
         player2Name = new JLabel(controller.getPlayer2().getName());
-        player2Name.setBounds(350, 495, 150, 30 );
-        player2Name.setFont(new Font("Helvetica", Font.BOLD, 16));
+        player2Name.setBounds(80, 535, 200, 30 );
+        player2Name.setFont(new Font("Helvetica", Font.BOLD, 18));
         this.add(player2Name);
     }
 
     void handlePieRuleButton(){
         if(pieces.size() == 1) {
-            pieRuleButton.setBounds(80, 495, 150, 30);
+            pieRuleButton.setBounds(300, 515, 150, 30);
             pieRuleButton.setVisible(true);
         } else {
             pieRuleButton.setVisible(false);
