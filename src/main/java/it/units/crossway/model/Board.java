@@ -104,6 +104,7 @@ public class Board {
 
 
         if (!nodes[r][c].isNodeEmpty()) {
+            System.out.println(nodes[r][c].isNodeEmpty());
             return false;
         }
 

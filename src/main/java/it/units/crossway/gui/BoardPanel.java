@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class BoardPanel extends JPanel {
     
@@ -34,7 +35,7 @@ public class BoardPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(settings.getWidth(), settings.getHeight()+75);
+        return new Dimension(settings.getWidth(), settings.getHeight());
     }
 
     /*Method to draw the lines*/
@@ -42,13 +43,16 @@ public class BoardPanel extends JPanel {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        g.drawImage(background.getImage(), 0,0,null);
-        g.setColor(Color.BLACK);
-        drawVerticalLines(g);
-        drawHorizontalLines(g);
-        drawGhost(g);
-        drawPieces(g);
-        drawNameDots(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(background.getImage(), 0,0,null);
+        g2d.setColor(Color.BLACK);
+        g2d.setStroke(new BasicStroke(1.5f));
+        drawVerticalLines(g2d);
+        drawHorizontalLines(g2d);
+        drawGhost(g2d);
+        drawPieces(g2d);
+        drawNameDots(g2d);
+        drawLetters(g2d);
     }
 
     Point getGhostPosition() {
@@ -62,21 +66,33 @@ public class BoardPanel extends JPanel {
         controller.reset();
     }
 
-    private void drawVerticalLines(Graphics g) {
+    private void drawLetters(Graphics2D g) {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range('A', 'Z').forEach(i -> {
+            sb.append((char) i);
+        });
+        for (int letterIdx = 0; letterIdx < 17; letterIdx++) {
+            g.setColor(Color.black);
+            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-3, settings.getMargin()-15);
+            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-15, settings.getMargin()+settings.getCellSize()*letterIdx+3);
+        }
+    }
+
+    private void drawVerticalLines(Graphics2D g) {
         for (int x = settings.getMargin(); x < settings.getHeight()-settings.getMargin(); x += settings.getCellSize()) {
             g.drawLine(x, settings.getMargin(), x, settings.getHeight()-settings.getMargin());
         }
         g.drawLine(settings.getWidth()-settings.getMargin(), settings.getMargin(), settings.getWidth()-settings.getMargin(), settings.getHeight()-settings.getMargin());
     }
 
-    private void drawHorizontalLines(Graphics g) {
+    private void drawHorizontalLines(Graphics2D g) {
         for (int y = settings.getMargin(); y < settings.getWidth()-settings.getMargin(); y += settings.getCellSize()) {
             g.drawLine(settings.getMargin(), y, settings.getHeight()-settings.getMargin(), y);
         }
         g.drawLine(settings.getMargin(), settings.getHeight()-settings.getMargin(), settings.getHeight()-settings.getMargin(), settings.getHeight()-settings.getMargin());
     }
 
-    private void drawGhost(Graphics g) {
+    private void drawGhost(Graphics2D g) {
         //Color playerColor = controller.getCurrentPlayer().getColor();
         Color playerColor = controller.getCurrentPlayer().getColor();
         if (ghostPosition != null) {
@@ -91,7 +107,7 @@ public class BoardPanel extends JPanel {
     }
 
     /*This method draws all my placed pieces*/
-    private void drawPieces(Graphics g) {
+    private void drawPieces(Graphics2D g) {
         for (PieceGui piece : pieces) {
             g.setColor(piece.getColor());
             Point point = nodePositionToPx(piece.getPosition());
@@ -101,7 +117,7 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    private void drawNameDots(Graphics g) {
+    private void drawNameDots(Graphics2D g) {
         g.setColor(controller.getPlayer1().getColor());
         g.fillOval(30, 500, PIECE_SIZE, PIECE_SIZE);
         g.setColor(controller.getPlayer2().getColor());
@@ -208,22 +224,23 @@ public class BoardPanel extends JPanel {
     }
 
     public Status handleMouseClicked(Point node) {
-        Coordinates position =  nodePxToPosition(closestNodeToPx(node));
-        PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
-        if (controller.canPlace(position)) {
-            Status status = controller.place(piece);
-            switch (status.getCondition()) {
-                case PLACED:  {
-                    pieces.add(piece);
-                    handlePieRuleButton();
-                    highlightCurrentPlayerName();
-                    System.out.println(controller.getCurrentPlayer().getId());
-                    repaint();
-                    return status;
-                }
-                case WON:  {
-                    pieces.add(piece);
-                    return status;
+        if (node.getX()<settings.getWidth() & node.getY()<settings.getHeight()) {
+            Coordinates position = nodePxToPosition(closestNodeToPx(node));
+            PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
+            if (controller.canPlace(position)) {
+                Status status = controller.place(piece);
+                switch (status.getCondition()) {
+                    case PLACED: {
+                        pieces.add(piece);
+                        handlePieRuleButton();
+                        highlightCurrentPlayerName();
+                        repaint();
+                        return status;
+                    }
+                    case WON: {
+                        pieces.add(piece);
+                        return status;
+                    }
                 }
             }
         }
