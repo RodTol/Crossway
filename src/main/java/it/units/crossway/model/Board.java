@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Board {
 
     /*Matrix of Nodes*/
-    private Node[][] nodes;
+    private final Node[][] nodes;
 
     /*If we want we can use streams*/
     public Board(int nRows, int nColumns) {
