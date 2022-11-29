@@ -7,6 +7,7 @@ import it.units.crossway.controller.Status;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.TimeUnit;
 
 public class Gui {
     private final JFrame frame;
@@ -16,13 +17,12 @@ public class Gui {
     private final WinnerPanel winnerPanel;
     private final PageViewer cl;
 
-    private int currentPanel;
-
     public Gui(Controller controller, BoardPanelSettings boardPanelSettings) {
         startingPanel = new StartingPanel(controller);
         startingPanel.setBackground(Color.LIGHT_GRAY);
-        startingPanel.getLetSPlayButton().addActionListener(new letsPlayListener());
-        startingPanel.getClearButton().addActionListener(new clearListener());
+        startingPanel.getLetSPlayButton().addActionListener(new LetsPlayListener());
+        startingPanel.getDemoButton().addActionListener(new DemoButtonListener());
+        startingPanel.getClearButton().addActionListener(new ClearListener());
 
         boardPanel = new BoardPanel(controller, boardPanelSettings);
         boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
@@ -43,21 +43,12 @@ public class Gui {
         backgroundPanel.add(winnerPanel,"3");
 
         cl.show(backgroundPanel,"1");
-        currentPanel = 1;
 
         setupFrame("Insert players names", 800, 400);
         frame.add(backgroundPanel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public BoardPanel getBoardPanel() {
-        return boardPanel;
-    }
-
-    public int getCurrentPanel() {
-        return currentPanel;
     }
 
     private void setupFrame(String title, int x_location, int y_location) {
@@ -70,23 +61,73 @@ public class Gui {
         boardPanel.reset();
     }
 
-    private class letsPlayListener implements ActionListener {
+    private class LetsPlayListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (startingPanel.handleLetSPlay()) {
                 boardPanel.drawNames();
                 cl.show(backgroundPanel, "2");
-                currentPanel = 2;
                 setupFrame("Crossway", 0, 0);
                 frame.pack();
             }
         }
     }
 
-    private class clearListener implements ActionListener{
+    private class ClearListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             startingPanel.handleClear();
+        }
+    }
+
+    private void click(Component target, int x, int y) {
+        MouseEvent click;
+        Point point;
+        long time;
+
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        point = new Point(x, y);
+        SwingUtilities.convertPointToScreen(point, target);
+        time = System.currentTimeMillis();
+
+        click = new MouseEvent(target, MouseEvent.MOUSE_CLICKED, time, 0, x, y, point.x, point.y, 1, false, MouseEvent.BUTTON1);
+        target.dispatchEvent(click);
+    }
+
+    private void play_demo() {
+
+        SwingWorker sw1 = new SwingWorker() {
+            @Override
+            protected Object doInBackground() {
+                boardPanel.drawNames();
+                cl.show(backgroundPanel, "2");
+                setupFrame("Crossway", 0, 0);
+                frame.pack();
+
+                for (int i = 0; i < 19; i++) {
+                    click(boardPanel, 16+26*4, 16 + i*26);
+                    click(boardPanel, 16+26*5, 16 + i*26 );
+                }
+
+                return null;
+            }
+        };
+
+        sw1.execute();
+    }
+
+
+    private class DemoButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (startingPanel.handleLetSPlay()) {
+                play_demo();
+            }
         }
     }
 
@@ -110,7 +151,6 @@ public class Gui {
             if (status.getCondition() == Condition.WON) {
                 winnerPanel.setCongratulations();
                 cl.show(backgroundPanel, "3");
-                currentPanel = 3;
                 frame.pack();
             }
 
@@ -130,12 +170,11 @@ public class Gui {
         public void actionPerformed(ActionEvent e) {
             resetGame();
             cl.show(backgroundPanel,"1");
-            currentPanel = 1;
             frame.pack();
         }
     }
 
-    private class closeListener implements ActionListener{
+    private static class closeListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
@@ -164,6 +203,5 @@ public class Gui {
             return null;
         }
     }
-
 
 }

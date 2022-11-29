@@ -14,7 +14,7 @@ public class StartingPanel extends JPanel {
     private JTextField blackPlayerName = new JTextField(20);
     private JButton letSPlayButton = new JButton("Let's Play!");
     private JButton clearButton = new JButton("Clear");
-
+    private JButton demoButton = new JButton("Play Demo");
     private JLabel white = new JLabel("White Player Name");
     private JLabel black = new JLabel("Black Player Name");
     private JLabel warning = new JLabel("Insert valid name!");
@@ -26,16 +26,25 @@ public class StartingPanel extends JPanel {
 
         white.setBounds(10,20,150, 25);
         this.add(white);
+
         whitePLayerName.setBounds(180, 20, 200, 25);
         this.add(whitePLayerName);
+
         black.setBounds(10,50,150, 25);
         this.add(black);
+
         blackPlayerName.setBounds(180, 50, 200, 25);
         this.add(blackPlayerName);
-        letSPlayButton.setBounds(10, 100, 170, 30 );
+
+        letSPlayButton.setBounds(10, 100, 120, 30 );
         this.add(letSPlayButton);
-        clearButton.setBounds(210, 100, 170, 30 );
+
+        demoButton.setBounds(140, 100, 120, 30);
+        this.add(demoButton);
+
+        clearButton.setBounds(270, 100, 120, 30 );
         this.add(clearButton);
+
         warning.setBounds(130, 140, 200, 25);
         warning.setForeground(Color.RED);
 
@@ -48,11 +57,10 @@ public class StartingPanel extends JPanel {
     public Dimension getPreferredSize() {
         return new Dimension(400, 180);
     }
-
     public JButton getLetSPlayButton() {
         return letSPlayButton;
     }
-
+    public JButton getDemoButton() {return demoButton;}
     public JButton getClearButton() {
         return clearButton;
     }
@@ -75,8 +83,5 @@ public class StartingPanel extends JPanel {
         whitePLayerName.setText("");
         blackPlayerName.setText("");
     }
-
-
-
 
 }
