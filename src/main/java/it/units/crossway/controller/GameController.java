@@ -6,13 +6,17 @@ import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
 
 import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class GameController implements Controller {
     private final Board board;
-    // private WinEvaluator winEvaluator;
     private final Player player1;
     private final Player player2;
     private Player currentPlayer;
+    private File log;
 
 
     public GameController(Board board) {
@@ -20,6 +24,21 @@ public class GameController implements Controller {
         player1 = new Player(1, Color.BLACK);
         player2 = new Player(2, Color.WHITE);
         currentPlayer = player1;
+        try {
+            log = new File("log.txt");
+            if (log.createNewFile()) {
+                System.out.println("File created: " + log.getName());
+            } else {
+                PrintWriter writer = new PrintWriter(log);
+                writer.print("");
+                writer.close();
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
         System.out.println("Game Starts!");
     }
 
@@ -35,7 +54,6 @@ public class GameController implements Controller {
             return player1.getName();
         } else {
             return player2.getName();
-
         }
     }
 
@@ -72,6 +90,15 @@ public class GameController implements Controller {
         return board.canPlace(position, new Piece(currentPlayer.getColor()));
     }
 
+    public static String getColorName(Color color) {
+       if (color.equals(Color.BLACK)) {
+           return "Black";
+       }
+       else {
+           return "White";
+       }
+    }
+
     /*This method place a piece on the board from the input of the Gui. Then
      * checks if the Game is finished, and if it's the case can make something*/
     @Override
@@ -86,9 +113,18 @@ public class GameController implements Controller {
             System.out.println("GAME WON!");
             return Status.won();
         } else {
+            String text = "Player " + getCurrentPlayer().getId() + " placed a " + getColorName(piece.getColor()) +
+                    " piece at (" + piece.getPosition().getRow() + ", " + piece.getPosition().getColumn() + ")\n";
+
+            try {
+                FileWriter output = new FileWriter(log.getPath(), true);
+                output.write(text);
+                output.close();
+            } catch (Exception e) {
+                e.getStackTrace();
+            }
+
             changeTurn();
-            System.out.println("Piece placed in row:" + piece.getPosition().getRow()
-                    + " column: " + piece.getPosition().getColumn() );
             return Status.placed();
         }
 
