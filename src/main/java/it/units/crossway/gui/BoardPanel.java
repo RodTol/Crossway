@@ -44,7 +44,7 @@ public class BoardPanel extends JPanel {
 
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(background.getImage(), 0,0,null);
+        g2d.drawImage(background.getImage(), settings.getMargin()-31,settings.getMargin()-31,null);
         g2d.setColor(Color.BLACK);
         g2d.setStroke(new BasicStroke(1.5f));
         drawVerticalLines(g2d);
@@ -73,7 +73,7 @@ public class BoardPanel extends JPanel {
         });
         for (int letterIdx = 0; letterIdx < 19; letterIdx++) {
             g.setColor(Color.black);
-            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-3, settings.getMargin()-15);
+            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()-10);
             g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-15, settings.getMargin()+settings.getCellSize()*letterIdx+3);
         }
     }
@@ -91,7 +91,6 @@ public class BoardPanel extends JPanel {
     }
 
     private void drawGhost(Graphics2D g) {
-        //Color playerColor = controller.getCurrentPlayer().getColor();
         Color playerColor = controller.getCurrentPlayer().getColor();
         if (ghostPosition != null) {
             g.setColor(new Color(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue(), 70));
@@ -117,26 +116,26 @@ public class BoardPanel extends JPanel {
 
     private void drawNameDots(Graphics2D g) {
         g.setColor(controller.getPlayer1().getColor());
-        g.fillOval(30, 500, PIECE_SIZE, PIECE_SIZE);
+        g.fillOval(50, 600, PIECE_SIZE, PIECE_SIZE);
         g.setColor(controller.getPlayer2().getColor());
-        g.fillOval(30, 540, PIECE_SIZE, PIECE_SIZE);
+        g.fillOval(50, 640, PIECE_SIZE, PIECE_SIZE);
     }
     void drawNames() {
         player1Name = new JLabel(controller.getPlayer1().getName());
-        player1Name.setBounds(80, 495, 200, 30 );
+        player1Name.setBounds(100, 595, 200, 30 );
         player1Name.setForeground(currentPlayerColor);
         player1Name.setFont(new Font("Helvetica", Font.BOLD, 18));
         this.add(player1Name);
 
         player2Name = new JLabel(controller.getPlayer2().getName());
-        player2Name.setBounds(80, 535, 200, 30 );
+        player2Name.setBounds(100, 635, 200, 30 );
         player2Name.setFont(new Font("Helvetica", Font.BOLD, 18));
         this.add(player2Name);
     }
 
     void handlePieRuleButton(){
         if(pieces.size() == 1) {
-            pieRuleButton.setBounds(300, 515, 150, 30);
+            pieRuleButton.setBounds(300, 615, 150, 30);
             pieRuleButton.setVisible(true);
         } else {
             pieRuleButton.setVisible(false);
