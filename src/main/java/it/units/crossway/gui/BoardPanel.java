@@ -35,7 +35,7 @@ public class BoardPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(settings.getWidth(), settings.getHeight()+75);
+        return new Dimension(settings.getWidth()+2*settings.getMargin(), settings.getHeight()+2*settings.getMargin()+75);
     }
 
     /*Method to draw the lines*/
@@ -71,7 +71,7 @@ public class BoardPanel extends JPanel {
         IntStream.range('A', 'Z').forEach(i -> {
             sb.append((char) i);
         });
-        for (int letterIdx = 0; letterIdx < 18; letterIdx++) {
+        for (int letterIdx = 0; letterIdx < 19; letterIdx++) {
             g.setColor(Color.black);
             g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-3, settings.getMargin()-15);
             g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-15, settings.getMargin()+settings.getCellSize()*letterIdx+3);
@@ -79,17 +79,15 @@ public class BoardPanel extends JPanel {
     }
 
     private void drawVerticalLines(Graphics2D g) {
-        for (int x = settings.getMargin(); x < settings.getHeight()-settings.getMargin(); x += settings.getCellSize()) {
-            g.drawLine(x, settings.getMargin(), x, settings.getHeight()-settings.getMargin());
+        for (int x = settings.getMargin(); x < settings.getWidth()+settings.getMargin()+settings.getCellSize(); x += settings.getCellSize()) {
+            g.drawLine(x, settings.getMargin(), x, settings.getHeight()+settings.getMargin());
         }
-        g.drawLine(settings.getWidth()-settings.getMargin(), settings.getMargin(), settings.getWidth()-settings.getMargin(), settings.getHeight()-settings.getMargin());
     }
 
     private void drawHorizontalLines(Graphics2D g) {
-        for (int y = settings.getMargin(); y < settings.getWidth()-settings.getMargin(); y += settings.getCellSize()) {
-            g.drawLine(settings.getMargin(), y, settings.getHeight()-settings.getMargin(), y);
+        for (int y = settings.getMargin(); y < settings.getHeight()+settings.getMargin()+settings.getCellSize(); y += settings.getCellSize()) {
+            g.drawLine(settings.getMargin(), y, settings.getWidth()+settings.getMargin(), y);
         }
-        g.drawLine(settings.getMargin(), settings.getHeight()-settings.getMargin(), settings.getHeight()-settings.getMargin(), settings.getHeight()-settings.getMargin());
     }
 
     private void drawGhost(Graphics2D g) {
@@ -160,7 +158,7 @@ public class BoardPanel extends JPanel {
      * for the x-axis. Package private*/
     ArrayList<Integer> getXNodePositions() {
         ArrayList<Integer> XNodePos = new ArrayList<>();
-        for (int x=settings.getMargin(); x<=settings.getWidth(); x+=settings.getCellSize()) {
+        for (int x=settings.getMargin(); x<=settings.getWidth()+settings.getMargin(); x+=settings.getCellSize()) {
             XNodePos.add(x);
         }
         return XNodePos;
@@ -169,7 +167,7 @@ public class BoardPanel extends JPanel {
      * for the y-axis. Package private*/
     ArrayList<Integer> getYNodePositions() {
         ArrayList<Integer> YNodePos = new ArrayList<>();
-        for (int y=settings.getMargin(); y<= settings.getHeight(); y+=settings.getCellSize()) {
+        for (int y=settings.getMargin(); y<= settings.getHeight()+settings.getMargin(); y+=settings.getCellSize()) {
             YNodePos.add(y);
         }
         return YNodePos;
