@@ -35,7 +35,7 @@ public class BoardPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(settings.getWidth(), settings.getHeight());
+        return new Dimension(settings.getWidth(), settings.getHeight()+75);
     }
 
     /*Method to draw the lines*/
@@ -71,7 +71,7 @@ public class BoardPanel extends JPanel {
         IntStream.range('A', 'Z').forEach(i -> {
             sb.append((char) i);
         });
-        for (int letterIdx = 0; letterIdx < 17; letterIdx++) {
+        for (int letterIdx = 0; letterIdx < 18; letterIdx++) {
             g.setColor(Color.black);
             g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-3, settings.getMargin()-15);
             g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-15, settings.getMargin()+settings.getCellSize()*letterIdx+3);
@@ -224,23 +224,21 @@ public class BoardPanel extends JPanel {
     }
 
     public Status handleMouseClicked(Point node) {
-        if (node.getX()<settings.getWidth() & node.getY()<settings.getHeight()) {
-            Coordinates position = nodePxToPosition(closestNodeToPx(node));
-            PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
-            if (controller.canPlace(position)) {
-                Status status = controller.place(piece);
-                switch (status.getCondition()) {
-                    case PLACED: {
-                        pieces.add(piece);
-                        handlePieRuleButton();
-                        highlightCurrentPlayerName();
-                        repaint();
-                        return status;
-                    }
-                    case WON: {
-                        pieces.add(piece);
-                        return status;
-                    }
+        Coordinates position = nodePxToPosition(closestNodeToPx(node));
+        PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
+        if (controller.canPlace(position)) {
+            Status status = controller.place(piece);
+            switch (status.getCondition()) {
+                case PLACED: {
+                    pieces.add(piece);
+                    handlePieRuleButton();
+                    highlightCurrentPlayerName();
+                    repaint();
+                    return status;
+                }
+                case WON: {
+                    pieces.add(piece);
+                    return status;
                 }
             }
         }

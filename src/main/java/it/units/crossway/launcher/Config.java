@@ -6,7 +6,7 @@ class Config {
     public static final int N_COLUMNS = 19;
     public static final int BOARD_WIDTH = 500;
     public static final int BOARD_HEIGHT = BOARD_WIDTH;
-    public static final int CELL_SIZE = BOARD_WIDTH/(N_COLUMNS);
+    public static final int CELL_SIZE = BOARD_WIDTH/N_COLUMNS;
     public static final int BOARD_MARGIN = (BOARD_HEIGHT - (N_ROWS-1)*CELL_SIZE)/2;
 
 }
