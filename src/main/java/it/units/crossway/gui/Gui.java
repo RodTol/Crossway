@@ -25,7 +25,7 @@ public class Gui {
         startingPanel.getClearButton().addActionListener(new clearListener());
 
         boardPanel = new BoardPanel(controller, boardPanelSettings);
-        boardPanel.setBackground(new Color(135, 99, 75));
+        boardPanel.setBackground(new Color(39, 103, 39));
         boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
         boardPanel.addMouseListener(new BoardMouseClickListener());
         boardPanel.getPieRuleButton().addActionListener(new pieRuleListener());
