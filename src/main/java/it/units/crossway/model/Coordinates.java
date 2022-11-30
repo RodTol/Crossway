@@ -5,8 +5,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Coordinates {
 
-    private int row;
-    private int column;
+    private final int row;
+    private final int column;
 
     public Coordinates(int row, int column) {
         this.row = row;
@@ -21,7 +21,6 @@ public class Coordinates {
         return column;
     }
 
-    /*Da decidere di chi sarà*/
     public boolean isNeighbour(Coordinates other) {
         if (Math.abs(other.row - this.row) < 2 && Math.abs(other.column - this.column) < 2) {
             return !this.equals(other);

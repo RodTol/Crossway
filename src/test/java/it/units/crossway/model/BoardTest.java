@@ -127,11 +127,10 @@ public class BoardTest {
         , new Coordinates(2,2), new Coordinates(3,1), new Coordinates(4, 4)
         };
         Graph testGraph = new Graph();
-        Color color = BLACK;
 
         for (Coordinates coordinates : TestCoordinates) {
             testGraph.insert(coordinates);
-            board.place(coordinates, new Piece(color));
+            board.place(coordinates, new Piece(BLACK));
         }
 
         assertEquals(testGraph, board.toGraph(BLACK));

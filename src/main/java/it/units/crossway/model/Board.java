@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Board {
 
     /*Matrix of Nodes*/
-    private Node[][] nodes;
+    private final Node[][] nodes;
 
     /*If we want we can use streams*/
     public Board(int nRows, int nColumns) {
@@ -25,9 +25,7 @@ public class Board {
 
     public Node getNode(Coordinates c) {return nodes[c.getRow()][c.getColumn()];}
 
-    /*Vale la pena farlo ? A sto punto non conviene
-    * vedere quanto è grande il grafo (O(19) per costruirlo
-    * + O(1) di quanto è lunga la lista) */
+
     public int NumbOfPieces (Color color) {
         int total = 0;
         for (Node[] row : nodes) {

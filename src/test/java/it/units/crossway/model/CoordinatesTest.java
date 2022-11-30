@@ -1,13 +1,10 @@
 package it.units.crossway.model;
 
-import it.units.crossway.utilities.Vertex;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.awt.*;
 
@@ -26,19 +23,19 @@ class CoordinatesTest {
     @Test
     @DisplayName("Reflexivity")
     void reflexivity(){
-        assertTrue(a.equals(a));
+        assertEquals(a, a);
     }
 
     @Test
     @DisplayName("Equal test")
     void otherObjectEqualsVertex(){
         Piece piece = new Piece(Color.BLACK);
-        assertFalse(a.equals(piece));
+        assertNotEquals(a, piece);
     }
 
     @Test
     void testEqual() {
-        assertTrue(a.equals(new Coordinates(1,2)));
+        assertEquals(a, new Coordinates(1, 2));
     }
 
 
