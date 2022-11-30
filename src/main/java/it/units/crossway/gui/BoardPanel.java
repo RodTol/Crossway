@@ -20,7 +20,9 @@ public class BoardPanel extends JPanel {
     private JLabel player1Name;
     private JLabel player2Name;
     private JButton pieRuleButton;
-    private Color currentPlayerColor = new Color(36,107,116);
+    //private Color currentPlayerColor = new Color(36,107,116);
+    private Color currentPlayerColor = new Color(119, 32, 41);
+
     private final ImageIcon background = new ImageIcon("Pictures/background.png");
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
