@@ -25,8 +25,10 @@ public class Gui {
         startingPanel.getClearButton().addActionListener(new ClearListener());
 
         boardPanel = new BoardPanel(controller, boardPanelSettings);
+        boardPanel.setBackground(new Color(39, 103, 39));
         boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
         boardPanel.addMouseListener(new BoardMouseClickListener());
+        boardPanel.getPieRuleButton().addActionListener(new pieRuleListener());
 
         winnerPanel = new WinnerPanel(controller);
         winnerPanel.getClose().addActionListener(new closeListener());
@@ -59,6 +61,14 @@ public class Gui {
 
     private void resetGame() {
         boardPanel.reset();
+    }
+
+    private class pieRuleListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Pie Rule Button pressed!");
+            boardPanel.callPieRule();
+        }
     }
 
     private class LetsPlayListener implements ActionListener {

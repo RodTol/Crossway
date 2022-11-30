@@ -20,4 +20,6 @@ public interface Controller {
     Status place(PieceGui piece);
 
     void reset();
+
+    void applyPieRule();
 }
