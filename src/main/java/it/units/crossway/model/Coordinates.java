@@ -28,6 +28,39 @@ public class Coordinates {
         return false;
     }
 
+    public Coordinates getNorthNeighbour() {
+        return new Coordinates(row-1,column);
+    }
+
+    public Coordinates getNorthWestNeighbour() {
+        return new Coordinates(row-1,column-1);
+    }
+
+    public Coordinates getNorthEastNeighbour() {
+        return new Coordinates(row-1,column+1);
+    }
+
+    public Coordinates getEastNeighbour() {
+        return new Coordinates(row,column+1);
+    }
+
+    public Coordinates getWestNeighbour() {
+        return new Coordinates(row,column-1);
+    }
+
+    public Coordinates getSouthNeighbour() {
+        return new Coordinates(row+1,column);
+    }
+
+    public Coordinates getSouthWestNeighbour() {
+        return new Coordinates(row + 1, column - 1);
+    }
+
+    public Coordinates getSouthEastNeighbour() {
+        return new Coordinates(row + 1, column + 1);
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Coordinates)) {
