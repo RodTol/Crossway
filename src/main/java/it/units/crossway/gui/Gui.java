@@ -86,7 +86,7 @@ public class Gui {
         long time;
 
         try {
-            TimeUnit.MILLISECONDS.sleep(200);
+            TimeUnit.MILLISECONDS.sleep(400);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -109,9 +109,18 @@ public class Gui {
                 setupFrame("Crossway", 0, 0);
                 frame.pack();
 
-                for (int i = 0; i < 19; i++) {
-                    click(boardPanel, 16+26*4, 16 + i*26);
-                    click(boardPanel, 16+26*5, 16 + i*26 );
+                int[]  cols = {9,9,8,10,10,11,11,13,13,12,11,11,13,
+                        12,12,11,9,10,10,11,12,11,10,11,11,10,9,
+                        12,13,10,14,8,15,6,7,5,6,5,6,5,5,3,4,2,3,
+                        2,2,1,2,3,5,4,6,4,4,2,3,1,1,16,16,18,17,
+                        18,18,0,0};
+                int[] rows = {8,9,9,8,7,6,7,7,8,8,8,9,6,6,5,5,10,
+                        10,11,11,13,12,13,13,14,12,12,11,12,6,12,
+                        13,12,9,8,7,8,8,10,10,11,12,10,9,11,11,10,
+                        10,7,9,6,7,7,6,5,4,6,7,6,12,11,11,10,9,10,6,5};
+
+                for (int i = 0; i < rows.length; i++) {
+                    click(boardPanel, 16+rows[i]*26, 16 +cols[i]*26);
                 }
 
                 return null;

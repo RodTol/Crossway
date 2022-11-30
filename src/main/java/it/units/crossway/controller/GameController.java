@@ -114,7 +114,7 @@ public class GameController implements Controller {
             return Status.won();
         } else {
             String text = "Player " + getCurrentPlayer().getId() + " placed a " + getColorName(piece.getColor()) +
-                    " piece at (" + piece.getPosition().getRow() + ", " + piece.getPosition().getColumn() + ")\n";
+                    " piece at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n";
 
             try {
                 FileWriter output = new FileWriter(log.getPath(), true);

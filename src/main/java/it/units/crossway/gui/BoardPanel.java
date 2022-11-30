@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardPanel extends JPanel {
-    
     private static final int PIECE_SIZE = 20;
     private final Controller controller;
     private final BoardPanelSettings settings;
