@@ -95,42 +95,46 @@ public class Board {
         int nRows = nodes.length;
         int nColumns = nodes[0].length;
 
-        int r = coordinates.getRow();
-        int c = coordinates.getColumn();
+        //int r = coordinates.getRow();
+        //int c = coordinates.getColumn();
         Color playerColor = piece.getColor();
 
 
 
-        if (!nodes[r][c].isNodeEmpty()) {
+        if (!getNode(coordinates).isNodeEmpty()) {
             return false;
         }
 
-        if (r!=0 && c!=0 && !nodes[r-1][c-1].isNodeEmpty() && nodes[r - 1][c - 1].getPiece().getColor() == playerColor) {
-            if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c-1].isNodeEmpty() &&
-                    nodes[r - 1][c].getPiece().getColor() == nodes[r][c - 1].getPiece().getColor() &&
-                    nodes[r - 1][c].getPiece().getColor() != playerColor) {
+        if (coordinates.getRow()!=0 && coordinates.getColumn()!=0 &&
+                !getNode(coordinates.getNorthWestNeighbour()).isNodeEmpty() &&
+                getNode(coordinates.getNorthWestNeighbour()).getPiece().getColor() == playerColor) {
+            if (!getNode(coordinates.getNorthNeighbour()).isNodeEmpty() && !getNode(coordinates.getWestNeighbour()).isNodeEmpty() &&
+                    getNode(coordinates.getNorthNeighbour()).getPiece().getColor() == getNode(coordinates.getWestNeighbour()).getPiece().getColor() &&
+                    getNode(coordinates.getNorthNeighbour()).getPiece().getColor() != playerColor) {
                 return false;
             }
         }
-        if (r!=0 && c!= nColumns -1 && !nodes[r-1][c+1].isNodeEmpty() && nodes[r - 1][c + 1].getPiece().getColor() == playerColor) {
-            if (!nodes[r-1][c].isNodeEmpty() && !nodes[r][c+1].isNodeEmpty() &&
-                    nodes[r - 1][c].getPiece().getColor() == nodes[r][c + 1].getPiece().getColor() &&
-                    nodes[r - 1][c].getPiece().getColor() != playerColor) {
+        if (coordinates.getRow()!=0 && coordinates.getColumn()!= nColumns - 1 &&
+                !getNode(coordinates.getNorthEastNeighbour()).isNodeEmpty() && getNode(coordinates.getNorthEastNeighbour()).getPiece().getColor() == playerColor) {
+            if (!getNode(coordinates.getNorthNeighbour()).isNodeEmpty() && !getNode(coordinates.getEastNeighbour()).isNodeEmpty() &&
+                    getNode(coordinates.getNorthNeighbour()).getPiece().getColor() == getNode(coordinates.getEastNeighbour()).getPiece().getColor() &&
+                    getNode(coordinates.getNorthNeighbour()).getPiece().getColor() != playerColor) {
                 return false;
             }
         }
-        if (c!=0 && r!=nRows-1 && !nodes[r+1][c-1].isNodeEmpty() && nodes[r + 1][c - 1].getPiece().getColor() == playerColor) {
-            if (!nodes[r][c-1].isNodeEmpty() && !nodes[r+1][c].isNodeEmpty() &&
-                    nodes[r][c - 1].getPiece().getColor() == nodes[r + 1][c].getPiece().getColor() &&
-                    nodes[r][c - 1].getPiece().getColor() != playerColor) {
+        if (coordinates.getColumn()!=0 && coordinates.getRow()!=nRows-1 &&
+                !getNode(coordinates.getSouthWestNeighbour()).isNodeEmpty() && getNode(coordinates.getSouthWestNeighbour()).getPiece().getColor() == playerColor) {
+            if (!getNode(coordinates.getWestNeighbour()).isNodeEmpty() && !getNode(coordinates.getSouthNeighbour()).isNodeEmpty() &&
+                    getNode(coordinates.getWestNeighbour()).getPiece().getColor() == getNode(coordinates.getSouthNeighbour()).getPiece().getColor() &&
+                    getNode(coordinates.getWestNeighbour()).getPiece().getColor() != playerColor) {
                 return false;
             }
         }
-        if (r!=nRows-1 && c!= nColumns -1 && !nodes[r+1][c+1].isNodeEmpty() &&
-                nodes[r + 1][c + 1].getPiece().getColor() == playerColor) {
-            if (!nodes[r][c+1].isNodeEmpty() && !nodes[r+1][c].isNodeEmpty() &&
-                    nodes[r][c + 1].getPiece().getColor() == nodes[r + 1][c].getPiece().getColor() &&
-                    nodes[r][c + 1].getPiece().getColor() != playerColor) {
+        if (coordinates.getRow()!=nRows-1 && coordinates.getColumn()!= nColumns -1 &&
+                !getNode(coordinates.getSouthEastNeighbour()).isNodeEmpty() && getNode(coordinates.getSouthEastNeighbour()).getPiece().getColor() == playerColor) {
+            if (!getNode(coordinates.getEastNeighbour()).isNodeEmpty() && !getNode(coordinates.getSouthNeighbour()).isNodeEmpty() &&
+                    getNode(coordinates.getEastNeighbour()).getPiece().getColor() == getNode(coordinates.getSouthNeighbour()).getPiece().getColor() &&
+                    getNode(coordinates.getEastNeighbour()).getPiece().getColor() != playerColor) {
                 return false;
             }
         }
