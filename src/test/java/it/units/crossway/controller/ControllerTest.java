@@ -3,7 +3,6 @@ package it.units.crossway.controller;
 import it.units.crossway.gui.PieceGui;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
-import it.units.crossway.model.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,7 @@ public class ControllerTest {
 
     @BeforeEach
     public void setup() {
-        board = Mockito.mock(Board.class);   // it mimicks a board object. Note I don't need to pass nrows and ncol as arguments of board.
+        board = Mockito.mock(Board.class);   // it mimics a board object. Note I don't need to pass n rows and ncol as arguments of board.
         controller = new GameController(board);
     }
 
@@ -34,7 +33,7 @@ public class ControllerTest {
     @Test
     @DisplayName("canPlace test")
     void canPlace() {
-        // I need to test that can place is called and it outputs correct result
+        // I need to test that can place is called, and it outputs correct result
         // the fake board should show the behaviour of canPlace
         // here we are forcing a false behaviour of the board.canPlace
         Mockito.when(board.canPlace(Mockito.any(), Mockito.any())).thenReturn(false);
