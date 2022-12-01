@@ -29,6 +29,7 @@ public class Gui {
         boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
         boardPanel.addMouseListener(new BoardMouseClickListener());
         boardPanel.getPieRuleButton().addActionListener(new pieRuleListener());
+        boardPanel.getSurrenderButton().addActionListener(new surrenderListener());
 
         winnerPanel = new WinnerPanel(controller);
         winnerPanel.getClose().addActionListener(new closeListener());
@@ -61,14 +62,6 @@ public class Gui {
 
     private void resetGame() {
         boardPanel.reset();
-    }
-
-    private class pieRuleListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("Pie Rule Button pressed!");
-            boardPanel.callPieRule();
-        }
     }
 
     private class LetsPlayListener implements ActionListener {
@@ -130,7 +123,7 @@ public class Gui {
                         10,7,9,6,7,7,6,5,4,6,7,6,12,11,11,10,9,10,6,5};
 
                 for (int i = 0; i < rows.length; i++) {
-                    click(boardPanel, 16+rows[i]*26, 16 +cols[i]*26);
+                    click(boardPanel, 75+rows[i]*26, 75 +cols[i]*26);
                 }
 
                 return null;
@@ -145,7 +138,32 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (startingPanel.handleLetSPlay()) {
+                for(Component c : boardPanel.getComponents()){
+                    System.out.println(c);
+                    if(c instanceof JButton){
+                        boardPanel.remove(c);
+                    }
+                }
                 play_demo();
+            }
+        }
+    }
+
+    private class pieRuleListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Pie Rule Button pressed!");
+            boardPanel.callPieRule();
+        }
+    }
+
+    private class surrenderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (boardPanel.handleSurrender().getCondition() ==  Condition.WON) {
+                winnerPanel.setCongratulations();
+                cl.show(backgroundPanel, "3");
+                frame.pack();
             }
         }
     }
@@ -162,7 +180,6 @@ public class Gui {
 
 
     private class BoardMouseClickListener implements MouseListener {
-
         @Override
         public void mouseClicked(MouseEvent e) {
             Point node = e.getPoint();

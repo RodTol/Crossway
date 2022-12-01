@@ -145,10 +145,13 @@ public class GameController implements Controller {
             changeTurn();
         }
     }
-
-    private void usePieRule(){
-        player1.setColor(Color.WHITE);
-        player2.setColor(Color.BLACK);
+    @Override
+    public void changeTurnSurrender() {
+        if (currentPlayer == player1) {
+            currentPlayer = player2;
+        } else {
+            currentPlayer = player1;
+        }
     }
 
     boolean atLeastOnePlacement(){

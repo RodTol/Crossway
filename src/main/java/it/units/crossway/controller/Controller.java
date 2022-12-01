@@ -22,4 +22,6 @@ public interface Controller {
     void reset();
 
     void applyPieRule();
+
+    void changeTurnSurrender();
 }

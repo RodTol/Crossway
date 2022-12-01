@@ -18,9 +18,10 @@ public class BoardPanel extends JPanel {
     final private List<PieceGui> pieces;
     private JLabel player1Name;
     private JLabel player2Name;
-    private JButton pieRuleButton;
+    private final JButton pieRuleButton;
+    private final JButton surrenderButton;
     //private Color currentPlayerColor = new Color(36,107,116);
-    private Color currentPlayerColor = new Color(119, 32, 41);
+    private final Color currentPlayerColor = new Color(119, 32, 41);
 
     private final ImageIcon background = new ImageIcon("Pictures/background.png");
 
@@ -32,6 +33,9 @@ public class BoardPanel extends JPanel {
         this.pieces = new ArrayList<>();
         this.pieRuleButton = new JButton("Pie Rule");
         this.add(pieRuleButton);
+        this.surrenderButton = new JButton("I give up!");
+        this.add(surrenderButton);
+
     }
 
     @Override
@@ -59,6 +63,15 @@ public class BoardPanel extends JPanel {
     Point getGhostPosition() {
         return ghostPosition;
     }
+
+    JButton getPieRuleButton() {
+        return pieRuleButton;
+    }
+
+    JButton getSurrenderButton() {
+        return surrenderButton;
+    }
+
 
     void reset() {
         this.remove(player1Name);
@@ -136,11 +149,24 @@ public class BoardPanel extends JPanel {
 
     void handlePieRuleButton(){
         if(pieces.size() == 1) {
-            pieRuleButton.setBounds(300, 615, 150, 30);
+            pieRuleButton.setBounds(300, 615, 180, 40);
             pieRuleButton.setVisible(true);
         } else {
             pieRuleButton.setVisible(false);
         }
+    }
+
+    void showSurrenderButton() {
+        if (pieces.size() >= 2) {
+            surrenderButton.setBounds(300, 615, 180, 40);
+            surrenderButton.setVisible(true);
+        } else {
+            surrenderButton.setVisible(false);
+        }
+    }
+    Status handleSurrender() {
+        controller.changeTurnSurrender();
+        return Status.won();
     }
 
     private void highlightCurrentPlayerName(){
@@ -212,10 +238,6 @@ public class BoardPanel extends JPanel {
         return new Point(Ypx,Xpx);
     }
 
-    public JButton getPieRuleButton() {
-        return pieRuleButton;
-    }
-
     public void callPieRule() {
         controller.applyPieRule();
         highlightCurrentPlayerName();
@@ -230,6 +252,7 @@ public class BoardPanel extends JPanel {
                 case PLACED: {
                     pieces.add(piece);
                     handlePieRuleButton();
+                    showSurrenderButton();
                     highlightCurrentPlayerName();
                     repaint();
                     return status;
