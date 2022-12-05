@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Piece {
 
-    private Color color;
+    private final Color color;
 
     public Piece(Color color) {
         this.color = color;
