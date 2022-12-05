@@ -3,7 +3,6 @@ package it.units.crossway.controller;
 import it.units.crossway.gui.PieceGui;
 import it.units.crossway.model.Board;
 import it.units.crossway.model.Coordinates;
-import it.units.crossway.model.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

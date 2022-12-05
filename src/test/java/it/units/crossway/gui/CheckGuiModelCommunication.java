@@ -3,16 +3,8 @@ package it.units.crossway.gui;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.controller.GameController;
 import it.units.crossway.gui.BoardPanel;
-import it.units.crossway.gui.BoardPanelSettings;
 import it.units.crossway.model.Board;
-import it.units.crossway.model.Coordinates;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.awt.*;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CheckGuiModelCommunication {
 

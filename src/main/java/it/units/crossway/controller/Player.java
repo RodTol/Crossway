@@ -1,6 +1,5 @@
 package it.units.crossway.controller;
 
-import it.units.crossway.model.Coordinates;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
