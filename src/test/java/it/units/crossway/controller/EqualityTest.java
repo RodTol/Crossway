@@ -9,7 +9,7 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Equality {
+public class EqualityTest {
 
     Player player;
     Board board;
