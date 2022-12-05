@@ -46,22 +46,32 @@ public class Coordinates {
         throw new RuntimeException();
     }
 
-
-    public Coordinates getNorthNeighbour() {
-        return new Coordinates(row-1,column);
+    public Coordinates getVerticalNeighbours(Direction direction) throws RuntimeException {
+        switch (direction) {
+            case NORTH_WEST:
+            case NORTH_EAST: {
+                return new Coordinates(row - 1, column);
+            }
+            case SOUTH_WEST:
+            case SOUTH_EAST: {
+                return new Coordinates(row + 1, column);
+            }
+        }
+        throw new RuntimeException();
     }
 
-
-    public Coordinates getEastNeighbour() {
-        return new Coordinates(row,column+1);
-    }
-
-    public Coordinates getWestNeighbour() {
-        return new Coordinates(row,column-1);
-    }
-
-    public Coordinates getSouthNeighbour() {
-        return new Coordinates(row+1,column);
+    public Coordinates getHorizontalNeighbours(Direction direction) throws RuntimeException {
+        switch (direction) {
+            case NORTH_WEST:
+            case SOUTH_WEST: {
+                return new Coordinates(row, column - 1);
+            }
+            case NORTH_EAST:
+            case SOUTH_EAST: {
+                return new Coordinates(row, column + 1);
+            }
+        }
+        throw new RuntimeException();
     }
 
 
