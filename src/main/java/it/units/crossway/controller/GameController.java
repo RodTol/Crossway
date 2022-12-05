@@ -48,24 +48,6 @@ public class GameController implements Controller {
     }
     @Override
     public Board getBoard() {return board;}
-
-    public String getWhiteName() {
-        if (player1.getColor().equals(Color.WHITE)) {
-            return player1.getName();
-        } else {
-            return player2.getName();
-        }
-    }
-
-    public String getBlackName() {
-        if (player1.getColor().equals(Color.BLACK)) {
-            return player1.getName();
-        } else {
-            return player2.getName();
-
-        }
-    }
-
     @Override
     public void setNameWhitePlayer(String name) {
         this.player2.setName(name);
@@ -133,6 +115,7 @@ public class GameController implements Controller {
     @Override
     public void reset() {
         board.reset();
+        currentPlayer = player1;
     }
 
     private void changeTurn() {
