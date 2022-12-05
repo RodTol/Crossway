@@ -95,8 +95,6 @@ public class Board {
         int nRows = nodes.length;
         int nColumns = nodes[0].length;
 
-        //int r = coordinates.getRow();
-        //int c = coordinates.getColumn();
         Color playerColor = piece.getColor();
 
 
