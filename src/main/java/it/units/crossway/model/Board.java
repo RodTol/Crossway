@@ -92,8 +92,6 @@ public class Board {
     * but not if is a winner piece because that's a more abstracted
     * concept. So we make that part of the GameController*/
     public boolean canPlace(Coordinates coordinates, Piece piece) {
-        int nRows = nodes.length;
-        int nColumns = nodes[0].length;
 
         Color playerColor = piece.getColor();
 
