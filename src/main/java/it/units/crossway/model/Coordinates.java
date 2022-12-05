@@ -28,7 +28,7 @@ public class Coordinates {
         return false;
     }
 
-    public Coordinates getDiagonalNeighbours(Direction direction) throws RuntimeException {
+    public Coordinates getDiagonalNeighbour(Direction direction) throws RuntimeException {
         switch (direction) {
             case NORTH_WEST: {
                 return new Coordinates(row - 1, column - 1);
@@ -46,7 +46,7 @@ public class Coordinates {
         throw new RuntimeException();
     }
 
-    public Coordinates getVerticalNeighbours(Direction direction) throws RuntimeException {
+    public Coordinates getVerticalNeighbour(Direction direction) throws RuntimeException {
         switch (direction) {
             case NORTH_WEST:
             case NORTH_EAST: {
@@ -60,7 +60,7 @@ public class Coordinates {
         throw new RuntimeException();
     }
 
-    public Coordinates getHorizontalNeighbours(Direction direction) throws RuntimeException {
+    public Coordinates getHorizontalNeighbour(Direction direction) throws RuntimeException {
         switch (direction) {
             case NORTH_WEST:
             case SOUTH_WEST: {

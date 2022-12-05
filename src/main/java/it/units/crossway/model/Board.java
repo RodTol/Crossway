@@ -105,41 +105,38 @@ public class Board {
             return false;
         }
 
-        if (coordinates.getRow()!=0 && coordinates.getColumn()!=0 &&
-                !getNode(coordinates.getNorthWestNeighbour()).isNodeEmpty() &&
-                getNode(coordinates.getNorthWestNeighbour()).getPiece().getColor() == playerColor) {
-            if (!getNode(coordinates.getNorthNeighbour()).isNodeEmpty() && !getNode(coordinates.getWestNeighbour()).isNodeEmpty() &&
-                    getNode(coordinates.getNorthNeighbour()).getPiece().getColor() == getNode(coordinates.getWestNeighbour()).getPiece().getColor() &&
-                    getNode(coordinates.getNorthNeighbour()).getPiece().getColor() != playerColor) {
-                return false;
-            }
-        }
-        if (coordinates.getRow()!=0 && coordinates.getColumn()!= nColumns - 1 &&
-                !getNode(coordinates.getNorthEastNeighbour()).isNodeEmpty() && getNode(coordinates.getNorthEastNeighbour()).getPiece().getColor() == playerColor) {
-            if (!getNode(coordinates.getNorthNeighbour()).isNodeEmpty() && !getNode(coordinates.getEastNeighbour()).isNodeEmpty() &&
-                    getNode(coordinates.getNorthNeighbour()).getPiece().getColor() == getNode(coordinates.getEastNeighbour()).getPiece().getColor() &&
-                    getNode(coordinates.getNorthNeighbour()).getPiece().getColor() != playerColor) {
-                return false;
-            }
-        }
-        if (coordinates.getColumn()!=0 && coordinates.getRow()!=nRows-1 &&
-                !getNode(coordinates.getSouthWestNeighbour()).isNodeEmpty() && getNode(coordinates.getSouthWestNeighbour()).getPiece().getColor() == playerColor) {
-            if (!getNode(coordinates.getWestNeighbour()).isNodeEmpty() && !getNode(coordinates.getSouthNeighbour()).isNodeEmpty() &&
-                    getNode(coordinates.getWestNeighbour()).getPiece().getColor() == getNode(coordinates.getSouthNeighbour()).getPiece().getColor() &&
-                    getNode(coordinates.getWestNeighbour()).getPiece().getColor() != playerColor) {
-                return false;
-            }
-        }
-        if (coordinates.getRow()!=nRows-1 && coordinates.getColumn()!= nColumns -1 &&
-                !getNode(coordinates.getSouthEastNeighbour()).isNodeEmpty() && getNode(coordinates.getSouthEastNeighbour()).getPiece().getColor() == playerColor) {
-            if (!getNode(coordinates.getEastNeighbour()).isNodeEmpty() && !getNode(coordinates.getSouthNeighbour()).isNodeEmpty() &&
-                    getNode(coordinates.getEastNeighbour()).getPiece().getColor() == getNode(coordinates.getSouthNeighbour()).getPiece().getColor() &&
-                    getNode(coordinates.getEastNeighbour()).getPiece().getColor() != playerColor) {
-                return false;
+        for (Direction direction : Direction.values()) {
+            if (!isOnCornerBorderOfBord(coordinates, direction) &&
+                    !getNode(coordinates.getDiagonalNeighbour(direction)).isNodeEmpty() &&
+                    getNode(coordinates.getDiagonalNeighbour(direction)).getPiece().getColor() == playerColor) {
+                if (!getNode(coordinates.getVerticalNeighbour(direction)).isNodeEmpty() && !getNode(coordinates.getHorizontalNeighbour(direction)).isNodeEmpty() &&
+                        getNode(coordinates.getVerticalNeighbour(direction)).getPiece().getColor() == getNode(coordinates.getHorizontalNeighbour(direction)).getPiece().getColor() &&
+                        getNode(coordinates.getVerticalNeighbour(direction)).getPiece().getColor() != playerColor) {
+                    return false;
+                }
             }
         }
         return true;
     }
+
+    boolean isOnCornerBorderOfBord(Coordinates coordinates, Direction direction) throws RuntimeException{
+        switch (direction) {
+            case NORTH_WEST: {
+                return coordinates.getRow()==0 || coordinates.getColumn()==0;
+            }
+            case NORTH_EAST: {
+                return coordinates.getRow()==0 || coordinates.getColumn()==nodes[0].length-1;
+            }
+            case SOUTH_WEST: {
+                return coordinates.getRow()==nodes[0].length-1 || coordinates.getColumn()==0;
+            }
+            case SOUTH_EAST: {
+                return  coordinates.getRow()==nodes[0].length-1 || coordinates.getColumn()==nodes[0].length-1;
+            }
+        }
+        throw new RuntimeException();
+    }
+
 
     public void place(Coordinates c, Piece piece) {
         nodes[c.getRow()][c.getColumn()] = new Node();
