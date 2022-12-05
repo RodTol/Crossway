@@ -28,37 +28,52 @@ public class Coordinates {
         return false;
     }
 
-    public Coordinates getNorthNeighbour() {
-        return new Coordinates(row-1,column);
+    public Coordinates getDiagonalNeighbour(Direction direction) throws RuntimeException {
+        switch (direction) {
+            case NORTH_WEST: {
+                return new Coordinates(row - 1, column - 1);
+            }
+            case NORTH_EAST: {
+                return new Coordinates(row - 1, column + 1);
+            }
+            case SOUTH_WEST: {
+                return new Coordinates(row + 1, column - 1);
+            }
+            case SOUTH_EAST: {
+                return new Coordinates(row + 1, column + 1);
+            }
+        }
+        throw new RuntimeException();
     }
 
-    public Coordinates getNorthWestNeighbour() {
-        return new Coordinates(row-1,column-1);
+    public Coordinates getVerticalNeighbour(Direction direction) throws RuntimeException {
+        switch (direction) {
+            case NORTH_WEST:
+            case NORTH_EAST: {
+                return new Coordinates(row - 1, column);
+            }
+            case SOUTH_WEST:
+            case SOUTH_EAST: {
+                return new Coordinates(row + 1, column);
+            }
+        }
+        throw new RuntimeException();
     }
 
-    public Coordinates getNorthEastNeighbour() {
-        return new Coordinates(row-1,column+1);
+    public Coordinates getHorizontalNeighbour(Direction direction) throws RuntimeException {
+        switch (direction) {
+            case NORTH_WEST:
+            case SOUTH_WEST: {
+                return new Coordinates(row, column - 1);
+            }
+            case NORTH_EAST:
+            case SOUTH_EAST: {
+                return new Coordinates(row, column + 1);
+            }
+        }
+        throw new RuntimeException();
     }
 
-    public Coordinates getEastNeighbour() {
-        return new Coordinates(row,column+1);
-    }
-
-    public Coordinates getWestNeighbour() {
-        return new Coordinates(row,column-1);
-    }
-
-    public Coordinates getSouthNeighbour() {
-        return new Coordinates(row+1,column);
-    }
-
-    public Coordinates getSouthWestNeighbour() {
-        return new Coordinates(row + 1, column - 1);
-    }
-
-    public Coordinates getSouthEastNeighbour() {
-        return new Coordinates(row + 1, column + 1);
-    }
 
 
     @Override

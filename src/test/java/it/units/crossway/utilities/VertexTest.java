@@ -1,11 +1,9 @@
 package it.units.crossway.utilities;
 
 import it.units.crossway.model.Coordinates;
-import it.units.crossway.model.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

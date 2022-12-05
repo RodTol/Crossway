@@ -1,9 +1,6 @@
 package it.units.crossway.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import java.awt.*;
 
 public class Node {
     private Piece piece;

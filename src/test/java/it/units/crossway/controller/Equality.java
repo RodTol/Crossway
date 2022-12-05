@@ -1,14 +1,11 @@
 package it.units.crossway.controller;
 
 import it.units.crossway.model.Board;
-import it.units.crossway.model.Coordinates;
-import it.units.crossway.utilities.Vertex;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-import java.util.function.BiPredicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
