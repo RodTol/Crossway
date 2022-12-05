@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceTest {
 
@@ -23,18 +22,18 @@ public class PieceTest {
     @Test
     @DisplayName("Reflexivity")
     void reflexivity(){
-        assertTrue(piece.equals(piece));
+        assertEquals(piece, piece);
     }
 
     @Test
     @DisplayName("Equal test")
     void otherObjectEqualsVertex(){
-        assertFalse(piece.equals(new Coordinates(1,1)));
+        assertNotEquals(piece, new Coordinates(1, 1));
     }
 
     @Test
     @DisplayName("Equal vertices")
     void equalVertices(){
-        assertTrue(piece.equals(new Piece(Color.BLACK)));
+        assertEquals(piece, new Piece(Color.BLACK));
     }
 }

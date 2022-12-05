@@ -139,7 +139,6 @@ public class Gui {
         public void actionPerformed(ActionEvent e) {
             if (startingPanel.handleLetSPlay()) {
                 for(Component c : boardPanel.getComponents()){
-                    System.out.println(c);
                     if(c instanceof JButton){
                         boardPanel.remove(c);
                     }

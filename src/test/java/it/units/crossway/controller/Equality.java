@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Equality {
 
@@ -25,19 +24,19 @@ public class Equality {
     @Test
     @DisplayName("Reflexivity player")
     void reflexivity(){
-        assertTrue(player.equals(player));
+        assertEquals(player, player);
     }
 
     @Test
     @DisplayName("Equal test player")
     void otherObjectEqualsPlayer(){
-        assertFalse(player.equals(board));
+        assertNotEquals(player, board);
     }
 
     @Test
     @DisplayName("Equal players")
     void equalPlayers(){
         Player player2 = new Player(2, Color.BLACK);
-        assertTrue(player.equals(player2));
+        assertEquals(player, player2);
     }
 }

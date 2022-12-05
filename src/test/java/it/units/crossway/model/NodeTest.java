@@ -23,19 +23,19 @@ public class NodeTest {
     @Test
     @DisplayName("Reflexivity")
     void reflexivity(){
-        assertTrue(node.equals(node));
+        assertEquals(node, node);
     }
 
     @Test
     @DisplayName("Equal test")
     void otherObjectEqualsVertex(){
-        assertFalse(node.equals(piece));
+        assertNotEquals(node, piece);
     }
 
     @Test
     @DisplayName("Equal vertices")
     void equalVertices(){
-        assertTrue(node.equals(new Node()));
+        assertEquals(node, new Node());
     }
 
     @Test

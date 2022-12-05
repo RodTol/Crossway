@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class VertexTest {
@@ -23,20 +22,20 @@ public class VertexTest {
     @Test
     @DisplayName("Reflexivity")
     void reflexivity(){
-        assertTrue(vertex.equals(vertex));
+        assertEquals(vertex, vertex);
     }
 
     @Test
     @DisplayName("Equal test")
     void otherObjectEqualsVertex(){
-        assertFalse(vertex.equals(coordinates));
+        assertNotEquals(vertex, coordinates);
     }
 
     @Test
     @DisplayName("Equal vertices")
     void equalVertices(){
         Vertex vertex2 = new Vertex(coordinates);
-        assertTrue(vertex.equals(vertex2));
+        assertEquals(vertex, vertex2);
     }
 
 }

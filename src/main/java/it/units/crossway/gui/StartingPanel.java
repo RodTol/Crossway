@@ -8,26 +8,26 @@ import java.util.Objects;
 
 public class StartingPanel extends JPanel {
     private final Controller controller;
-    private JTextField whitePLayerName = new JTextField(20);
-    private JTextField blackPlayerName = new JTextField(20);
-    private JButton letSPlayButton = new JButton("Let's Play!");
-    private JButton clearButton = new JButton("Clear");
-    private JButton demoButton = new JButton("Play Demo");
-    private JLabel white = new JLabel("White Player Name");
-    private JLabel black = new JLabel("Black Player Name");
-    private JLabel warning = new JLabel("Insert valid name!");
+    private final JTextField whitePLayerName = new JTextField(20);
+    private final JTextField blackPlayerName = new JTextField(20);
+    private final JButton letSPlayButton = new JButton("Let's Play!");
+    private final JButton clearButton = new JButton("Clear");
+    private final JButton demoButton = new JButton("Play Demo");
+    private final JLabel warning = new JLabel("Insert valid name!");
 
     public StartingPanel(Controller controller) {
         this.controller = controller;
 
         this.setLayout(null);
 
+        JLabel white = new JLabel("White Player Name");
         white.setBounds(10,20,150, 25);
         this.add(white);
 
         whitePLayerName.setBounds(180, 20, 200, 25);
         this.add(whitePLayerName);
 
+        JLabel black = new JLabel("Black Player Name");
         black.setBounds(10,50,150, 25);
         this.add(black);
 
