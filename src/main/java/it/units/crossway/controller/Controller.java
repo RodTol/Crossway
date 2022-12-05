@@ -8,20 +8,16 @@ public interface Controller {
 
     Player getCurrentPlayer();
     Board getBoard();
+    Player getPlayer1();
+    Player getPlayer2();
+
     void setNameWhitePlayer(String name);
     void setNameBlackPlayer(String name);
 
-    Player getPlayer1();
-
-    Player getPlayer2();
-
     boolean canPlace(Coordinates position);
-
     Status place(PieceGui piece);
 
     void reset();
-
     void applyPieRule();
-
     void changeTurnSurrender();
 }
