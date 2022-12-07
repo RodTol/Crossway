@@ -92,22 +92,14 @@ public class Board {
     * but not if is a winner piece because that's a more abstracted
     * concept. So we make that part of the GameController*/
     public boolean canPlace(Coordinates coordinates, Piece piece) {
-
         Color playerColor = piece.getColor();
-
-
-
         if (!getNode(coordinates).isNodeEmpty()) {
             return false;
         }
 
-        for (Direction direction : Direction.values()) {
-            if (!isOnCornerBorderOfBord(coordinates, direction) &&
-                    !getNode(coordinates.getDiagonalNeighbour(direction)).isNodeEmpty() &&
-                    getNode(coordinates.getDiagonalNeighbour(direction)).getPiece().getColor() == playerColor) {
-                if (!getNode(coordinates.getVerticalNeighbour(direction)).isNodeEmpty() && !getNode(coordinates.getHorizontalNeighbour(direction)).isNodeEmpty() &&
-                        getNode(coordinates.getVerticalNeighbour(direction)).getPiece().getColor() == getNode(coordinates.getHorizontalNeighbour(direction)).getPiece().getColor() &&
-                        getNode(coordinates.getVerticalNeighbour(direction)).getPiece().getColor() != playerColor) {
+        for (Direction dir : Direction.values()) {
+            if ( diagonalCheck(coordinates, playerColor, dir)) {
+                if ( orthogonalCheck(coordinates, playerColor, dir) ) {
                     return false;
                 }
             }
@@ -115,7 +107,7 @@ public class Board {
         return true;
     }
 
-    boolean isOnCornerBorderOfBord(Coordinates coordinates, Direction direction) throws RuntimeException{
+    private boolean isOnCornerBorderOfBoard(Coordinates coordinates, Direction direction) throws RuntimeException{
         switch (direction) {
             case NORTH_WEST: {
                 return coordinates.getRow()==0 || coordinates.getColumn()==0;
@@ -131,6 +123,19 @@ public class Board {
             }
         }
         throw new RuntimeException();
+    }
+
+    private boolean diagonalCheck(Coordinates coordinates, Color playerColor, Direction dir) {
+        return  !isOnCornerBorderOfBoard(coordinates, dir) &&
+                !getNode(coordinates.getDiagonalNeighbour(dir)).isNodeEmpty() &&
+                getNode(coordinates.getDiagonalNeighbour(dir)).getPiece().getColor() == playerColor;
+    }
+
+    private boolean orthogonalCheck(Coordinates coordinates, Color playerColor, Direction dir) {
+        return  !getNode(coordinates.getVerticalNeighbour(dir)).isNodeEmpty() &&
+                !getNode(coordinates.getHorizontalNeighbour(dir)).isNodeEmpty() &&
+                getNode(coordinates.getHorizontalNeighbour(dir)).getPiece().getColor() != playerColor &&
+                getNode(coordinates.getVerticalNeighbour(dir)).getPiece().getColor() != playerColor;
     }
 
 
@@ -152,9 +157,9 @@ public class Board {
     }
 
     public void reset() {
-        for (int r = 0; r < nodes.length; r++) {
-            for (int c = 0; c < nodes[0].length; c++) {
-                nodes[r][c].setPiece(null);
+        for (Node[] row : nodes) {
+            for (Node node: row) {
+                node.setPiece(null);
             }
         }
     }
