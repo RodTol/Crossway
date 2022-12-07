@@ -57,7 +57,7 @@ public class BoardPanel extends JPanel {
         drawGhost(g2d);
         drawPieces(g2d);
         drawNameDots(g2d);
-        drawLetters(g2d);
+        drawBoardReferences(g2d);
     }
 
     Point getGhostPosition() {
@@ -82,11 +82,9 @@ public class BoardPanel extends JPanel {
         controller.reset();
     }
 
-    private void drawLetters(Graphics2D g) {
+    private void drawBoardReferences(Graphics2D g) {
         StringBuilder sb = new StringBuilder();
-        IntStream.range('A', 'Z').forEach(i -> {
-            sb.append((char) i);
-        });
+        IntStream.range('A', 'Z').forEach(i -> {sb.append((char) i);});
         for (int letterIdx = 0; letterIdx < 19; letterIdx++) {
             g.setColor(Color.black);
             g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()-10);
