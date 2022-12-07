@@ -16,20 +16,18 @@ import org.mockito.Mockito;
 
 import java.awt.*;
 
-public class FictionalGame {
+public class fictionalGame {
 
-    private int dim = 4;
+    private final int dim = 4;
     private static Board board;
-    private Controller controller;
-    private BoardPanel boardPanel;
 
     @BeforeEach
     @DisplayName("Fictional game initialisation on 4x4 board")
     public void set_up() {
 
         board = new Board(dim, dim);
-        controller = new GameController(board);
-        boardPanel = Mockito.mock(BoardPanel.class);
+        Controller controller = new GameController(board);
+        BoardPanel boardPanel = Mockito.mock(BoardPanel.class);
     }
 
     @Test

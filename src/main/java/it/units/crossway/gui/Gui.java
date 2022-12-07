@@ -153,6 +153,7 @@ public class Gui {
         public void actionPerformed(ActionEvent e) {
             System.out.println("Pie Rule Button pressed!");
             boardPanel.callPieRule();
+            boardPanel.getPieRuleButton().setVisible(false);
         }
     }
 
