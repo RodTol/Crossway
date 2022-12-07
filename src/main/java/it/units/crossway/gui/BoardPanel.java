@@ -35,7 +35,6 @@ public class BoardPanel extends JPanel {
         this.add(pieRuleButton);
         this.surrenderButton = new JButton("I give up!");
         this.add(surrenderButton);
-
     }
 
     @Override
@@ -49,7 +48,7 @@ public class BoardPanel extends JPanel {
 
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(background.getImage(), settings.getMargin()-31,settings.getMargin()-31,null);
+        g2d.drawImage(background.getImage(), settings.getMargin()-40,settings.getMargin()-40,null);
         g2d.setColor(Color.BLACK);
         g2d.setStroke(new BasicStroke(1.5f));
         drawVerticalLines(g2d);
@@ -88,7 +87,10 @@ public class BoardPanel extends JPanel {
         for (int letterIdx = 0; letterIdx < 19; letterIdx++) {
             g.setColor(Color.black);
             g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()-10);
+            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()+settings.getWidth()+20);
+
             g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-15, settings.getMargin()+settings.getCellSize()*letterIdx+3);
+            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()+settings.getWidth()+10, settings.getMargin()+settings.getCellSize()*letterIdx+3);
         }
     }
 
