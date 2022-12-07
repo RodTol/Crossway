@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Board {
+    - Node[][] node
+}
+
+class Node {
+    - Piece piece
+}
+
+class Piece {
+    - Color color
+}
+
+enum Direction {
+    - NORTH_WEST
+    - NORTH_EAST
+    - SOUTH_WEST
+    - SOUTH_EAST
+}
+
+Class Coordinates {
+    - row
+    - column
+}
+Board --> Node
+Node --> Piece
+
+
+
+@enduml
