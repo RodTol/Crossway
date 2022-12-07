@@ -244,22 +244,24 @@ public class BoardPanel extends JPanel {
     }
 
     public Status handleMouseClicked(Point node) {
-        Coordinates position = nodePxToPosition(closestNodeToPx(node));
-        PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
-        if (controller.canPlace(position)) {
-            Status status = controller.place(piece);
-            switch (status.getCondition()) {
-                case PLACED: {
-                    pieces.add(piece);
-                    handlePieRuleButton();
-                    showSurrenderButton();
-                    highlightCurrentPlayerName();
-                    repaint();
-                    return status;
-                }
-                case WON: {
-                    pieces.add(piece);
-                    return status;
+        if (pointIsInMouseBorderLimits(node)) {
+            Coordinates position = nodePxToPosition(closestNodeToPx(node));
+            PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
+            if (controller.canPlace(position)) {
+                Status status = controller.place(piece);
+                switch (status.getCondition()) {
+                    case PLACED: {
+                        pieces.add(piece);
+                        handlePieRuleButton();
+                        showSurrenderButton();
+                        highlightCurrentPlayerName();
+                        repaint();
+                        return status;
+                    }
+                    case WON: {
+                        pieces.add(piece);
+                        return status;
+                    }
                 }
             }
         }
@@ -267,17 +269,27 @@ public class BoardPanel extends JPanel {
     }
 
     public void handleMouseMoved(Point point) {
-        Point newPosition = closestNodeToPx(point);
-        if (!newPosition.equals(getGhostPosition())) {
-            Coordinates position = nodePxToPosition(newPosition);
-            if (controller.canPlace(position)) {
-                ghostPosition = newPosition;
+        if (pointIsInMouseBorderLimits(point)) {
+            Point newPosition = closestNodeToPx(point);
+            if (!newPosition.equals(getGhostPosition())) {
+                Coordinates position = nodePxToPosition(newPosition);
+                if (controller.canPlace(position)) {
+                    ghostPosition = newPosition;
+                }
+                else {
+                    ghostPosition = null;
+                }
+                repaint();
             }
-            else {
-                ghostPosition = null;
-            }
-            repaint();
         }
+
+    }
+
+    private boolean pointIsInMouseBorderLimits(Point point) {
+        if (settings.getMargin()-30<point.getX() && point.getX()<settings.getMargin()+settings.getWidth()+30 && settings.getMargin()-30<point.getY() && point.getY()<settings.getMargin()+settings.getWidth()+30) {
+            return true;
+        }
+        return false;
     }
 }
 
