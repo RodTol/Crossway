@@ -103,7 +103,6 @@ public class Gui {
     }
 
     private void play_demo() {
-
         SwingWorker sw1 = new SwingWorker() {
             @Override
             protected Object doInBackground() {
@@ -122,9 +121,11 @@ public class Gui {
                         13,12,9,8,7,8,8,10,10,11,12,10,9,11,11,10,
                         10,7,9,6,7,7,6,5,4,6,7,6,12,11,11,10,9,10,6,5};
 
-                for (int i = 0; i < rows.length; i++) {
+                for (int i = 0; i < rows.length-1; i++) {
                     click(boardPanel, 75+rows[i]*26, 75 +cols[i]*26);
                 }
+
+                //boardPanel.handleDemo();
 
                 return null;
             }

@@ -4,12 +4,11 @@ import it.units.crossway.model.Coordinates;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
 public class Vertex {
-    private Coordinates value;
+    private final Coordinates value;
 
     public Vertex(Coordinates value){
         this.value = value;
     }
-
 
     public Coordinates getValue() {
         return value;

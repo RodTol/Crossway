@@ -1,7 +1,5 @@
 package it.units.crossway.model;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
-
 import java.awt.*;
 
 public class Piece {
