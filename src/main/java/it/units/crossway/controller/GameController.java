@@ -116,6 +116,8 @@ public class GameController implements Controller {
     public void reset() {
         board.reset();
         currentPlayer = player1;
+        player1.setColor(Color.BLACK);
+        player2.setColor(Color.WHITE);
     }
 
     private void changeTurn() {
