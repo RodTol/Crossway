@@ -46,7 +46,6 @@ public class BoardPanel extends JPanel {
     /*Method to draw the lines*/
     @Override
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(background.getImage(), settings.getMargin()-31,settings.getMargin()-31,null);
@@ -157,11 +156,11 @@ public class BoardPanel extends JPanel {
     }
 
     void showSurrenderButton() {
-        if (pieces.size() >= 2) {
+        if (pieces.size() == 1) {
+            surrenderButton.setVisible(false);
+        } else {
             surrenderButton.setBounds(300, 615, 180, 40);
             surrenderButton.setVisible(true);
-        } else {
-            surrenderButton.setVisible(false);
         }
     }
     Status handleSurrender() {

@@ -19,7 +19,7 @@ public class Graph {
 
     public void addVertex(Coordinates coordinates){
         Vertex vertex = new Vertex(coordinates);
-        ArrayList<Vertex> adjVertices = new ArrayList<Vertex>();
+        ArrayList<Vertex> adjVertices = new ArrayList<>();
         adjList.putIfAbsent(vertex,adjVertices);
     }
 
@@ -27,7 +27,7 @@ public class Graph {
         Vertex vertex1 = new Vertex(coordinates1);
         Vertex vertex2 = new Vertex(coordinates2);
         if (!getAdjList().containsKey(vertex1)) {
-            //exception?
+            throw new RuntimeException("Trying to connect non existing vertices");
         } else {
             adjList.get(vertex1).add(vertex2);
             adjList.get(vertex2).add(vertex1);
