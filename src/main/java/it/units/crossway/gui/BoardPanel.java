@@ -77,6 +77,8 @@ public class BoardPanel extends JPanel {
         this.remove(player1Name);
         this.remove(player2Name);
         pieces.clear();
+        surrenderButton.setVisible(false);
+        pieRuleButton.setVisible(false);
         controller.reset();
     }
 
