@@ -3,6 +3,8 @@ package it.units.crossway.model;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.util.List;
+
 public class Coordinates {
 
     private int row;
@@ -28,7 +30,6 @@ public class Coordinates {
         }
         return false;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Coordinates)) {
