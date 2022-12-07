@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class WinController {
+public class WinRuler {
     private final Board board;
     private final Color color;
 
-    public WinController(Board board, Color color) {
+    public WinRuler(Board board, Color color) {
         this.board = board;
         this.color = color;
     }
@@ -35,6 +35,7 @@ public class WinController {
         return board.NumbOfPieces(color) >= board.getNodes().length;
     }
 
+    @SuppressWarnings("SimplifyStreamApiCallChains")
     boolean blackCheck() {
         for (int i = 0; i < board.getNodes().length; i++) {
             if (!board.hasAtLeastOneInRow(i, color)) {
@@ -61,6 +62,7 @@ public class WinController {
         return false;
     }
 
+    @SuppressWarnings("SimplifyStreamApiCallChains")
     boolean whiteCheck() {
         for (int i = 0; i < board.getNodes().length; i++) {
             if (!board.hasAtLeastOneInColumn(i, color)) {

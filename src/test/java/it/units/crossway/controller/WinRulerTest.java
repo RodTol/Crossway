@@ -15,9 +15,9 @@ import java.awt.*;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
 
-class WinControllerTest {
+class WinRulerTest {
 
-    WinController winController;
+    WinRuler winRuler;
     Board board;
     /*Come faccio a fare il test sui due colori?*/
     Color color;
@@ -40,8 +40,8 @@ class WinControllerTest {
         for (int i = 0; i< rows.length; i++) {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
-        winController = new WinController(board,color);
-        Assertions.assertTrue(winController.minNofPieces());
+        winRuler = new WinRuler(board,color);
+        Assertions.assertTrue(winRuler.minNofPieces());
     }
 
     @Test
@@ -54,8 +54,8 @@ class WinControllerTest {
         for (int i = 0; i< rows.length; i++) {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
-        winController = new WinController(board,color);
-        Assertions.assertTrue(winController.blackCheck());
+        winRuler = new WinRuler(board,color);
+        Assertions.assertTrue(winRuler.blackCheck());
     }
 
     @Test
@@ -68,8 +68,8 @@ class WinControllerTest {
         for (int i = 0; i< rows.length; i++) {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
-        winController = new WinController(board,color);
-        Assertions.assertTrue(winController.whiteCheck());
+        winRuler = new WinRuler(board,color);
+        Assertions.assertTrue(winRuler.whiteCheck());
     }
 
 
@@ -91,12 +91,12 @@ class WinControllerTest {
         for (int i = 0; i< rows.length; i++) {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
-        winController = new WinController(board,color);
+        winRuler = new WinRuler(board,color);
 
         if (input) {
-            Assertions.assertTrue(winController.check());
+            Assertions.assertTrue(winRuler.check());
         } else  {
-            Assertions.assertFalse(winController.check());
+            Assertions.assertFalse(winRuler.check());
         }
 
     }

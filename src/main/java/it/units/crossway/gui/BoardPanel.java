@@ -16,8 +16,8 @@ public class BoardPanel extends JPanel {
     private final BoardPanelSettings settings;
     private Point ghostPosition;
     final private List<PieceGui> pieces;
-    private JLabel player1Name;
-    private JLabel player2Name;
+    private JLabel player1NameLabel;
+    private JLabel player2NameLabel;
     private final JButton pieRuleButton;
     private final JButton surrenderButton;
     //private Color currentPlayerColor = new Color(36,107,116);
@@ -73,8 +73,8 @@ public class BoardPanel extends JPanel {
 
 
     void reset() {
-        this.remove(player1Name);
-        this.remove(player2Name);
+        this.remove(player1NameLabel);
+        this.remove(player2NameLabel);
         pieces.clear();
         controller.reset();
     }
@@ -107,7 +107,7 @@ public class BoardPanel extends JPanel {
         Color playerColor = controller.getCurrentPlayer().getColor();
         if (ghostPosition != null) {
             g.setColor(new Color(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue(), 70));
-            Point point = closestNodeToPx(ghostPosition);
+            Point point = closestNodeToPoint(ghostPosition);
 
             //x,y are not the center of the circle but top left corner, so we have to convert to proper position
             int x = point.x - (PIECE_SIZE / 2);
@@ -134,16 +134,16 @@ public class BoardPanel extends JPanel {
         g.fillOval(50, 640, PIECE_SIZE, PIECE_SIZE);
     }
     void drawNames() {
-        player1Name = new JLabel(controller.getPlayer1().getName());
-        player1Name.setBounds(100, 595, 200, 30 );
-        player1Name.setForeground(currentPlayerColor);
-        player1Name.setFont(new Font("Helvetica", Font.BOLD, 18));
-        this.add(player1Name);
+        player1NameLabel = new JLabel(controller.getPlayer1().getName());
+        player1NameLabel.setBounds(100, 595, 200, 30 );
+        player1NameLabel.setForeground(currentPlayerColor);
+        player1NameLabel.setFont(new Font("Helvetica", Font.BOLD, 18));
+        this.add(player1NameLabel);
 
-        player2Name = new JLabel(controller.getPlayer2().getName());
-        player2Name.setBounds(100, 635, 200, 30 );
-        player2Name.setFont(new Font("Helvetica", Font.BOLD, 18));
-        this.add(player2Name);
+        player2NameLabel = new JLabel(controller.getPlayer2().getName());
+        player2NameLabel.setBounds(100, 635, 200, 30 );
+        player2NameLabel.setFont(new Font("Helvetica", Font.BOLD, 18));
+        this.add(player2NameLabel);
     }
 
     void handlePieRuleButton(){
@@ -170,12 +170,12 @@ public class BoardPanel extends JPanel {
 
     private void highlightCurrentPlayerName(){
         if (controller.getCurrentPlayer().getId()==1){
-            player1Name.setForeground(currentPlayerColor);
-            player2Name.setForeground(Color.BLACK);
+            player1NameLabel.setForeground(currentPlayerColor);
+            player2NameLabel.setForeground(Color.BLACK);
         }
         else{
-            player2Name.setForeground(currentPlayerColor);
-            player1Name.setForeground(Color.BLACK);
+            player2NameLabel.setForeground(currentPlayerColor);
+            player1NameLabel.setForeground(Color.BLACK);
         }
     }
 
@@ -200,7 +200,7 @@ public class BoardPanel extends JPanel {
 
     /*This function takes Point and assign the nearest node position
     * in pixels*/
-    Point closestNodeToPx(Point currentPosition) {
+    Point closestNodeToPoint(Point currentPosition) {
         ArrayList<Integer> XNodePositions = getXNodePositions();
         int xMinDistance = 10000;
         int ClosestXPos = 0;
@@ -243,7 +243,7 @@ public class BoardPanel extends JPanel {
     }
 
     public Status handleMouseClicked(Point node) {
-        Coordinates position = nodePxToPosition(closestNodeToPx(node));
+        Coordinates position = nodePxToPosition(closestNodeToPoint(node));
         PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
         if (controller.canPlace(position)) {
             Status status = controller.place(piece);
@@ -266,7 +266,7 @@ public class BoardPanel extends JPanel {
     }
 
     public void handleMouseMoved(Point point) {
-        Point newPosition = closestNodeToPx(point);
+        Point newPosition = closestNodeToPoint(point);
         if (!newPosition.equals(getGhostPosition())) {
             Coordinates position = nodePxToPosition(newPosition);
             if (controller.canPlace(position)) {

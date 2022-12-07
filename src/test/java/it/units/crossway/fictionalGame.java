@@ -16,6 +16,7 @@ import org.mockito.Mockito;
 
 import java.awt.*;
 
+@SuppressWarnings("NewClassNamingConvention")
 public class fictionalGame {
 
     private final int dim = 4;

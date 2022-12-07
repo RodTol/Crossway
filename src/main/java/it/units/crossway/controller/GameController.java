@@ -90,8 +90,8 @@ public class GameController implements Controller {
         } catch (Exception e) {
             return Status.not_placed();
         }
-        WinController winController = new WinController(board, piece.getColor());
-        if (winController.check()) {
+        WinRuler winRuler = new WinRuler(board, piece.getColor());
+        if (winRuler.check()) {
             System.out.println("GAME WON!");
             return Status.won();
         } else {
