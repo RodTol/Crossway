@@ -23,7 +23,7 @@ public class BoardPanel extends JPanel {
     //private Color currentPlayerColor = new Color(36,107,116);
     private final Color currentPlayerColor = new Color(119, 32, 41);
 
-    private final ImageIcon background = new ImageIcon("Pictures/background.png");
+    private final ImageIcon background = new ImageIcon("Pictures/backgroundBoard.png");
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
         this.setLayout(null);
@@ -48,7 +48,7 @@ public class BoardPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(background.getImage(), settings.getMargin()-31,settings.getMargin()-31,null);
+        g2d.drawImage(background.getImage(), settings.getMargin()-40,settings.getMargin()-40,null);
         g2d.setColor(Color.BLACK);
         g2d.setStroke(new BasicStroke(1.5f));
         drawVerticalLines(g2d);
