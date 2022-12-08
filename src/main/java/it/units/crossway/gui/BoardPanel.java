@@ -23,6 +23,8 @@ public class BoardPanel extends JPanel {
     private final Color currentPlayerColor = new Color(119, 32, 41);
     private final ImageIcon background = new ImageIcon("Pictures/backgroundBoard.png");
 
+    private boolean demoStatus = false;
+
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
         this.setLayout(null);
         this.controller = controller;
@@ -55,6 +57,7 @@ public class BoardPanel extends JPanel {
         drawPieces(g2d);
         drawNameDots(g2d);
         drawLetters(g2d);
+        drawLastPieceDemo(g2d);
     }
 
     Point getGhostPosition() {
@@ -243,12 +246,20 @@ public class BoardPanel extends JPanel {
     }
 
     void demoEnding() {
-        // 5 0
-        JLabel demoLabel = new JLabel("Please insert the last piece on the board to end the game");
-        demoLabel.setBounds(300, 615, 200, 30 );
-        demoLabel.setForeground(Color.black);
-        demoLabel.setFont(new Font("Helvetica", Font.BOLD, 18));
-        this.add(player1NameLabel);
+        JLabel demoLabel = new JLabel("<html> Please insert the last piece on the board to end the game </html>");
+        demoLabel.setBounds(290, 600, 300, 60 );
+        demoLabel.setForeground(Color.BLACK);
+        demoLabel.setFont(new Font("Helvetica", Font.BOLD, 16));
+        this.add(demoLabel);
+        demoStatus = true;
+        repaint();
+    }
+
+    void drawLastPieceDemo(Graphics2D g) {
+        if (demoStatus) {
+            g.setColor(Color.ORANGE);
+            g.drawOval(settings.getMargin()+settings.getCellSize()*5-PIECE_SIZE/2, settings.getMargin()-PIECE_SIZE/2, PIECE_SIZE, PIECE_SIZE);
+        }
     }
 
     public Status handleMouseClicked(Point node) {
