@@ -44,7 +44,7 @@ public class Graph {
     }
 
 
-     Set<Coordinates> DepthFirstSearch(Coordinates startCoordinates){
+     public Set<Coordinates> DepthFirstSearch(Coordinates startCoordinates){
         Set<Coordinates> visitedCoordinates = new LinkedHashSet<>();
         Stack<Coordinates> coordinatesStack = new Stack<>();
 
