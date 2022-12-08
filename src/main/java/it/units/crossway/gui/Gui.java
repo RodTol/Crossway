@@ -25,7 +25,7 @@ public class Gui {
         startingPanel.getClearButton().addActionListener(new ClearListener());
 
         boardPanel = new BoardPanel(controller, boardPanelSettings);
-        boardPanel.setBackground(new Color(45, 63, 45));
+        boardPanel.setBackground(Color.LIGHT_GRAY);
         boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
         boardPanel.addMouseListener(new BoardMouseClickListener());
         boardPanel.getPieRuleButton().addActionListener(new pieRuleListener());
@@ -102,7 +102,7 @@ public class Gui {
         target.dispatchEvent(click);
     }
 
-    private void play_demo() {
+    private void playDemo() {
         SwingWorker sw1 = new SwingWorker() {
             @Override
             protected Object doInBackground() {
@@ -115,17 +115,17 @@ public class Gui {
                         12,12,11,9,10,10,11,12,11,10,11,11,10,9,
                         12,13,10,14,8,15,6,7,5,6,5,6,5,5,3,4,2,3,
                         2,2,1,2,3,5,4,6,4,4,2,3,1,1,16,16,18,17,
-                        18,18,0,0};
+                        18,18,0};
                 int[] rows = {8,9,9,8,7,6,7,7,8,8,8,9,6,6,5,5,10,
                         10,11,11,13,12,13,13,14,12,12,11,12,6,12,
                         13,12,9,8,7,8,8,10,10,11,12,10,9,11,11,10,
-                        10,7,9,6,7,7,6,5,4,6,7,6,12,11,11,10,9,10,6,5};
+                        10,7,9,6,7,7,6,5,4,6,7,6,12,11,11,10,9,10,6};
 
-                for (int i = 0; i < rows.length-1; i++) {
+                for (int i = 0; i < rows.length; i++) {
                     click(boardPanel, 75+rows[i]*26, 75 +cols[i]*26);
                 }
 
-                //boardPanel.handleDemo();
+                boardPanel.demoEnding();
 
                 return null;
             }
@@ -144,7 +144,7 @@ public class Gui {
                         boardPanel.remove(c);
                     }
                 }
-                play_demo();
+                playDemo();
             }
         }
     }

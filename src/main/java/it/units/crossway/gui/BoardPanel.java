@@ -20,9 +20,7 @@ public class BoardPanel extends JPanel {
     private JLabel player2NameLabel;
     private final JButton pieRuleButton;
     private final JButton surrenderButton;
-    //private Color currentPlayerColor = new Color(36,107,116);
     private final Color currentPlayerColor = new Color(119, 32, 41);
-
     private final ImageIcon background = new ImageIcon("Pictures/backgroundBoard.png");
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
@@ -75,6 +73,8 @@ public class BoardPanel extends JPanel {
     void reset() {
         this.remove(player1NameLabel);
         this.remove(player2NameLabel);
+        this.add(pieRuleButton);
+        this.add(surrenderButton);
         pieces.clear();
         controller.reset();
     }
@@ -240,6 +240,15 @@ public class BoardPanel extends JPanel {
     public void callPieRule() {
         controller.applyPieRule();
         highlightCurrentPlayerName();
+    }
+
+    void demoEnding() {
+        // 5 0
+        JLabel demoLabel = new JLabel("Please insert the last piece on the board to end the game");
+        demoLabel.setBounds(300, 615, 200, 30 );
+        demoLabel.setForeground(Color.black);
+        demoLabel.setFont(new Font("Helvetica", Font.BOLD, 18));
+        this.add(player1NameLabel);
     }
 
     public Status handleMouseClicked(Point node) {
