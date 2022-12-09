@@ -14,6 +14,7 @@ public class StartingPanel extends JPanel {
     private final JButton clearButton = new JButton("Clear");
     private final JButton demoButton = new JButton("Play Demo");
     private final JLabel warning = new JLabel("Insert valid name!");
+    boolean warningLabelOn = false;
 
     public StartingPanel(Controller controller) {
         this.controller = controller;
@@ -68,9 +69,14 @@ public class StartingPanel extends JPanel {
         String black_name = blackPlayerName.getText();
         if (Objects.equals(white_name, "") || Objects.equals(black_name, "")) {
             this.add(warning);
+            warningLabelOn = true;
             repaint();
             return false;
         } else {
+            if (warningLabelOn) {
+                this.remove(warning);
+                warningLabelOn = false;
+            }
             controller.setNameWhitePlayer(white_name);
             controller.setNameBlackPlayer(black_name);
             return true;
