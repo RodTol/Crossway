@@ -14,6 +14,10 @@ Test Driven Developing. Every part of the code was written on IntelliJ and GitHu
 used as a version control system. Gradle was instead used for the testing and CircleCI for
 Continuous Integration.
 
+### How to run the game
+
+
+
 ### Rules of the game   
 Crossway is a 2-players game played on a 19x19 board that starts
 empty, as shown in the picture below.
@@ -71,7 +75,6 @@ An "I give up" button is available to the players after the second turn.
 A "Play demo" button is also present in the initial screen; if
 it is clicked, a demonstration of the game will start.
 
-
 ### Structure of the project
 The package "it.units.crossway" Java package is divided in five Java packages.
 
@@ -87,19 +90,19 @@ execution of the game. It implements Controller.
  and WON (the piece was correctly placed and it is the winning piece.
  for the current player)
  * Controller, which is an interface.
- 
+
 2. The "gui" package contains all the classes related to the GUI.
 It contains:
  * BoardPanel, which is the JPanel used to represent the board.
- * BoardPanelSettings, which is used to access the parameters of BoardPanel.
- * Gui, which controls the GUI part of the program, setting up the frame and
- all the different panels. It also has all the listeners, controlling the 
+ * BoardPanelSettings, which is used to calculate and access the parameters of BoardPanel.
+ * Gui, which controls the graphics part of the program, setting up the frame and
+ all the different panels. It also manages the user interface with all the listeners, controlling the 
  interaction with the user.
- * PieceGui, which is used by the GUI to draw the piece.
- * StartingPanel, which is the intial JPanel asking for the players' names
+ * PieceGui, which is used by the GUI to draw the inserted piece.
+ * StartingPanel, which is the initial JPanel asking for the players' names
  and colours. It also allows the player to choose to watch the demo.
  * WinnerPanel, which is the JPanel that is showed when a player wins. It
- has a button "Rematch" which restarts the game.
+ has a button "Rematch" which restarts the game and a "Close" one to close the app.
  
 3. The "launcher" package contains the necessities to launch the game.
 It contains:
@@ -111,9 +114,10 @@ It contains:
  * Coordinates, which implements the coordinates of the nodes on the
  board.
  * Node, which is where pieces are placed.
- * Piece
- * Direction, which is an enum containing the different diagonal directions
- NORTH_EAST, NORTH_WEST, SOUTH_EAST, and SOUTH_WEST.
+ * Piece, which is the implementation of the physical piece.
+ * Direction, which is an enum containing the different diagonal directions 
+ NORTH_EAST, NORTH_WEST, SOUTH_EAST, and SOUTH_WEST. It is used to simplify the
+access to neighbour nodes.
 
 5. The "utilities" package contains classes that are useful to the logic of 
 the game, but are not effectively part of it. It contains:
@@ -121,7 +125,4 @@ the game, but are not effectively part of it. It contains:
 * Vertex, which implements the vertex of the graph.
  
 All the pictures (background and readme pictures) are contained in the
-Pictures folder outside of the package.
- 
-### Suggestions for running the project
-
+Pictures folder outside the package.
