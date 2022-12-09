@@ -46,6 +46,7 @@ public class BoardPanel extends JPanel {
     /*Method to draw the lines*/
     @Override
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(background.getImage(), settings.getMargin()-40,settings.getMargin()-40,null);
@@ -56,8 +57,8 @@ public class BoardPanel extends JPanel {
         drawGhost(g2d);
         drawPieces(g2d);
         drawNameDots(g2d);
-        drawLetters(g2d);
         drawLastPieceDemo(g2d);
+        drawBoardReferences(g2d);
     }
 
     Point getGhostPosition() {
@@ -83,18 +84,21 @@ public class BoardPanel extends JPanel {
         this.add(surrenderButton);
         demoStatus = false;
         pieces.clear();
+        surrenderButton.setVisible(false);
+        pieRuleButton.setVisible(false);
         controller.reset();
     }
 
-    private void drawLetters(Graphics2D g) {
+    private void drawBoardReferences(Graphics2D g) {
         StringBuilder sb = new StringBuilder();
-        IntStream.range('A', 'Z').forEach(i -> {
-            sb.append((char) i);
-        });
+        IntStream.range('A', 'Z').forEach(i -> {sb.append((char) i);});
         for (int letterIdx = 0; letterIdx < 19; letterIdx++) {
             g.setColor(Color.black);
-            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()-10);
-            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-15, settings.getMargin()+settings.getCellSize()*letterIdx+3);
+            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()-13);
+            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()+settings.getWidth()+23);
+
+            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-20, settings.getMargin()+settings.getCellSize()*letterIdx+3);
+            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()+settings.getWidth()+13, settings.getMargin()+settings.getCellSize()*letterIdx+3);
         }
     }
 
@@ -267,22 +271,24 @@ public class BoardPanel extends JPanel {
     }
 
     public Status handleMouseClicked(Point node) {
-        Coordinates position = nodePxToPosition(closestNodeToPoint(node));
-        PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
-        if (controller.canPlace(position)) {
-            Status status = controller.place(piece);
-            switch (status.getCondition()) {
-                case PLACED: {
-                    pieces.add(piece);
-                    handlePieRuleButton();
-                    showSurrenderButton();
-                    highlightCurrentPlayerName();
-                    repaint();
-                    return status;
-                }
-                case WON: {
-                    pieces.add(piece);
-                    return status;
+        if (pointIsInMouseBorderLimits(node)) {
+            Coordinates position = nodePxToPosition(closestNodeToPoint(node));
+            PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
+            if (controller.canPlace(position)) {
+                Status status = controller.place(piece);
+                switch (status.getCondition()) {
+                    case PLACED: {
+                        pieces.add(piece);
+                        handlePieRuleButton();
+                        showSurrenderButton();
+                        highlightCurrentPlayerName();
+                        repaint();
+                        return status;
+                    }
+                    case WON: {
+                        pieces.add(piece);
+                        return status;
+                    }
                 }
             }
         }
@@ -290,17 +296,26 @@ public class BoardPanel extends JPanel {
     }
 
     public void handleMouseMoved(Point point) {
-        Point newPosition = closestNodeToPoint(point);
-        if (!newPosition.equals(getGhostPosition())) {
-            Coordinates position = nodePxToPosition(newPosition);
-            if (controller.canPlace(position)) {
-                ghostPosition = newPosition;
+        if (pointIsInMouseBorderLimits(point)) {
+            Point newPosition = closestNodeToPoint(point);
+            if (!newPosition.equals(getGhostPosition())) {
+                Coordinates position = nodePxToPosition(newPosition);
+                if (controller.canPlace(position)) {
+                    ghostPosition = newPosition;
+                }
+                else {
+                    ghostPosition = null;
+                }
+                repaint();
             }
-            else {
-                ghostPosition = null;
-            }
-            repaint();
         }
+    }
+
+    private boolean pointIsInMouseBorderLimits(Point point) {
+        if (settings.getMargin()-30<point.getX() && point.getX()<settings.getMargin()+settings.getWidth()+30 && settings.getMargin()-30<point.getY() && point.getY()<settings.getMargin()+settings.getWidth()+30) {
+            return true;
+        }
+        return false;
     }
 }
 
