@@ -20,9 +20,9 @@ public class BoardPanel extends JPanel {
     private JLabel player2NameLabel;
     private final JButton pieRuleButton;
     private final JButton surrenderButton;
+    private JLabel demoLabel;
     private final Color currentPlayerColor = new Color(119, 32, 41);
     private final ImageIcon background = new ImageIcon("Pictures/backgroundBoard.png");
-
     private boolean demoStatus = false;
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {
@@ -76,8 +76,12 @@ public class BoardPanel extends JPanel {
     void reset() {
         this.remove(player1NameLabel);
         this.remove(player2NameLabel);
+        if (demoStatus) {
+            this.remove(demoLabel);
+        }
         this.add(pieRuleButton);
         this.add(surrenderButton);
+        demoStatus = false;
         pieces.clear();
         controller.reset();
     }
@@ -245,8 +249,8 @@ public class BoardPanel extends JPanel {
         highlightCurrentPlayerName();
     }
 
-    void demoEnding() {
-        JLabel demoLabel = new JLabel("<html> Please insert the last piece on the board to end the game </html>");
+    void addDemoEndingLabel() {
+        demoLabel = new JLabel("<html> Please insert the last piece on the board to end the game </html>");
         demoLabel.setBounds(290, 600, 300, 60 );
         demoLabel.setForeground(Color.BLACK);
         demoLabel.setFont(new Font("Helvetica", Font.BOLD, 16));

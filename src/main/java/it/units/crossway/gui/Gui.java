@@ -57,7 +57,7 @@ public class Gui {
     private void setupFrame(String title, int x_location, int y_location) {
         frame.setTitle(title);
         frame.setResizable(false);
-        frame.setLocation(x_location, y_location);
+        frame.setLocationRelativeTo(null);
     }
 
     private void resetGame() {
@@ -125,8 +125,7 @@ public class Gui {
                     click(boardPanel, 75+rows[i]*26, 75 +cols[i]*26);
                 }
 
-                boardPanel.demoEnding();
-
+                boardPanel.addDemoEndingLabel();
                 return null;
             }
         };
