@@ -4,13 +4,13 @@
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 ## Authors: R. Tolloi, M. Corsano, and G. Bernardi
 ### About this repository
-This repository contains the project for the Software Development exam, A.A. 2021/2022.
+This repository contains the project for the Software Development exam, A.Y. 2021/2022.
 It is an implementation of the game Crossway in Java comprehensive of a Graphic 
 User Interface.
 
 This project was developed following the principles of AGILE software developing and
 Test Driven Developing. Every part of the code was written on IntelliJ and GitHub was
-used as a version control system. Gradle was instead use for the testing.
+used as a version control system. Gradle was instead used for the testing.
 
 ### Rules of the game   
 Crossway is a 2-players game played on a 19x19 board that starts
@@ -47,8 +47,6 @@ one for the white player, and to form a contiguous sequence of
 black stones connecting the top edge of the board to the bottom
 one for the black player.
 
-INSERIRE IMMAGINE PARTITA VINTA
-
 When it is their turn, the player can place the piece wherever 
 they prefer on the board; the only conditions are that the 
 chosen position is not already occupied by another piece and that
@@ -65,6 +63,64 @@ If no possible placements are allowed for a player, they will
 skip their turn and the opponent will continue to place their
 pieces until victory.
 
+An "I give up" button is available to the players. 
+
+A "Play demo" button is also present in the initial screen; if
+it is clicked, a demonstration of the game will start.
+
+
+### Structure of the project
+The package "it.units.crossway" Java package is divided in five Java packages.
+
+1. The "controller" package contains all the classes that control the
+correct flow of the game. It contains classes:
+ * GameController, which controls the
+execution of the game. It implements Controller.
+ * Player, which is the player with their id, name, and colour.
+ * Status, which controls the condition of the current piece.
+ * WinRuler, which checks if a player has won.
+ * Condition, which is an enum having values PLACED (the piece was 
+ correctly placed), NOT PLACED (the piece was not correctly placed),
+ and WON (the piece was correctly placed and it is the winning piece.
+ for the current player)
+ * Controller, which is an interface.
+ 
+2. The "gui" package contains all the classes related to the GUI.
+It contains:
+ * BoardPanel, which is the JPanel used to represent the board.
+ * BoardPanelSettings, which is used to access the parameters of  
+ BoardPanel.
+ * Gui, which controls the GUI part of the program, setting up the frame and
+ all the different panels. It also has all the listeners, controlling the 
+ interaction with the user.
+ * PieceGui, which is used by the GUI to draw the piece.
+ * StartingPanel, which is the intial JPanel asking for the players' names
+ and colours. It also allows the player to choose to watch the demo.
+ * WinnerPanel, which is the JPanel that is showed when a player wins. It
+ has a button "Rematch" which restarts the game.
+ 
+3. The "launcher" package contains the necessities to launch the game.
+It contains:
+ * Config, which contains all the constants.
+ * Main, which is used to launch the game.
+
+4. The "model" package contains the logic of the game. It contains:
+ * Board, which is the board implemented as a matrix of nodes.
+ * Coordinates, which implements the coordinates of the nodes on the
+ board.
+ * Node, which is where pieces are placed.
+ * Piece
+ * Direction, which is an enum containing the different diagonal directions
+ NORTH_EAST, NORTH_WEST, SOUTH_EAST, and SOUTH_WEST.
+
+5. The "utilities" package contains classes that are useful to the logic of 
+the game, but are not effectively part of it. It contains:
+* Graph, which implements an undirected graph (possibly cyclic).
+* Vertex, which implements the vertex of the graph.
+ 
+All the pictures (background and readme pictures) are contained in the
+Pictures folder outside of the package.
+ 
 ### Suggestions for running the project
 Per runnare i test fai tasto destro Run with coverage sulla
 cartella dei test e scegli quella di IntelliJ non Gradle.   
