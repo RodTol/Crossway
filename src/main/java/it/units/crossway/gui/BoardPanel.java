@@ -86,11 +86,11 @@ public class BoardPanel extends JPanel {
         IntStream.range('A', 'Z').forEach(i -> {sb.append((char) i);});
         for (int letterIdx = 0; letterIdx < 19; letterIdx++) {
             g.setColor(Color.black);
-            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()-10);
-            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()+settings.getWidth()+20);
+            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()-13);
+            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()+settings.getWidth()+23);
 
-            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-15, settings.getMargin()+settings.getCellSize()*letterIdx+3);
-            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()+settings.getWidth()+10, settings.getMargin()+settings.getCellSize()*letterIdx+3);
+            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-20, settings.getMargin()+settings.getCellSize()*letterIdx+3);
+            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()+settings.getWidth()+13, settings.getMargin()+settings.getCellSize()*letterIdx+3);
         }
     }
 
@@ -284,7 +284,6 @@ public class BoardPanel extends JPanel {
                 repaint();
             }
         }
-
     }
 
     private boolean pointIsInMouseBorderLimits(Point point) {
