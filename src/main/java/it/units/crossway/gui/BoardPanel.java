@@ -1,6 +1,4 @@
 package it.units.crossway.gui;
-
-import it.units.crossway.controller.Condition;
 import it.units.crossway.controller.Status;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.model.Coordinates;
@@ -314,10 +312,12 @@ public class BoardPanel extends JPanel {
     }
 
     private boolean pointIsInMouseBorderLimits(Point point) {
-        if (settings.getMargin()-30<point.getX() && point.getX()<settings.getWidth()+30-settings.getMargin() && settings.getMargin()-30<point.getY() && point.getY()<settings.getHeight()+30-settings.getMargin()-settings.getExtraHeight()) {
+        if (settings.getMargin()-30<point.getX() && point.getX()<settings.getWidth()+30-settings.getMargin()
+                && settings.getMargin()-30<point.getY() &&
+                point.getY()<settings.getHeight()+30-settings.getMargin()-settings.getExtraHeight()) {
             return true;
         }
-        return true;
+        return false;
     }
 }
 
