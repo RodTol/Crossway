@@ -5,12 +5,18 @@ public class BoardPanelSettings {
     private final int height;
     private final int width;
     private final int cellSize;
+    private final int backgroundPositionX;
+    private final int backgroundPositionY;
+    private final int extraHeight = 75;
 
     public BoardPanelSettings(int boardMargin, int boardHeight, int boardWidth, int cellSize) {
         this.margin = boardMargin;
-        this.height = boardHeight;
-        this.width = boardWidth;
+        this.height = boardHeight + 2*boardMargin + extraHeight ;
+        this.width = boardWidth + 2*boardMargin;
         this.cellSize = cellSize;
+        this.backgroundPositionX = margin-40;
+        this.backgroundPositionY = margin-40;
+
     }
 
     public int getMargin() {
@@ -28,4 +34,13 @@ public class BoardPanelSettings {
     public int getCellSize() {
         return cellSize;
     }
+    public int getBackgroundPositionX() {
+        return backgroundPositionX;
+    }
+
+    public int getBackgroundPositionY() {
+        return backgroundPositionY;
+    }
+
+    public int getExtraHeight() {return  extraHeight; }
 }

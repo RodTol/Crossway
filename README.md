@@ -4,13 +4,15 @@
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 ## Authors: R. Tolloi, M. Corsano, and G. Bernardi
 ### About this repository
+ADD VERSION OF SOFTWARE USED 
 This repository contains the project for the Software Development exam, A.Y. 2021/2022.
 It is an implementation of the game Crossway in Java comprehensive of a Graphic 
 User Interface.
 
 This project was developed following the principles of AGILE software developing and
 Test Driven Developing. Every part of the code was written on IntelliJ and GitHub was
-used as a version control system. Gradle was instead used for the testing.
+used as a version control system. Gradle was instead used for the testing and CircleCI for
+Continuous Integration.
 
 ### Rules of the game   
 Crossway is a 2-players game played on a 19x19 board that starts
@@ -26,7 +28,8 @@ turn.
 When the white player begins their first turn, they will have 
 two options:
 * placing a white piece wherever they prefer
-* stealing the black piece already placed on the board
+* calling the "Pie Rule", which means stealing the black piece
+already placed on the board
 
 If the second option is chosen, the players will effectively
 switch colours, and then the game will go on normally.
@@ -63,7 +66,7 @@ If no possible placements are allowed for a player, they will
 skip their turn and the opponent will continue to place their
 pieces until victory.
 
-An "I give up" button is available to the players. 
+An "I give up" button is available to the players after the second turn. 
 
 A "Play demo" button is also present in the initial screen; if
 it is clicked, a demonstration of the game will start.
@@ -80,7 +83,7 @@ execution of the game. It implements Controller.
  * Status, which controls the condition of the current piece.
  * WinRuler, which checks if a player has won.
  * Condition, which is an enum having values PLACED (the piece was 
- correctly placed), NOT PLACED (the piece was not correctly placed),
+ correctly placed), NOT PLACED (it was impossible to correctly place the piece),
  and WON (the piece was correctly placed and it is the winning piece.
  for the current player)
  * Controller, which is an interface.
@@ -88,8 +91,7 @@ execution of the game. It implements Controller.
 2. The "gui" package contains all the classes related to the GUI.
 It contains:
  * BoardPanel, which is the JPanel used to represent the board.
- * BoardPanelSettings, which is used to access the parameters of  
- BoardPanel.
+ * BoardPanelSettings, which is used to access the parameters of BoardPanel.
  * Gui, which controls the GUI part of the program, setting up the frame and
  all the different panels. It also has all the listeners, controlling the 
  interaction with the user.
@@ -122,7 +124,4 @@ All the pictures (background and readme pictures) are contained in the
 Pictures folder outside of the package.
  
 ### Suggestions for running the project
-Per runnare i test fai tasto destro Run with coverage sulla
-cartella dei test e scegli quella di IntelliJ non Gradle.   
-Oppure, in alto scegli la suite  (a sx del run button) con IntelliJ e la cartella che vuoi
-e poi clicca il run button con lo scudo
+

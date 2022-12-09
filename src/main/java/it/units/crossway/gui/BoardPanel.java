@@ -1,5 +1,6 @@
 package it.units.crossway.gui;
 
+import it.units.crossway.controller.Condition;
 import it.units.crossway.controller.Status;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.model.Coordinates;
@@ -40,7 +41,7 @@ public class BoardPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(settings.getWidth()+2*settings.getMargin(), settings.getHeight()+2*settings.getMargin()+75);
+        return new Dimension(settings.getWidth(), settings.getHeight());
     }
 
     /*Method to draw the lines*/
@@ -49,7 +50,7 @@ public class BoardPanel extends JPanel {
 
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(background.getImage(), settings.getMargin()-40,settings.getMargin()-40,null);
+        g2d.drawImage(background.getImage(), settings.getBackgroundPositionX(),settings.getBackgroundPositionY(),null);
         g2d.setColor(Color.BLACK);
         g2d.setStroke(new BasicStroke(1.5f));
         drawVerticalLines(g2d);
@@ -95,22 +96,22 @@ public class BoardPanel extends JPanel {
         for (int letterIdx = 0; letterIdx < 19; letterIdx++) {
             g.setColor(Color.black);
             g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()-13);
-            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getMargin()+settings.getWidth()+23);
+            g.drawString(String.valueOf(letterIdx), settings.getMargin()+settings.getCellSize()*letterIdx-5, settings.getWidth()+23 - settings.getMargin());
 
             g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()-20, settings.getMargin()+settings.getCellSize()*letterIdx+3);
-            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getMargin()+settings.getWidth()+13, settings.getMargin()+settings.getCellSize()*letterIdx+3);
+            g.drawString(String.valueOf(sb.charAt(letterIdx)), settings.getWidth()+13 - settings.getMargin(), settings.getMargin()+settings.getCellSize()*letterIdx+3);
         }
     }
 
     private void drawVerticalLines(Graphics2D g) {
-        for (int x = settings.getMargin(); x < settings.getWidth()+settings.getMargin()+settings.getCellSize(); x += settings.getCellSize()) {
-            g.drawLine(x, settings.getMargin(), x, settings.getHeight()+settings.getMargin());
+        for (int x = settings.getMargin(); x < settings.getWidth()-settings.getMargin()+settings.getCellSize(); x += settings.getCellSize()) {
+            g.drawLine(x, settings.getMargin(), x, settings.getHeight()-settings.getMargin()-settings.getExtraHeight());
         }
     }
 
     private void drawHorizontalLines(Graphics2D g) {
-        for (int y = settings.getMargin(); y < settings.getHeight()+settings.getMargin()+settings.getCellSize(); y += settings.getCellSize()) {
-            g.drawLine(settings.getMargin(), y, settings.getWidth()+settings.getMargin(), y);
+        for (int y = settings.getMargin(); y < settings.getHeight()-settings.getMargin()+settings.getCellSize()-settings.getExtraHeight(); y += settings.getCellSize()) {
+            g.drawLine(settings.getMargin(), y, settings.getWidth()-settings.getMargin(), y);
         }
     }
 
@@ -194,7 +195,7 @@ public class BoardPanel extends JPanel {
      * for the x-axis. Package private*/
     ArrayList<Integer> getXNodePositions() {
         ArrayList<Integer> XNodePos = new ArrayList<>();
-        for (int x=settings.getMargin(); x<=settings.getWidth()+settings.getMargin(); x+=settings.getCellSize()) {
+        for (int x=settings.getMargin(); x<=settings.getWidth()-settings.getMargin(); x+=settings.getCellSize()) {
             XNodePos.add(x);
         }
         return XNodePos;
@@ -203,7 +204,7 @@ public class BoardPanel extends JPanel {
      * for the y-axis. Package private*/
     ArrayList<Integer> getYNodePositions() {
         ArrayList<Integer> YNodePos = new ArrayList<>();
-        for (int y=settings.getMargin(); y<= settings.getHeight()+settings.getMargin(); y+=settings.getCellSize()) {
+        for (int y=settings.getMargin(); y<= settings.getHeight()-settings.getMargin()- settings.getExtraHeight(); y+=settings.getCellSize()) {
             YNodePos.add(y);
         }
         return YNodePos;
@@ -251,6 +252,7 @@ public class BoardPanel extends JPanel {
     public void callPieRule() {
         controller.applyPieRule();
         highlightCurrentPlayerName();
+        repaint();
     }
 
     void addDemoEndingLabel() {
@@ -312,10 +314,10 @@ public class BoardPanel extends JPanel {
     }
 
     private boolean pointIsInMouseBorderLimits(Point point) {
-        if (settings.getMargin()-30<point.getX() && point.getX()<settings.getMargin()+settings.getWidth()+30 && settings.getMargin()-30<point.getY() && point.getY()<settings.getMargin()+settings.getWidth()+30) {
+        if (settings.getMargin()-30<point.getX() && point.getX()<settings.getWidth()+30-settings.getMargin() && settings.getMargin()-30<point.getY() && point.getY()<settings.getHeight()+30-settings.getMargin()-settings.getExtraHeight()) {
             return true;
         }
-        return false;
+        return true;
     }
 }
 
