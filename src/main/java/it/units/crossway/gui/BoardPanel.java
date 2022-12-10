@@ -271,9 +271,9 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    public Condition handleMouseClicked(Point node) {
-        if (pointIsInMouseBorderLimits(node)) {
-            Coordinates position = nodePxToPosition(closestNodeToPoint(node));
+    public Condition handleMouseClicked(Point point) {
+        if (pointIsInMouseBorderLimits(point)) {
+            Coordinates position = nodePxToPosition(closestNodeToPoint(point));
             PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
             if (controller.canPlace(position)) {
                 Condition condition = controller.place(piece);
