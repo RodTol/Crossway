@@ -21,7 +21,7 @@ public class BoardPanel extends JPanel {
     private final JButton surrenderButton;
     private JLabel demoLabel;
     private final Color currentPlayerColor = new Color(119, 32, 41);
-    private final ImageIcon background = new ImageIcon("Pictures/backgroundBoard.png");
+    private final ImageIcon background = new ImageIcon("src/main/java/it/units/crossway/gui/backgroundBoard.png");
     private boolean demoStatus = false;
 
     public BoardPanel(Controller controller, BoardPanelSettings settings) {

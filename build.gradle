@@ -3,8 +3,12 @@ plugins {
     id 'com.adarshr.test-logger' version '3.2.0'
 }
 
-group 'dssc.exam'
-version '1.0-SNAPSHOT'
+group 'it.units.crossway'
+version 'Final'
+
+application {
+    mainClass = 'it.units.crossway.launcher.Main'
+}
 
 repositories {
     mavenCentral()
@@ -24,11 +28,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-
-application {
-    mainClass = 'it.units.crossway.launcher.Main'
 }
 
 testlogger {
