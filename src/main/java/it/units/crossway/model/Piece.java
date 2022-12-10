@@ -10,7 +10,7 @@ public class Piece {
         this.color = color;
     }
 
-    public Color getColor() {
+    Color getColor() {
         return color;
     }
 

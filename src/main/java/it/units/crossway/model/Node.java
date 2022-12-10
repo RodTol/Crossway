@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 public class Node {
     private Piece piece;
 
-    public Node() {
+    Node() {
         piece = null;
     }
 
@@ -13,7 +13,7 @@ public class Node {
         return piece;
     }
 
-    public void setPiece(Piece piece) {
+    void setPiece(Piece piece) {
         this.piece = piece;
     }
 
