@@ -1,5 +1,5 @@
 package it.units.crossway.gui;
-import it.units.crossway.controller.Status;
+import it.units.crossway.controller.Condition;
 import it.units.crossway.controller.Controller;
 import it.units.crossway.model.Coordinates;
 
@@ -174,9 +174,9 @@ public class BoardPanel extends JPanel {
             surrenderButton.setVisible(true);
         }
     }
-    Status handleSurrender() {
+    Condition handleSurrender() {
         controller.changeTurnSurrender();
-        return Status.won();
+        return Condition.WON;
     }
 
     private void highlightCurrentPlayerName(){
@@ -271,29 +271,29 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    public Status handleMouseClicked(Point node) {
+    public Condition handleMouseClicked(Point node) {
         if (pointIsInMouseBorderLimits(node)) {
             Coordinates position = nodePxToPosition(closestNodeToPoint(node));
             PieceGui piece = new PieceGui(controller.getCurrentPlayer().getColor(), position);
             if (controller.canPlace(position)) {
-                Status status = controller.place(piece);
-                switch (status.getCondition()) {
+                Condition condition = controller.place(piece);
+                switch (condition) {
                     case PLACED: {
                         pieces.add(piece);
                         handlePieRuleButton();
                         showSurrenderButton();
                         highlightCurrentPlayerName();
                         repaint();
-                        return status;
+                        return condition;
                     }
                     case WON: {
                         pieces.add(piece);
-                        return status;
+                        return condition;
                     }
                 }
             }
         }
-        return Status.not_placed();
+        return Condition.NOT_PLACED;
     }
 
     public void handleMouseMoved(Point point) {

@@ -84,16 +84,16 @@ public class GameController implements Controller {
     /*This method place a piece on the board from the input of the Gui. Then
      * checks if the Game is finished, and if it's the case can make something*/
     @Override
-    public Status place(PieceGui piece) {
+    public Condition place(PieceGui piece) {
         try {
             board.place(piece.getPosition(), new Piece(piece.getColor()));
         } catch (Exception e) {
-            return Status.not_placed();
+            return Condition.NOT_PLACED;
         }
         WinRuler winRuler = new WinRuler(board, piece.getColor());
         if (winRuler.check()) {
             System.out.println("GAME WON!");
-            return Status.won();
+            return Condition.WON;
         } else {
             String text = "Player " + getCurrentPlayer().getId() + " placed a " + getColorName(piece.getColor()) +
                     " piece at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n";
@@ -107,7 +107,7 @@ public class GameController implements Controller {
             }
 
             changeTurn();
-            return Status.placed();
+            return Condition.PLACED;
         }
 
     }

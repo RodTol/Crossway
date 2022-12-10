@@ -2,7 +2,6 @@ package it.units.crossway.gui;
 
 import it.units.crossway.controller.Condition;
 import it.units.crossway.controller.Controller;
-import it.units.crossway.controller.Status;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,7 +56,7 @@ public class Gui {
     private void setupFrame(String title, int x_location, int y_location) {
         frame.setTitle(title);
         frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
+        frame.setLocation(x_location, y_location);
     }
 
     private void resetGame() {
@@ -160,7 +159,7 @@ public class Gui {
     private class surrenderListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (boardPanel.handleSurrender().getCondition() ==  Condition.WON) {
+            if (boardPanel.handleSurrender() ==  Condition.WON) {
                 winnerPanel.setCongratulations();
                 cl.show(backgroundPanel, "3");
                 frame.pack();
@@ -183,8 +182,8 @@ public class Gui {
         @Override
         public void mouseClicked(MouseEvent e) {
             Point node = e.getPoint();
-            Status status = boardPanel.handleMouseClicked(node);
-            if (status.getCondition() == Condition.WON) {
+            Condition condition = boardPanel.handleMouseClicked(node);
+            if (condition == Condition.WON) {
                 winnerPanel.setCongratulations();
                 cl.show(backgroundPanel, "3");
                 frame.pack();

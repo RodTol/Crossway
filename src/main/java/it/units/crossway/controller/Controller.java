@@ -15,7 +15,7 @@ public interface Controller {
     void setNameBlackPlayer(String name);
 
     boolean canPlace(Coordinates position);
-    Status place(PieceGui piece);
+    Condition place(PieceGui piece);
 
     void reset();
     void applyPieRule();
