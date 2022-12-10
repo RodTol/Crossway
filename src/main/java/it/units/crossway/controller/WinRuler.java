@@ -10,16 +10,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class WinRuler {
+class WinRuler {
     private final Board board;
     private final Color color;
 
-    public WinRuler(Board board, Color color) {
+    WinRuler(Board board, Color color) {
         this.board = board;
         this.color = color;
     }
 
-    public boolean winCheck() {
+    boolean winCheck() {
         if (!minNofPieces()) {
             return false;
         }
