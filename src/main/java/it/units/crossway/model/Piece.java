@@ -14,6 +14,15 @@ public class Piece {
         return color;
     }
 
+    public static String colorToString(Color color) {
+        if (color.equals(Color.BLACK)) {
+            return "Black";
+        }
+        else {
+            return "White";
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Piece)) {

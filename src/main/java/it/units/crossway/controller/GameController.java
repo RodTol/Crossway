@@ -73,15 +73,6 @@ public class GameController implements Controller {
         return board.canPlace(position, new Piece(currentPlayer.getColor()));
     }
 
-    public static String getColorAsString(Color color) {
-       if (color.equals(Color.BLACK)) {
-           return "Black";
-       }
-       else {
-           return "White";
-       }
-    }
-
     /*This method place a piece on the board from the input of the Gui. Then
      * checks if the Game is finished, and if it's the case can make something*/
     @Override
@@ -96,7 +87,7 @@ public class GameController implements Controller {
             System.out.println("GAME WON!");
             return Condition.WON;
         } else {
-            String text = "Player " + getCurrentPlayer().getId() + " placed a " + getColorAsString(piece.getColor()) +
+            String text = "Player " + getCurrentPlayer().getId() + " placed a " + Piece.colorToString(piece.getColor()) +
                     " piece at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n";
 
             try {
