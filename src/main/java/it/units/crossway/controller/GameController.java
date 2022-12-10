@@ -73,8 +73,8 @@ public class GameController implements Controller {
         return board.canPlace(position, new Piece(currentPlayer.getColor()));
     }
 
-    /*This method place a piece on the board from the input of the Gui. Then
-     * checks if the Game is finished, and if it's the case can make something*/
+    /*This method places a piece on the board from the input of the Gui. Then
+     * checks if the Game is finished.*/
     @Override
     public Condition place(PieceGui piece) {
         try {
@@ -89,7 +89,6 @@ public class GameController implements Controller {
         } else {
             String text = "Player " + getCurrentPlayer().getId() + " placed a " + Piece.colorToString(piece.getColor()) +
                     " piece at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n";
-
             try {
                 FileWriter output = new FileWriter(log.getPath(), true);
                 output.write(text);
@@ -101,29 +100,29 @@ public class GameController implements Controller {
             changeTurn();
             return Condition.PLACED;
         }
-
     }
 
     @Override
-    public void reset() {
+    public void resetGame() {
         board.emptyBoard();
         currentPlayer = player1;
         player1.setColor(Color.BLACK);
         player2.setColor(Color.WHITE);
     }
 
-    private void changeTurn() {
-        switchCurrentPlayer();
-        if (!atLeastOnePlacement()){
-            changeTurn();
-        }
-    }
     @Override
     public void switchCurrentPlayer() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
         } else {
             currentPlayer = player1;
+        }
+    }
+
+    private void changeTurn() {
+        switchCurrentPlayer();
+        if (!atLeastOnePlacement()){
+            changeTurn();
         }
     }
 

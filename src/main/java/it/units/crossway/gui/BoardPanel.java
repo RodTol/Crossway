@@ -86,7 +86,7 @@ public class BoardPanel extends JPanel {
         pieces.clear();
         surrenderButton.setVisible(false);
         pieRuleButton.setVisible(false);
-        controller.reset();
+        controller.resetGame();
     }
 
     private void drawBoardReferences(Graphics2D g) {

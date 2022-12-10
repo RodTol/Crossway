@@ -19,7 +19,7 @@ public interface Controller {
 
     void applyPieRule();
 
-    void reset();
+    void resetGame();
 
 
 }
