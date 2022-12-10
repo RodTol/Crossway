@@ -175,7 +175,7 @@ public class BoardPanel extends JPanel {
         }
     }
     Condition handleSurrender() {
-        controller.changeTurnSurrender();
+        controller.switchCurrentPlayer();
         return Condition.WON;
     }
 

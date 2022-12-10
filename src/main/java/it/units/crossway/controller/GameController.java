@@ -121,17 +121,13 @@ public class GameController implements Controller {
     }
 
     private void changeTurn() {
-        if (currentPlayer == player1) {
-            currentPlayer = player2;
-        } else {
-            currentPlayer = player1;
-        }
+        switchCurrentPlayer();
         if (!atLeastOnePlacement()){
             changeTurn();
         }
     }
     @Override
-    public void changeTurnSurrender() {
+    public void switchCurrentPlayer() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
         } else {
