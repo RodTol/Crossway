@@ -83,7 +83,7 @@ public class GameController implements Controller {
             return Condition.NOT_PLACED;
         }
         WinRuler winRuler = new WinRuler(board, piece.getColor());
-        if (winRuler.check()) {
+        if (winRuler.winCheck()) {
             System.out.println("GAME WON!");
             return Condition.WON;
         } else {

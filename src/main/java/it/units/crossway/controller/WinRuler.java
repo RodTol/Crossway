@@ -19,15 +19,14 @@ public class WinRuler {
         this.color = color;
     }
 
-    public boolean check() {
+    public boolean winCheck() {
         if (!minNofPieces()) {
             return false;
         }
-
         if (color.equals(Color.BLACK)) {
-            return blackCheck();
+            return blackVictoryCheck();
         } else {
-            return whiteCheck();
+            return whiteVictoryCheck();
         }
     }
 
@@ -35,8 +34,7 @@ public class WinRuler {
         return board.numOfPlacedPiecesWithColor(color) >= board.getNodes().length;
     }
 
-    @SuppressWarnings("SimplifyStreamApiCallChains")
-    boolean blackCheck() {
+    boolean blackVictoryCheck() {
         for (int i = 0; i < board.getNodes().length; i++) {
             if (!board.hasAtLeastOneOfColorInRow(i, color)) {
                 return false;
@@ -62,8 +60,7 @@ public class WinRuler {
         return false;
     }
 
-    @SuppressWarnings("SimplifyStreamApiCallChains")
-    boolean whiteCheck() {
+    boolean whiteVictoryCheck() {
         for (int i = 0; i < board.getNodes().length; i++) {
             if (!board.hasAtLeastOneOfColorInColumn(i, color)) {
                 return false;
