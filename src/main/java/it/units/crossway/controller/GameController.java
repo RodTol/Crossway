@@ -43,19 +43,7 @@ public class GameController implements Controller {
     }
 
     @Override
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-    @Override
     public Board getBoard() {return board;}
-    @Override
-    public void setNameWhitePlayer(String name) {
-        this.player2.setName(name);
-    }
-    @Override
-    public void setNameBlackPlayer(String name) {
-        this.player1.setName(name);
-    }
     @Override
     public Player getPlayer1() {
         return player1;
@@ -64,6 +52,19 @@ public class GameController implements Controller {
     public Player getPlayer2() {
         return player2;
     }
+    @Override
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+    @Override
+    public void setNameWhitePlayer(String name) {
+        this.player2.setName(name);
+    }
+    @Override
+    public void setNameBlackPlayer(String name) {
+        this.player1.setName(name);
+    }
+
 
     /*This method asks the board if a position is playable
     * for a piece*/
@@ -72,7 +73,7 @@ public class GameController implements Controller {
         return board.canPlace(position, new Piece(currentPlayer.getColor()));
     }
 
-    public static String getColorName(Color color) {
+    public static String getColorAsString(Color color) {
        if (color.equals(Color.BLACK)) {
            return "Black";
        }
@@ -95,7 +96,7 @@ public class GameController implements Controller {
             System.out.println("GAME WON!");
             return Condition.WON;
         } else {
-            String text = "Player " + getCurrentPlayer().getId() + " placed a " + getColorName(piece.getColor()) +
+            String text = "Player " + getCurrentPlayer().getId() + " placed a " + getColorAsString(piece.getColor()) +
                     " piece at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n";
 
             try {
