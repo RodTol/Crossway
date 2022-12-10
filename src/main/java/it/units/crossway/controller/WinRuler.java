@@ -32,20 +32,20 @@ public class WinRuler {
     }
 
     boolean minNofPieces() {
-        return board.NumbOfPieces(color) >= board.getNodes().length;
+        return board.numOfPlacedPiecesWithColor(color) >= board.getNodes().length;
     }
 
     @SuppressWarnings("SimplifyStreamApiCallChains")
     boolean blackCheck() {
         for (int i = 0; i < board.getNodes().length; i++) {
-            if (!board.hasAtLeastOneInRow(i, color)) {
+            if (!board.hasAtLeastOneOfColorInRow(i, color)) {
                 return false;
             }
         }
 
         Graph graph = board.toGraph(color);
         ArrayList<Coordinates> startingVertices;
-        startingVertices = board.piecesInRow(0,color);
+        startingVertices = board.piecesInRowWithColor(0,color);
 
         for (Coordinates coordinates : startingVertices) {
             Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);
@@ -65,14 +65,14 @@ public class WinRuler {
     @SuppressWarnings("SimplifyStreamApiCallChains")
     boolean whiteCheck() {
         for (int i = 0; i < board.getNodes().length; i++) {
-            if (!board.hasAtLeastOneInColumn(i, color)) {
+            if (!board.hasAtLeastOneOfColorInColumn(i, color)) {
                 return false;
             }
         }
 
         Graph graph = board.toGraph(color);
         ArrayList<Coordinates> startingVertices;
-        startingVertices = board.piecesInColumn(0,color);
+        startingVertices = board.piecesInColumnWithColor(0,color);
 
         for (Coordinates coordinates : startingVertices) {
             Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);

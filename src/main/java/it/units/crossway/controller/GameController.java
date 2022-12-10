@@ -114,7 +114,7 @@ public class GameController implements Controller {
 
     @Override
     public void reset() {
-        board.reset();
+        board.emptyBoard();
         currentPlayer = player1;
         player1.setColor(Color.BLACK);
         player2.setColor(Color.WHITE);

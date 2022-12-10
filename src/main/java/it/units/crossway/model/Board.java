@@ -5,11 +5,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Board {
-
-    /*Matrix of Nodes*/
     private final Node[][] nodes;
 
-    /*If we want we can use streams*/
     public Board(int nRows, int nColumns) {
         nodes = new Node[nRows][nColumns];
         for (int r = 0; r < nRows; r++) {
@@ -25,8 +22,7 @@ public class Board {
 
     public Node getNode(Coordinates c) {return nodes[c.getRow()][c.getColumn()];}
 
-
-    public int NumbOfPieces (Color color) {
+    public int numOfPlacedPiecesWithColor(Color color) {
         int total = 0;
         for (Node[] row : nodes) {
             for (int c = 0; c < nodes.length; c++) {
@@ -38,7 +34,7 @@ public class Board {
         return total;
     }
 
-    public ArrayList<Coordinates> piecesInRow(int index, Color color) {
+    public ArrayList<Coordinates> piecesInRowWithColor(int index, Color color) {
         ArrayList<Coordinates> pieces = new ArrayList<>();
         for (int i = 0; i < nodes[index].length; i++) {
             if (nodes[index][i].getPiece() != null &&
@@ -49,7 +45,7 @@ public class Board {
         return pieces;
     }
 
-    public ArrayList<Coordinates> piecesInColumn(int index, Color color) {
+    public ArrayList<Coordinates> piecesInColumnWithColor(int index, Color color) {
         Node[] column = new Node[nodes.length];
         for (int i = 0; i < nodes[0].length; i++) {
             column[i] = nodes[i][index];
@@ -65,7 +61,7 @@ public class Board {
         return pieces;
     }
 
-    public boolean hasAtLeastOneInRow(int index, Color color) {
+    public boolean hasAtLeastOneOfColorInRow(int index, Color color) {
         for (Node node : nodes[index] ) {
             if (node.getPiece() != null && node.getPiece().getColor().equals(color)) {
                 return true;
@@ -74,7 +70,7 @@ public class Board {
         return false;
     }
 
-    public boolean hasAtLeastOneInColumn(int index, Color color) {
+    public boolean hasAtLeastOneOfColorInColumn(int index, Color color) {
         Node[] column = new Node[nodes.length];
         for (int i = 0; i < nodes.length; i++) {
             column[i] = nodes[i][index];
@@ -88,9 +84,6 @@ public class Board {
         return false;
     }
 
-    /*The board can decide if a piece can be placed upon itself
-    * but not if is a winner piece because that's a more abstracted
-    * concept. So we make that part of the GameController*/
     public boolean canPlace(Coordinates coordinates, Piece piece) {
         Color playerColor = piece.getColor();
         if (!getNode(coordinates).isNodeEmpty()) {
@@ -98,8 +91,8 @@ public class Board {
         }
 
         for (Direction dir : Direction.values()) {
-            if ( diagonalCheck(coordinates, playerColor, dir)) {
-                if ( orthogonalCheck(coordinates, playerColor, dir) ) {
+            if ( sameColorPieceOnDiagonal(coordinates, playerColor, dir)) {
+                if ( differentColorPiecesOnOrthogonal(coordinates, playerColor, dir) ) {
                     return false;
                 }
             }
@@ -107,7 +100,7 @@ public class Board {
         return true;
     }
 
-    private boolean isOnCornerBorderOfBoard(Coordinates coordinates, Direction direction) throws RuntimeException{
+    private boolean isOnDirectionSides(Coordinates coordinates, Direction direction) throws RuntimeException {
         switch (direction) {
             case NORTH_WEST: {
                 return coordinates.getRow()==0 || coordinates.getColumn()==0;
@@ -125,13 +118,13 @@ public class Board {
         throw new RuntimeException();
     }
 
-    private boolean diagonalCheck(Coordinates coordinates, Color playerColor, Direction dir) {
-        return  !isOnCornerBorderOfBoard(coordinates, dir) &&
+    private boolean sameColorPieceOnDiagonal(Coordinates coordinates, Color playerColor, Direction dir) {
+        return  !isOnDirectionSides(coordinates, dir) &&
                 !getNode(coordinates.getDiagonalNeighbour(dir)).isNodeEmpty() &&
                 getNode(coordinates.getDiagonalNeighbour(dir)).getPiece().getColor() == playerColor;
     }
 
-    private boolean orthogonalCheck(Coordinates coordinates, Color playerColor, Direction dir) {
+    private boolean differentColorPiecesOnOrthogonal(Coordinates coordinates, Color playerColor, Direction dir) {
         return  !getNode(coordinates.getVerticalNeighbour(dir)).isNodeEmpty() &&
                 !getNode(coordinates.getHorizontalNeighbour(dir)).isNodeEmpty() &&
                 getNode(coordinates.getHorizontalNeighbour(dir)).getPiece().getColor() != playerColor &&
@@ -156,7 +149,7 @@ public class Board {
         return graph;
     }
 
-    public void reset() {
+    public void emptyBoard() {
         for (Node[] row : nodes) {
             for (Node node: row) {
                 node.setPiece(null);

@@ -21,7 +21,6 @@ public class Coordinates {
         return column;
     }
 
-    /*Da decidere di chi sarà*/
     public boolean isNeighbour(Coordinates other) {
         if (Math.abs(other.row - this.row) < 2 && Math.abs(other.column - this.column) < 2) {
             return !this.equals(other);
