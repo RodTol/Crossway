@@ -38,7 +38,7 @@ public class Player {
                 .toHashCode();
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
 

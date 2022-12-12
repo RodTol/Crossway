@@ -27,19 +27,17 @@ public class GameController implements Controller {
         try {
             log = new File("log.txt");
             if (log.createNewFile()) {
-                System.out.println("File created: " + log.getName());
+                System.out.println("Log created: " + log.getName());
             } else {
                 PrintWriter writer = new PrintWriter(log);
                 writer.print("");
                 writer.close();
-                System.out.println("File already exists.");
+                System.out.println("File log.txt already exists.");
             }
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred during the creation/access to the file.");
             e.printStackTrace();
         }
-
-        System.out.println("Game Starts!");
     }
 
     @Override
@@ -84,7 +82,7 @@ public class GameController implements Controller {
         }
         WinRuler winRuler = new WinRuler(board, piece.getColor());
         if (winRuler.winCheck()) {
-            System.out.println("GAME WON!");
+            System.out.println("Game Won!");
             return Condition.WON;
         } else {
             String text = "Player " + getCurrentPlayer().getId() + " placed a " + Piece.colorToString(piece.getColor()) +
