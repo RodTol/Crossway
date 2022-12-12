@@ -10,7 +10,7 @@ public class Player {
     private Color color;
     private String name;
 
-    public Player(int id, Color color) {
+    Player(int id, Color color) {
         this.id = id;
         this.color = color;
     }
@@ -38,7 +38,7 @@ public class Player {
                 .toHashCode();
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
@@ -50,11 +50,11 @@ public class Player {
         return name;
     }
 
-    public void setColor(Color color) {
+    void setColor(Color color) {
         this.color = color;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
