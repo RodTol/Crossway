@@ -7,7 +7,8 @@ public class BoardPanelSettings {
     private final int cellSize;
     private final int backgroundPositionX;
     private final int backgroundPositionY;
-    private final int extraHeight = 75;
+    private static final int extraHeight = 75;
+    private static final int PIECE_SIZE = 20;
 
     public BoardPanelSettings(int boardMargin, int boardHeight, int boardWidth, int cellSize) {
         this.margin = boardMargin;
@@ -22,25 +23,21 @@ public class BoardPanelSettings {
     public int getMargin() {
         return margin;
     }
-
     public int getHeight() {
         return height;
     }
-
     public int getWidth() {
         return width;
     }
-
     public int getCellSize() {
         return cellSize;
     }
     public int getBackgroundPositionX() {
         return backgroundPositionX;
     }
-
     public int getBackgroundPositionY() {
         return backgroundPositionY;
     }
-
     public int getExtraHeight() {return  extraHeight; }
+    public int getPieceSize() {return PIECE_SIZE; }
 }

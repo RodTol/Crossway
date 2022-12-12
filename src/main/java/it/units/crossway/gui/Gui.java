@@ -101,7 +101,7 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (startingPanel.handleLetSPlay()) {
-                boardPanel.drawNames();
+                boardPanel.drawNamesLabel();
                 cl.show(backgroundPanel, "2");
                 setupFrame("Crossway", 0, 0);
                 frame.pack();
@@ -140,7 +140,7 @@ public class Gui {
         SwingWorker sw1 = new SwingWorker() {
             @Override
             protected Object doInBackground() {
-                boardPanel.drawNames();
+                boardPanel.drawNamesLabel();
                 cl.show(backgroundPanel, "2");
                 setupFrame("Crossway", 0, 0);
                 frame.pack();
@@ -186,7 +186,7 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Pie Rule Button pressed!");
-            boardPanel.callPieRule();
+            boardPanel.handlePieRuleButton();
             boardPanel.getPieRuleButton().setVisible(false);
         }
     }
@@ -194,7 +194,7 @@ public class Gui {
     private class SurrenderListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (boardPanel.handleSurrender() ==  Condition.WON) {
+            if (boardPanel.handleSurrenderButton() ==  Condition.WON) {
                 winnerPanel.setCongratulations();
                 cl.show(backgroundPanel, "3");
                 frame.pack();
