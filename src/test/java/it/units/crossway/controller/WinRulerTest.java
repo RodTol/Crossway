@@ -19,7 +19,6 @@ class WinRulerTest {
 
     WinRuler winRuler;
     Board board;
-    /*Come faccio a fare il test sui due colori?*/
     Color color;
 
     @BeforeEach
@@ -45,7 +44,7 @@ class WinRulerTest {
     }
 
     @Test
-    @DisplayName("Black Test")
+    @DisplayName("Black win check Test")
     void blackTest()
     {
         color = Color.BLACK;
@@ -59,7 +58,7 @@ class WinRulerTest {
     }
 
     @Test
-    @DisplayName("White Test")
+    @DisplayName("White win check Test")
     void whiteTest()
     {
         color = Color.WHITE;
@@ -74,13 +73,15 @@ class WinRulerTest {
 
 
     @ParameterizedTest
-    @DisplayName("Win check")
+    @DisplayName("Generic case of win check")
     @ValueSource(booleans = {true,false})
     void winTest(boolean input) {
 
         if (input) {
+            System.out.println("Black pieces");
             color = BLACK;
         } else  {
+            System.out.println("White pieces");
             color = WHITE;
         }
 

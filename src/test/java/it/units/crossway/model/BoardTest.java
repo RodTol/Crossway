@@ -101,8 +101,10 @@ public class BoardTest {
         };
         Color color;
         if (input) {
+            System.out.println("Black pieces");
             color = BLACK;
         } else  {
+            System.out.println("White pieces");
             color = WHITE;
         }
 
@@ -122,8 +124,10 @@ public class BoardTest {
         };
         Color color;
         if (input) {
+            System.out.println("Black pieces");
             color = BLACK;
         } else  {
+            System.out.println("White pieces");
             color = WHITE;
         }
 
@@ -144,8 +148,10 @@ public class BoardTest {
         };
         Color color;
         if (input) {
+            System.out.println("Black pieces");
             color = BLACK;
         } else  {
+            System.out.println("White pieces");
             color = WHITE;
         }
 
