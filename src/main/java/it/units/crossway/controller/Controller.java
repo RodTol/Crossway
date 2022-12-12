@@ -7,17 +7,19 @@ import it.units.crossway.model.Coordinates;
 public interface Controller {
 
     Player getCurrentPlayer();
-    Board getBoard();
     Player getPlayer1();
     Player getPlayer2();
-
-    void setNameWhitePlayer(String name);
+    void switchCurrentPlayer();
     void setNameBlackPlayer(String name);
+    void setNameWhitePlayer(String name);
 
+    Board getBoard();
     boolean canPlace(Coordinates position);
     Condition place(PieceGui piece);
 
-    void reset();
     void applyPieRule();
-    void changeTurnSurrender();
+
+    void resetGame();
+
+
 }

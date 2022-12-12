@@ -43,19 +43,7 @@ public class GameController implements Controller {
     }
 
     @Override
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-    @Override
     public Board getBoard() {return board;}
-    @Override
-    public void setNameWhitePlayer(String name) {
-        this.player2.setName(name);
-    }
-    @Override
-    public void setNameBlackPlayer(String name) {
-        this.player1.setName(name);
-    }
     @Override
     public Player getPlayer1() {
         return player1;
@@ -64,6 +52,19 @@ public class GameController implements Controller {
     public Player getPlayer2() {
         return player2;
     }
+    @Override
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+    @Override
+    public void setNameWhitePlayer(String name) {
+        this.player2.setName(name);
+    }
+    @Override
+    public void setNameBlackPlayer(String name) {
+        this.player1.setName(name);
+    }
+
 
     /*This method asks the board if a position is playable
     * for a piece*/
@@ -72,17 +73,8 @@ public class GameController implements Controller {
         return board.canPlace(position, new Piece(currentPlayer.getColor()));
     }
 
-    public static String getColorName(Color color) {
-       if (color.equals(Color.BLACK)) {
-           return "Black";
-       }
-       else {
-           return "White";
-       }
-    }
-
-    /*This method place a piece on the board from the input of the Gui. Then
-     * checks if the Game is finished, and if it's the case can make something*/
+    /*This method places a piece on the board from the input of the Gui. Then
+     * checks if the Game is finished.*/
     @Override
     public Condition place(PieceGui piece) {
         try {
@@ -91,13 +83,12 @@ public class GameController implements Controller {
             return Condition.NOT_PLACED;
         }
         WinRuler winRuler = new WinRuler(board, piece.getColor());
-        if (winRuler.check()) {
+        if (winRuler.winCheck()) {
             System.out.println("GAME WON!");
             return Condition.WON;
         } else {
-            String text = "Player " + getCurrentPlayer().getId() + " placed a " + getColorName(piece.getColor()) +
+            String text = "Player " + getCurrentPlayer().getId() + " placed a " + Piece.colorToString(piece.getColor()) +
                     " piece at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n";
-
             try {
                 FileWriter output = new FileWriter(log.getPath(), true);
                 output.write(text);
@@ -109,33 +100,29 @@ public class GameController implements Controller {
             changeTurn();
             return Condition.PLACED;
         }
-
     }
 
     @Override
-    public void reset() {
+    public void resetGame() {
         board.emptyBoard();
         currentPlayer = player1;
         player1.setColor(Color.BLACK);
         player2.setColor(Color.WHITE);
     }
 
-    private void changeTurn() {
+    @Override
+    public void switchCurrentPlayer() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
         } else {
             currentPlayer = player1;
-        }
-        if (!atLeastOnePlacement()){
-            changeTurn();
         }
     }
-    @Override
-    public void changeTurnSurrender() {
-        if (currentPlayer == player1) {
-            currentPlayer = player2;
-        } else {
-            currentPlayer = player1;
+
+    private void changeTurn() {
+        switchCurrentPlayer();
+        if (!atLeastOnePlacement()){
+            changeTurn();
         }
     }
 

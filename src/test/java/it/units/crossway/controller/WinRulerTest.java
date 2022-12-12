@@ -55,7 +55,7 @@ class WinRulerTest {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
         winRuler = new WinRuler(board,color);
-        Assertions.assertTrue(winRuler.blackCheck());
+        Assertions.assertTrue(winRuler.blackVictoryCheck());
     }
 
     @Test
@@ -69,7 +69,7 @@ class WinRulerTest {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
         winRuler = new WinRuler(board,color);
-        Assertions.assertTrue(winRuler.whiteCheck());
+        Assertions.assertTrue(winRuler.whiteVictoryCheck());
     }
 
 
@@ -94,9 +94,9 @@ class WinRulerTest {
         winRuler = new WinRuler(board,color);
 
         if (input) {
-            Assertions.assertTrue(winRuler.check());
+            Assertions.assertTrue(winRuler.winCheck());
         } else  {
-            Assertions.assertFalse(winRuler.check());
+            Assertions.assertFalse(winRuler.winCheck());
         }
 
     }
