@@ -1,7 +1,5 @@
 package it.units.crossway.gui;
-
 import it.units.crossway.model.Coordinates;
-
 import java.awt.*;
 
 public class PieceGui {
