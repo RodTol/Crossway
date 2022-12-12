@@ -23,68 +23,55 @@ class WinRuler {
         if (!minNofPieces()) {
             return false;
         }
+
         if (color.equals(Color.BLACK)) {
-            return blackVictoryCheck();
-        } else {
-            return whiteVictoryCheck();
+            for (int i = 0; i < board.getNodes().length; i++) {
+                if (!board.hasAtLeastOneOfColorInRow(i, color)) {
+                    return false;
+                }
+            }
+        } else if (color.equals(Color.WHITE)) {
+            for (int i = 0; i < board.getNodes().length; i++) {
+                if (!board.hasAtLeastOneOfColorInColumn(i, color)) {
+                    return false;
+                }
+            }
         }
+
+        Graph graph = board.toGraph(color);
+        ArrayList<Coordinates> startingVertices;
+
+        if (color.equals(Color.BLACK)) {
+            startingVertices = board.piecesInRowWithColor(0,color);
+        } else  {
+            startingVertices = board.piecesInColumnWithColor(0, color);
+        }
+
+        for (Coordinates coordinates : startingVertices) {
+            Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);
+            List<Coordinates> filteredTree;
+
+            if (color.equals(Color.BLACK)) {
+                filteredTree = depthFirstTree
+                        .stream()
+                        .filter(v -> v.getRow() == board.getNodes().length - 1)
+                        .collect(Collectors.toList());
+            } else  {
+                filteredTree = depthFirstTree
+                        .stream()
+                        .filter(v -> v.getColumn() == board.getNodes().length - 1)
+                        .collect(Collectors.toList());
+            }
+
+            if ( filteredTree.size() >= 1) {
+                return true;
+            }
+        }
+        return false;
     }
 
     boolean minNofPieces() {
         return board.numOfPlacedPiecesWithColor(color) >= board.getNodes().length;
     }
-
-    boolean blackVictoryCheck() {
-        for (int i = 0; i < board.getNodes().length; i++) {
-            if (!board.hasAtLeastOneOfColorInRow(i, color)) {
-                return false;
-            }
-        }
-
-        Graph graph = board.toGraph(color);
-        ArrayList<Coordinates> startingVertices;
-        startingVertices = board.piecesInRowWithColor(0,color);
-
-        for (Coordinates coordinates : startingVertices) {
-            Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);
-            List<Coordinates> filteredTree = depthFirstTree
-                    .stream()
-                    .filter(v -> v.getRow() == board.getNodes().length - 1)
-                    .collect(Collectors.toList());
-
-            if ( filteredTree.size() >= 1) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    boolean whiteVictoryCheck() {
-        for (int i = 0; i < board.getNodes().length; i++) {
-            if (!board.hasAtLeastOneOfColorInColumn(i, color)) {
-                return false;
-            }
-        }
-
-        Graph graph = board.toGraph(color);
-        ArrayList<Coordinates> startingVertices;
-        startingVertices = board.piecesInColumnWithColor(0,color);
-
-        for (Coordinates coordinates : startingVertices) {
-            Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);
-            List<Coordinates> filteredTree = depthFirstTree
-                    .stream()
-                    .filter(v -> v.getColumn() == board.getNodes().length - 1)
-                    .collect(Collectors.toList());
-
-            if ( filteredTree.size() >= 1) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
 
 }

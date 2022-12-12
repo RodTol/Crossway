@@ -14,6 +14,7 @@ import java.awt.*;
 
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
+import static org.junit.Assert.assertTrue;
 
 class WinRulerTest {
 
@@ -54,7 +55,8 @@ class WinRulerTest {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
         winRuler = new WinRuler(board,color);
-        Assertions.assertTrue(winRuler.blackVictoryCheck());
+        //Assertions.assertTrue(winRuler.blackVictoryCheck());
+        assertTrue(winRuler.winCheck());
     }
 
     @Test
@@ -68,7 +70,8 @@ class WinRulerTest {
             board.place(new Coordinates(rows[i],cols[i]), new Piece(color));
         }
         winRuler = new WinRuler(board,color);
-        Assertions.assertTrue(winRuler.whiteVictoryCheck());
+        //Assertions.assertTrue(winRuler.whiteVictoryCheck());
+        assertTrue(winRuler.winCheck());
     }
 
 
