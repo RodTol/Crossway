@@ -6,7 +6,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import java.util.*;
 
 public class Graph {
-    //We define a graph through an adjacency list
     private final Map<Vertex, List<Vertex>> adjList;
 
     public Graph(){
@@ -43,8 +42,7 @@ public class Graph {
         }
     }
 
-
-     public Set<Coordinates> DepthFirstSearch(Coordinates startCoordinates){
+    public Set<Coordinates> DepthFirstSearch(Coordinates startCoordinates){
         Set<Coordinates> visitedCoordinates = new LinkedHashSet<>();
         Stack<Coordinates> coordinatesStack = new Stack<>();
 
@@ -74,6 +72,11 @@ public class Graph {
         return new EqualsBuilder()
                 .append(adjList, o.adjList)
                 .isEquals();
+    }
+
+    @Override
+    public int hashCode(){
+        return adjList.hashCode();
     }
 
 }

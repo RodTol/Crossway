@@ -3,14 +3,14 @@ package it.units.crossway.utilities;
 import it.units.crossway.model.Coordinates;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-public class Vertex {
+class Vertex {
     private final Coordinates value;
 
-    public Vertex(Coordinates value){
+    Vertex(Coordinates value){
         this.value = value;
     }
 
-    public Coordinates getValue() {
+    Coordinates getValue() {
         return value;
     }
 
