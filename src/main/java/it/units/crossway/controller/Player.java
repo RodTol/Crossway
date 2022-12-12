@@ -46,6 +46,15 @@ public class Player {
         return color;
     }
 
+    public String colorToString() {
+        if (this.color.equals(Color.BLACK)) {
+            return "Black";
+        }
+        else {
+            return "White";
+        }
+    }
+
     public String getName() {
         return name;
     }

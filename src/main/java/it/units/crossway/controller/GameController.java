@@ -80,13 +80,26 @@ public class GameController implements Controller {
         } catch (Exception e) {
             return Condition.NOT_PLACED;
         }
+
         WinRuler winRuler = new WinRuler(board, piece.getColor());
+
         if (winRuler.winCheck()) {
             System.out.println("Game Won!");
+            String text = "Game won by player " + getCurrentPlayer().getId() + " with color " + getCurrentPlayer().colorToString() + "\n" +
+                    "The winner piece is placed at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n" +
+                    "-----------------------------\n";;
+            try {
+                FileWriter output = new FileWriter(log.getPath(), true);
+                output.write(text);
+                output.close();
+            } catch (Exception e) {
+                e.getStackTrace();
+            }
             return Condition.WON;
         } else {
             String text = "Player " + getCurrentPlayer().getId() + " placed a " + Piece.colorToString(piece.getColor()) +
                     " piece at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n";
+
             try {
                 FileWriter output = new FileWriter(log.getPath(), true);
                 output.write(text);

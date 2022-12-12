@@ -13,14 +13,14 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Test on class GameController")
-public class ControllerTest {
+public class GameControllerTest {
 
     private GameController controller;
     private Board board;
 
     @BeforeEach
     public void setup() {
-        board = Mockito.mock(Board.class);   // it mimics a board object. Note I don't need to pass n rows and ncol as arguments of board.
+        board = Mockito.mock(Board.class);
         controller = new GameController(board);
     }
 
