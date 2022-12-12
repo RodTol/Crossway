@@ -13,7 +13,7 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SuppressWarnings("NewClassNamingConvention")
-public class checkGuiModelCommunication {
+public class checkGuiToModelCommunication {
 
     private final int dim = 19 ;
     private final Board board = new Board(dim, dim);
