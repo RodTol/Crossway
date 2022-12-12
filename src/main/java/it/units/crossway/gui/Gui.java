@@ -18,24 +18,15 @@ public class Gui {
 
     public Gui(Controller controller, BoardPanelSettings boardPanelSettings) {
         startingPanel = new StartingPanel(controller);
-        startingPanel.setBackground(Color.LIGHT_GRAY);
-        startingPanel.getLetSPlayButton().addActionListener(new LetsPlayListener());
-        startingPanel.getDemoButton().addActionListener(new DemoButtonListener());
-        startingPanel.getClearButton().addActionListener(new ClearListener());
+        setupStartingPanel();
 
         boardPanel = new BoardPanel(controller, boardPanelSettings);
-        boardPanel.setBackground(Color.LIGHT_GRAY);
-        boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
-        boardPanel.addMouseListener(new BoardMouseClickListener());
-        boardPanel.getPieRuleButton().addActionListener(new pieRuleListener());
-        boardPanel.getSurrenderButton().addActionListener(new surrenderListener());
+        setupBoardPanel();
 
         winnerPanel = new WinnerPanel(controller);
-        winnerPanel.getClose().addActionListener(new closeListener());
-        winnerPanel.getRematch().addActionListener(new rematchListener());
+        setupWinnerPanel();
 
         backgroundPanel = new JPanel();
-
         frame = new JFrame();
         cl = new PageViewer();
 
@@ -53,6 +44,26 @@ public class Gui {
         frame.setVisible(true);
     }
 
+    private void setupStartingPanel() {
+        startingPanel.setBackground(Color.LIGHT_GRAY);
+        startingPanel.getLetSPlayButton().addActionListener(new LetsPlayListener());
+        startingPanel.getDemoButton().addActionListener(new DemoButtonListener());
+        startingPanel.getClearButton().addActionListener(new ClearListener());
+    }
+
+    private void setupBoardPanel() {
+        boardPanel.setBackground(Color.LIGHT_GRAY);
+        boardPanel.addMouseMotionListener(new BoardMouseMotionListener());
+        boardPanel.addMouseListener(new BoardMouseClickListener());
+        boardPanel.getPieRuleButton().addActionListener(new PieRuleListener());
+        boardPanel.getSurrenderButton().addActionListener(new SurrenderListener());
+    }
+
+    private void setupWinnerPanel() {
+        winnerPanel.getClose().addActionListener(new CloseListener());
+        winnerPanel.getRematch().addActionListener(new RematchListener());
+    }
+
     private void setupFrame(String title, int x_location, int y_location) {
         frame.setTitle(title);
         frame.setResizable(false);
@@ -61,6 +72,29 @@ public class Gui {
 
     private void resetGame() {
         boardPanel.reset();
+    }
+
+    private static class PageViewer extends CardLayout {
+        public Dimension preferredLayoutSize(Container parent) {
+            Component current = findCurrentComponent(parent);
+            if (current != null) {
+                Insets insets = parent.getInsets();
+                Dimension pref = current.getPreferredSize();
+                pref.width += insets.left + insets.right;
+                pref.height += insets.top + insets.bottom;
+                return pref;
+            }
+            return super.preferredLayoutSize(parent);
+        }
+
+        public Component findCurrentComponent(Container parent) {
+            for (Component comp : parent.getComponents()) {
+                if (comp.isVisible()) {
+                    return comp;
+                }
+            }
+            return null;
+        }
     }
 
     private class LetsPlayListener implements ActionListener {
@@ -82,7 +116,8 @@ public class Gui {
         }
     }
 
-    private void click(Component target, int x, int y) {
+
+    private void clickSimulator(Component target, int x, int y) {
         MouseEvent click;
         Point point;
         long time;
@@ -121,7 +156,7 @@ public class Gui {
                         10,7,9,6,7,7,6,5,4,6,7,6,12,11,11,10,9,10,6};
 
                 for (int i = 0; i < rows.length; i++) {
-                    click(boardPanel, 75+rows[i]*26, 75 +cols[i]*26);
+                    clickSimulator(boardPanel, 75+rows[i]*26, 75 +cols[i]*26);
                 }
 
                 boardPanel.addDemoEndingLabel();
@@ -147,7 +182,7 @@ public class Gui {
         }
     }
 
-    private class pieRuleListener implements ActionListener {
+    private class PieRuleListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Pie Rule Button pressed!");
@@ -156,7 +191,7 @@ public class Gui {
         }
     }
 
-    private class surrenderListener implements ActionListener {
+    private class SurrenderListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (boardPanel.handleSurrender() ==  Condition.WON) {
@@ -200,7 +235,7 @@ public class Gui {
         public void mouseExited(MouseEvent e) { }
     }
 
-    private class rematchListener implements ActionListener{
+    private class RematchListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             resetGame();
@@ -209,33 +244,10 @@ public class Gui {
         }
     }
 
-    private static class closeListener implements ActionListener{
+    private static class CloseListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
-        }
-    }
-
-    private static class PageViewer extends CardLayout {
-        public Dimension preferredLayoutSize(Container parent) {
-            Component current = findCurrentComponent(parent);
-            if (current != null) {
-                Insets insets = parent.getInsets();
-                Dimension pref = current.getPreferredSize();
-                pref.width += insets.left + insets.right;
-                pref.height += insets.top + insets.bottom;
-                return pref;
-            }
-            return super.preferredLayoutSize(parent);
-        }
-
-        public Component findCurrentComponent(Container parent) {
-            for (Component comp : parent.getComponents()) {
-                if (comp.isVisible()) {
-                    return comp;
-                }
-            }
-            return null;
         }
     }
 
