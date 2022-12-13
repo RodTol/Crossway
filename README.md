@@ -18,9 +18,9 @@ and CircleCI for Continuous Integration.
 
 ### How to run the game
 The only required software is OpenJdk-17, which can be installed through this page: https://jdk.java.net/archive/.
-Once OpenJdk-17 is installed, the user can download the executable files from the distributions
-directory [distribution](build/distributions). Then extract the executable files and run the
-binary files (from the extracted directory):  
+Once OpenJdk-17 is installed, the user can download the executable files from the
+[ distributions directory](build/distributions). Then extract the files and run the
+program (from the extracted directory):  
 Windows:  
 ```bin\Crossway.bat ```  
 Linux:   
