@@ -53,7 +53,7 @@ The "utilities" package contains classes that are useful to the logic of
 * Graph, which implements an undirected graph (possibly cyclic).
 * Vertex, which implements the vertex of the graph.
 
-
+### UML diagram
 <p align="center">
-  ![](Pictures/crossway_general_diagram.png)
+  <img height="400" src="Pictures/crossway_general_diagram.png" alt="">
 </p>
