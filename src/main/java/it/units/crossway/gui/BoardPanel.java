@@ -57,7 +57,7 @@ public class BoardPanel extends JPanel {
         drawGhost(g2d);
         drawPieces(g2d);
 
-        drawNameDots(g2d);
+        drawNameIcons(g2d);
         drawLastPieceDemo(g2d);
         drawBoardReferences(g2d);
     }
@@ -190,7 +190,7 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    private void drawNameDots(Graphics2D g) {
+    private void drawNameIcons(Graphics2D g) {
         g.setColor(controller.getPlayer1().getColor());
         g.fillOval(50, 600, settings.getPieceSize(), settings.getPieceSize());
         g.setColor(controller.getPlayer2().getColor());
