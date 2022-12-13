@@ -15,29 +15,6 @@ public class Player {
         this.color = color;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Player)) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        Player o = (Player) obj;
-        return new EqualsBuilder()
-                .append(color, o.color)
-                .append(name, o.name)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder()
-                .append(color)
-                .append(name)
-                .toHashCode();
-    }
-
     public int getId() {
         return id;
     }
@@ -65,6 +42,29 @@ public class Player {
 
     void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Player)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        Player o = (Player) obj;
+        return new EqualsBuilder()
+                .append(color, o.color)
+                .append(name, o.name)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(color)
+                .append(name)
+                .toHashCode();
     }
 
 }
