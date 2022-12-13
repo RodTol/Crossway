@@ -85,9 +85,9 @@ public class GameController implements Controller {
 
         if (winRuler.winCheck()) {
             System.out.println("Game Won!");
-            String text = "Game won by player " + getCurrentPlayer().getId() + " with color " + getCurrentPlayer().colorToString() + "\n" +
+            String text = "Game won by player " + getCurrentPlayer().getName() + " with color " + getCurrentPlayer().colorToString() + "\n" +
                     "The winner piece is placed at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n" +
-                    "-----------------------------\n";;
+                    "-----------------------------\n";
             try {
                 FileWriter output = new FileWriter(log.getPath(), true);
                 output.write(text);
@@ -97,7 +97,7 @@ public class GameController implements Controller {
             }
             return Condition.WON;
         } else {
-            String text = "Player " + getCurrentPlayer().getId() + " placed a " + Piece.colorToString(piece.getColor()) +
+            String text = "Player " + getCurrentPlayer().getName() + " placed a " + Piece.colorToString(piece.getColor()) +
                     " piece at (" + piece.getPosition().getColumn() + ", " + piece.getPosition().getRow() + ")\n";
 
             try {
@@ -152,6 +152,20 @@ public class GameController implements Controller {
         player1.setColor(Color.white);
         player2.setColor(Color.black);
         changeTurn();
+    }
+
+    public void surrenderUpdater() {
+        this.switchCurrentPlayer();
+        String text = "Player " + getCurrentPlayer().getName() + " give up!\n" +
+            "-----------------------------\n";
+
+        try {
+            FileWriter output = new FileWriter(log.getPath(), true);
+            output.write(text);
+            output.close();
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
     }
 
 }

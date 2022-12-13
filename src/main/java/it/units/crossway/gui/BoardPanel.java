@@ -234,7 +234,7 @@ public class BoardPanel extends JPanel {
         }
     }
     Condition handleSurrenderButton() {
-        controller.switchCurrentPlayer();
+        controller.surrenderUpdater();
         System.out.println("Game Won!");
         return Condition.WON;
     }

@@ -18,8 +18,6 @@ public interface Controller {
     Condition place(PieceGui piece);
 
     void applyPieRule();
-
     void resetGame();
-
-
+    void surrenderUpdater();
 }
