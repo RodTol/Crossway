@@ -18,7 +18,8 @@ Continuous Integration.
 
 ### How to run the game
 The only required software is OpenJdk-18, which can be installed through this page: https://jdk.java.net/18/.
-Once OpenJdk-18 is installed, the user can download the executable
+Once OpenJdk-18 is installed, the user can download the executable files from the distributions
+directory [distribution](build/distributions) and then extract the executable files
 
 
 
