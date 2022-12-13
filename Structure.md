@@ -1,18 +1,17 @@
 # Structure of the project
-The package "it.units.crossway" Java package is divided in five Java packages.
+The "it.units.crossway" Java package is divided in five Java packages.
 
 ### Controller
 The [controller](src/main/java/it/units/crossway/controller) package contains all the classes that control the
    correct flow of the game and interaction between the data and the interface.
 It contains the following files:
 * GameController, which controls the execution of the game and the communication
-  between Gui and Model package. It implements Controller.
+  between Gui and Model packages. It implements Controller.
 * Player, which represents the player with their id, name, and colour.
 * WinRuler, which can assert if a player has won or not.
 * Condition, which is an enum having values PLACED (the piece was
   correctly placed), NOT PLACED (it was impossible to correctly place the piece),
-  and WON (the piece was correctly placed, and it is the winning piece.
-  for the current player)
+  and WON (the piece was correctly placed, and it is the winning piece for the current player)
 * Controller, which is an interface.
 
 ### Gui
