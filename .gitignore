@@ -14,8 +14,8 @@
 /.gradle
 
 #Build files
-/build
-!/build/distributions
+build/*
+!/build/distributions/*
 
 #Log
 log.txt
