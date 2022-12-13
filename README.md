@@ -19,7 +19,7 @@ and CircleCI for Continuous Integration.
 ### How to download and run the game
 The only required software is OpenJdk-17, which can be installed through this page: https://jdk.java.net/archive/.
 Once OpenJdk-17 is installed, the user can download the executable files from the
-[ distribution's directory](build/distributions), with a single click from the button below.
+[distribution's directory](build/distributions), or with a single click on the button below.
 
 <!-- BEGIN LATEST DOWNLOAD BUTTON -->
 [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/RodTol/Crossway/raw/main/build/distributions/Crossway-DSSC.zip)
@@ -97,3 +97,11 @@ pieces until victory.
 An "I give up" button is available to the players after the second turn.  
 A "Play demo" button is also present in the initial screen; if
 it is clicked, a demonstration of the game will start.
+
+### How to contribute to the project
+
+
+
+### License
+
+Distributed under the MIT License. See [LICENSE.txt](LICENSE.txt) for more information.
