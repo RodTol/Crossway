@@ -48,7 +48,7 @@ class WinRuler {
         }
 
         for (Coordinates coordinates : startingVertices) {
-            Set<Coordinates> depthFirstTree =  graph.DepthFirstSearch(coordinates);
+            Set<Coordinates> depthFirstTree =  graph.depthFirstSearch(coordinates);
             List<Coordinates> filteredTree;
 
             if (color.equals(Color.BLACK)) {

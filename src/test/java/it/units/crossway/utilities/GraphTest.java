@@ -75,7 +75,7 @@ public class GraphTest {
         expectedSet.add(coordinates2);
         expectedSet.add(coordinates3);
         expectedSet.add(coordinates4);
-        outputSet = graph.DepthFirstSearch(coordinates);
+        outputSet = graph.depthFirstSearch(coordinates);
         assertEquals(expectedSet,outputSet);
     }
 }
