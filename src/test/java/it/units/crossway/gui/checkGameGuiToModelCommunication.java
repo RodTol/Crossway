@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SuppressWarnings("NewClassNamingConvention")
-public class checkGuiToModelCommunication {
+public class checkGameGuiToModelCommunication {
 
     private final static int dim = 5 ;
     private final Board board = new Board(dim, dim);

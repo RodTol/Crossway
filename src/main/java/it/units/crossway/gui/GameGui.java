@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.concurrent.TimeUnit;
 
-public class Gui {
+public class GameGui {
     private final JFrame frame;
     private final JPanel backgroundPanel;
     private final StartingPanel startingPanel;
@@ -16,7 +16,7 @@ public class Gui {
     private final WinnerPanel winnerPanel;
     private final PageViewer cl;
 
-    public Gui(Controller controller, BoardPanelSettings boardPanelSettings) {
+    public GameGui(Controller controller, BoardPanelSettings boardPanelSettings) {
         startingPanel = new StartingPanel(controller);
         setupStartingPanel();
 
