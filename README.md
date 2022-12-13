@@ -5,7 +5,7 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
-[![<DSSC>](https://circleci.com/gh/RodTol/Crossway.svg?style=svg)](https://app.circleci.com/pipelines/github/RodTol)
+[![<DSSC>](https://circleci.com/gh/RodTol/Crossway.svg?style=shield)](https://app.circleci.com/pipelines/github/RodTol)
 ## About this repository
 This repository contains the project for the Software Development exam, A.Y. 2021/2022.
 It is an implementation of the game Crossway in Java, comprehensive of a Graphic 
