@@ -80,7 +80,8 @@ one for the black player.
 When it is their turn, the player can place the piece wherever 
 they prefer on the board; the only conditions are that the 
 chosen position is not already occupied by another piece and that
- the below formation does not occur.
+ the below formation (or the symmetric one, with the white pieces
+in place of the black ones and viceversa) does not occur.
 
 <p align="center">
   <img height="100" src="Pictures/IllegalPosition.png" alt="">
