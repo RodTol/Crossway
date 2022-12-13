@@ -4,12 +4,11 @@ The package "it.units.crossway" Java package is divided in five Java packages.
 ### Controller
 The [controller](src/main/java/it/units/crossway/controller) package contains all the classes that control the
    correct flow of the game and interaction between the data and the interface.
-It contains the following classes:
-* GameController, which controls the
-  execution of the game. It implements Controller.
-* Player, which is the player with their id, name, and colour.
-* Status, which controls the condition of the current piece.
-* WinRuler, which checks if a player has won.
+It contains the following files:
+* GameController, which controls the execution of the game and the communication
+  between Gui and Model package. It implements Controller.
+* Player, which represents the player with their id, name, and colour.
+* WinRuler, which can assert if a player has won or not.
 * Condition, which is an enum having values PLACED (the piece was
   correctly placed), NOT PLACED (it was impossible to correctly place the piece),
   and WON (the piece was correctly placed, and it is the winning piece.
@@ -17,11 +16,11 @@ It contains the following classes:
 * Controller, which is an interface.
 
 ### Gui
-* The "gameGui" package contains all the classes related to the GUI.
+The [Gui](src/main/java/it/units/crossway/gui) package contains all the classes related to the GUI.
    It contains:
 * BoardPanel, which is the JPanel used to represent the board.
 * BoardPanelSettings, which is used to calculate and access the parameters of BoardPanel.
-* Gui, which controls the graphics part of the program, setting up the frame and
+* GameGui, which controls the graphics part of the program, setting up the frame and
   all the different panels. It also manages the user interface with all the listeners, controlling the
   interaction with the user.
 * PieceGui, which is used by the GUI to draw the inserted piece.
@@ -31,13 +30,13 @@ It contains the following classes:
   has a button "Rematch" which restarts the game and a "Close" one to close the app.
 
 ### Launcher
-The "launcher" package contains the necessities to launch the game.
+The [launcher](src/main/java/it/units/crossway/launcher) package contains the necessities to launch the game.
    It contains:
 * Config, which contains all the constants.
 * Main, which is used to launch the game.
 
 ### Model
-The "model" package contains the logic of the game. It contains:
+The [model](src/main/java/it/units/crossway/model) package contains the logic of the game. It contains:
 * Board, which is the board implemented as a matrix of nodes.
 * Coordinates, which implements the coordinates of the nodes on the
   board.
@@ -48,7 +47,7 @@ The "model" package contains the logic of the game. It contains:
   access to neighbour nodes.
 
 ### Utilities
-The "utilities" package contains classes that are useful to the logic of
+The [utilities](src/main/java/it/units/crossway/utilities) package contains classes that are useful to the logic of
    the game, but are not effectively part of it. It contains:
 * Graph, which implements an undirected graph (possibly cyclic).
 * Vertex, which implements the vertex of the graph.
