@@ -19,6 +19,8 @@ public class BoardPanel extends JPanel {
     private final JButton pieRuleButton;
     private final JButton surrenderButton;
     private JLabel demoLabel;
+    private JLabel invalidActionLabel;
+    private Timer timer;
     private final Color currentPlayerColor = new Color(119, 32, 41);
     private final ImageIcon background = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("backgroundBoard.png")));
     private boolean demoStatus = false;
@@ -35,6 +37,9 @@ public class BoardPanel extends JPanel {
         this.add(pieRuleButton);
         this.surrenderButton = new JButton("I give up!");
         this.add(surrenderButton);
+
+        this.invalidActionLabel = new JLabel();
+        this.timer = new Timer(1000, e -> invalidActionLabel.setText(""));
     }
 
     @Override
@@ -127,7 +132,7 @@ public class BoardPanel extends JPanel {
     void reset() {
         this.remove(player1NameLabel);
         this.remove(player2NameLabel);
-
+        this. remove(invalidActionLabel);
         if (demoStatus) {
             this.remove(demoLabel);
         }
@@ -306,6 +311,17 @@ public class BoardPanel extends JPanel {
                 repaint();
             }
         }
+    }
+
+    public void handleNotPlaced() {
+        timer.stop();
+        invalidActionLabel.setText("invalid action");
+        invalidActionLabel.setBounds(290, 650, 300, 60);
+        invalidActionLabel.setForeground(Color.BLACK);
+        this.add(invalidActionLabel);
+        timer.start();
+        repaint();
+
     }
 
     private boolean pointIsInMouseBorderLimits(Point point) {
