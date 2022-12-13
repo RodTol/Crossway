@@ -8,18 +8,18 @@
 
 ### About this repository
 This repository contains the project for the Software Development exam, A.Y. 2021/2022.
-It is an implementation of the game Crossway in Java comprehensive of a Graphic 
+It is an implementation of the game Crossway in Java, comprehensive of a Graphic 
 User Interface.
 
 This project was developed following the principles of AGILE software developing and
 Test Driven Developing. Every part of the code was written on IntelliJ and GitHub was
-used as a version control system. Gradle was instead used for the testing and CircleCI for
-Continuous Integration.
+used as a version control system. Gradle was used to make building and testing tasks more automated
+and CircleCI for Continuous Integration.
 
 ### How to run the game
-The only required software is OpenJdk-18, which can be installed through this page: https://jdk.java.net/18/.
-Once OpenJdk-18 is installed, the user can download the executable files from the distributions
-directory [distribution](build/distributions) and then extract the executable files
+The only required software is OpenJdk-17, which can be installed through this page: https://jdk.java.net/archive/.
+Once OpenJdk-17 is installed, the user can download the executable files from the distributions
+directory [distribution](build/distributions). Then extract the executable files
 
 
 
@@ -92,7 +92,7 @@ execution of the game. It implements Controller.
  * WinRuler, which checks if a player has won.
  * Condition, which is an enum having values PLACED (the piece was 
  correctly placed), NOT PLACED (it was impossible to correctly place the piece),
- and WON (the piece was correctly placed and it is the winning piece.
+ and WON (the piece was correctly placed, and it is the winning piece.
  for the current player)
  * Controller, which is an interface.
 
