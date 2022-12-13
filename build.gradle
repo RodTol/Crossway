@@ -31,7 +31,7 @@ test {
 }
 
 testlogger {
-    theme 'standard' // project level
+    theme 'standard'
     showSimpleNames = false
     slowThreshold 5000
 }
