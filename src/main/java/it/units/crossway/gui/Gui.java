@@ -68,7 +68,7 @@ public class Gui {
         frame.setTitle(title);
         frame.setResizable(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setLocation(dim.width/2-frame.getWidth()/2, dim.height/2-frame.getHeight()/2);
+        frame.setLocation(dim.width/4, dim.height/4);
     }
 
     private void resetGame() {
