@@ -104,7 +104,9 @@ the project structure. Before starting to work on some kind of contribution,
 we suggest to have a look at it.
 
 ## How to contribute to the project
-
+If you want to contribute to the project you can raise a [issue](https://github.com/RodTol/Crossway/issues)
+or fork the project and create a pull request, we will be happy to have a look at it.  
+Don't forget also to star the project! :star:
 
 
 ## License

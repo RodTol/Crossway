@@ -53,6 +53,8 @@ The [utilities](src/main/java/it/units/crossway/utilities) package contains clas
 * Vertex, which implements the vertex of the graph.
 
 ### UML diagram
+Here it is also a UML diagram that can help achieve a rough understanding of
+how the classes interact with each other.
 <p align="center">
   <img height="400" src="Pictures/crossway_general_diagram.png" alt="">
 </p>
