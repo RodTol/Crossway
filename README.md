@@ -99,7 +99,7 @@ execution of the game. It implements Controller.
  for the current player)
  * Controller, which is an interface.
 
-2. The "gui" package contains all the classes related to the GUI.
+2. The "gameGui" package contains all the classes related to the GUI.
 It contains:
  * BoardPanel, which is the JPanel used to represent the board.
  * BoardPanelSettings, which is used to calculate and access the parameters of BoardPanel.
