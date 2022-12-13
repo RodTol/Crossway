@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'it.units.crossway'
-version 'Final'
+version 'DSSC'
 
 application {
     mainClass = 'it.units.crossway.launcher.Main'
