@@ -5,8 +5,8 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
-
-### About this repository
+[![<DSSC>](https://circleci.com/gh/RodTol/Crossway.svg?style=svg)](https://app.circleci.com/pipelines/github/RodTol)
+## About this repository
 This repository contains the project for the Software Development exam, A.Y. 2021/2022.
 It is an implementation of the game Crossway in Java, comprehensive of a Graphic 
 User Interface.
@@ -16,7 +16,7 @@ Test Driven Developing. Every part of the code was written on IntelliJ and GitHu
 used as a version control system. Gradle was used to make building and testing tasks more automated
 and CircleCI for Continuous Integration.
 
-### How to download and run the game
+## How to download and run the game
 The only required software is OpenJdk-17, which can be installed through this page: https://jdk.java.net/archive/.
 Once OpenJdk-17 is installed, the user can download the executable files from the
 [distribution's directory](build/distributions), or with a single click on the button below.
@@ -36,7 +36,7 @@ Linux:
 ./bin/Crossway
 ```
 
-### Rules of the game   
+## Rules of the game   
 Crossway is a 2-players game played on a 19x19 board that starts
 empty, as shown in the picture below.
 
@@ -98,10 +98,10 @@ An "I give up" button is available to the players after the second turn.
 A "Play demo" button is also present in the initial screen; if
 it is clicked, a demonstration of the game will start.
 
-### How to contribute to the project
+## How to contribute to the project
 
 
 
-### License
+## License
 
 Distributed under the MIT License. See [LICENSE.txt](LICENSE.txt) for more information.
