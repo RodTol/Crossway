@@ -156,7 +156,7 @@ public class GameController implements Controller {
 
     public void surrenderUpdater() {
         this.switchCurrentPlayer();
-        String text = "Player " + getCurrentPlayer().getName() + " give up!\n" +
+        String text = "Player " + getCurrentPlayer().getName() + " gave up!\n" +
             "-----------------------------\n";
 
         try {
