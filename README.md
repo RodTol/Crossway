@@ -98,6 +98,11 @@ An "I give up" button is available to the players after the second turn.
 A "Play demo" button is also present in the initial screen; if
 it is clicked, a demonstration of the game will start.
 
+## Project structure
+Inside the [Structure.md](Structure.md) you can find a brief explanation of
+the project structure. Before starting to work on some kind of contribution,
+we suggest to have a look at it.
+
 ## How to contribute to the project
 
 
