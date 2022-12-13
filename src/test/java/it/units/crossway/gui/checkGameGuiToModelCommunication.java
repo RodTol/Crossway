@@ -11,12 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SuppressWarnings("NewClassNamingConvention")
 public class checkGameGuiToModelCommunication {
 
     private final static int dim = 5 ;
@@ -33,7 +31,7 @@ public class checkGameGuiToModelCommunication {
 
     @Test
     @DisplayName("Coherence in place methods")
-    void Click_perform_place () {
+    void click_perform_place () {
         Point test_point = new Point(150, 150);
         test_point = boardPanel.closestNodeToPoint(test_point);
         Coordinates test_coordinates = boardPanel.nodePxToPosition(test_point);
