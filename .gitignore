@@ -15,6 +15,7 @@
 
 #Build files
 /build
+!/build/distributions
 
 #Log
 log.txt

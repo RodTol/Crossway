@@ -1,10 +1,12 @@
-# Crossway
+# Crossway 
+#### Authors: R. Tolloi, M. Corsano, and G. Bernardi
+### Built with:
+
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
-## Authors: R. Tolloi, M. Corsano, and G. Bernardi
+
 ### About this repository
-ADD VERSION OF SOFTWARE USED 
 This repository contains the project for the Software Development exam, A.Y. 2021/2022.
 It is an implementation of the game Crossway in Java comprehensive of a Graphic 
 User Interface.
@@ -15,6 +17,8 @@ used as a version control system. Gradle was instead used for the testing and Ci
 Continuous Integration.
 
 ### How to run the game
+The only required software is OpenJdk-18, which can be installed through this page: https://jdk.java.net/18/.
+Once OpenJdk-18 is installed, the user can download the executable
 
 
 
