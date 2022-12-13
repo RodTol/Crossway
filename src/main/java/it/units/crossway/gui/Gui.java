@@ -222,6 +222,8 @@ public class Gui {
                 winnerPanel.setCongratulations();
                 cl.show(backgroundPanel, "3");
                 frame.pack();
+            } else if (condition == Condition.NOT_PLACED) {
+                boardPanel.handleNotPlaced();
             }
 
         }

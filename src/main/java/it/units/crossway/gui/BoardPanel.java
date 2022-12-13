@@ -19,6 +19,8 @@ public class BoardPanel extends JPanel {
     private final JButton pieRuleButton;
     private final JButton surrenderButton;
     private JLabel demoLabel;
+    private JLabel invalidActionLabel;
+    private Timer timer;
     private final Color currentPlayerColor = new Color(119, 32, 41);
     private final ImageIcon background = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("backgroundBoard.png")));
     private boolean demoStatus = false;
@@ -35,6 +37,9 @@ public class BoardPanel extends JPanel {
         this.add(pieRuleButton);
         this.surrenderButton = new JButton("I give up!");
         this.add(surrenderButton);
+
+        this.invalidActionLabel = new JLabel();
+        this.timer = new Timer(1000, e -> invalidActionLabel.setText(""));
     }
 
     @Override
@@ -57,7 +62,7 @@ public class BoardPanel extends JPanel {
         drawGhost(g2d);
         drawPieces(g2d);
 
-        drawNameDots(g2d);
+        drawNameIcons(g2d);
         drawLastPieceDemo(g2d);
         drawBoardReferences(g2d);
     }
@@ -127,7 +132,7 @@ public class BoardPanel extends JPanel {
     void reset() {
         this.remove(player1NameLabel);
         this.remove(player2NameLabel);
-
+        this. remove(invalidActionLabel);
         if (demoStatus) {
             this.remove(demoLabel);
         }
@@ -190,7 +195,7 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    private void drawNameDots(Graphics2D g) {
+    private void drawNameIcons(Graphics2D g) {
         g.setColor(controller.getPlayer1().getColor());
         g.fillOval(50, 600, settings.getPieceSize(), settings.getPieceSize());
         g.setColor(controller.getPlayer2().getColor());
@@ -308,11 +313,28 @@ public class BoardPanel extends JPanel {
         }
     }
 
+    public void handleNotPlaced() {
+        timer.stop();
+        invalidActionLabel.setText("invalid action");
+        invalidActionLabel.setBounds(270, 5, 300, 30);
+        invalidActionLabel.setForeground(Color.BLACK);
+        this.add(invalidActionLabel);
+        timer.start();
+        repaint();
+
+    }
+
     private boolean pointIsInMouseBorderLimits(Point point) {
-        if (settings.getMargin()-30<point.getX()
-                && point.getX()<settings.getWidth()+30-settings.getMargin()
-                && settings.getMargin()-30<point.getY()
-                && point.getY()<settings.getHeight()+30-settings.getMargin()-settings.getExtraHeight()) {
+        int offset = 30;
+        int leftBorder = settings.getMargin()-offset;
+        int rightBorder = settings.getWidth()-settings.getMargin()+offset;
+        int topBorder =  leftBorder;
+        int bottomBorder = settings.getHeight()-settings.getMargin()-settings.getExtraHeight()+offset;
+
+        if (point.getX() > leftBorder
+                && point.getX() < rightBorder
+                && point.getY() > topBorder
+                && point.getY() < bottomBorder) {
             return true;
         }
         return false;
