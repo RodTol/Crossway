@@ -315,9 +315,9 @@ public class BoardPanel extends JPanel {
 
     public void handleNotPlaced() {
         timer.stop();
-        invalidActionLabel.setText("invalid action");
+        invalidActionLabel.setText("Invalid action!");
+        invalidActionLabel.setForeground( new Color(119, 32, 41) );
         invalidActionLabel.setBounds(270, 5, 300, 30);
-        invalidActionLabel.setForeground(Color.BLACK);
         this.add(invalidActionLabel);
         timer.start();
         repaint();

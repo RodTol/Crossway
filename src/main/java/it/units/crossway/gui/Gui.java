@@ -37,7 +37,7 @@ public class Gui {
 
         cl.show(backgroundPanel,"1");
 
-        setupFrame("Insert players names", 800, 400);
+        setupFrame("Insert players names");
         frame.add(backgroundPanel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
@@ -64,10 +64,11 @@ public class Gui {
         winnerPanel.getRematch().addActionListener(new RematchListener());
     }
 
-    private void setupFrame(String title, int x_location, int y_location) {
+    private void setupFrame(String title) {
         frame.setTitle(title);
         frame.setResizable(false);
-        frame.setLocation(x_location, y_location);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(dim.width/2-frame.getWidth()/2, dim.height/2-frame.getHeight()/2);
     }
 
     private void resetGame() {
@@ -103,7 +104,7 @@ public class Gui {
             if (startingPanel.handleLetSPlay()) {
                 boardPanel.drawNamesLabel();
                 cl.show(backgroundPanel, "2");
-                setupFrame("Crossway", 0, 0);
+                setupFrame("Crossway");
                 frame.pack();
             }
         }
@@ -142,7 +143,7 @@ public class Gui {
             protected Object doInBackground() {
                 boardPanel.drawNamesLabel();
                 cl.show(backgroundPanel, "2");
-                setupFrame("Crossway", 0, 0);
+                setupFrame("Crossway");
                 frame.pack();
 
                 int[]  cols = {9,9,8,10,10,11,11,13,13,12,11,11,13,
