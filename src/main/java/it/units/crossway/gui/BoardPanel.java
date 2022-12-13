@@ -325,10 +325,16 @@ public class BoardPanel extends JPanel {
     }
 
     private boolean pointIsInMouseBorderLimits(Point point) {
-        if (settings.getMargin()-30<point.getX()
-                && point.getX()<settings.getWidth()+30-settings.getMargin()
-                && settings.getMargin()-30<point.getY()
-                && point.getY()<settings.getHeight()+30-settings.getMargin()-settings.getExtraHeight()) {
+        int offset = 30;
+        int leftBorder = settings.getMargin()-offset;
+        int rightBorder = settings.getWidth()-settings.getMargin()+offset;
+        int topBorder =  leftBorder;
+        int bottomBorder = settings.getHeight()-settings.getMargin()-settings.getExtraHeight()+offset;
+
+        if (point.getX() > leftBorder
+                && point.getX() < rightBorder
+                && point.getY() > topBorder
+                && point.getY() < bottomBorder) {
             return true;
         }
         return false;
