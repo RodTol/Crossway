@@ -16,12 +16,15 @@ Test Driven Developing. Every part of the code was written on IntelliJ and GitHu
 used as a version control system. Gradle was used to make building and testing tasks more automated
 and CircleCI for Continuous Integration.
 
-### How to run the game
+### How to download and run the game
 The only required software is OpenJdk-17, which can be installed through this page: https://jdk.java.net/archive/.
 Once OpenJdk-17 is installed, the user can download the executable files from the
 [ distribution's directory](build/distributions), with a single click from the button below.
+
 <!-- BEGIN LATEST DOWNLOAD BUTTON -->
+[![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/RodTol/Crossway/raw/main/build/distributions/Crossway-DSSC.zip)
 <!-- END LATEST DOWNLOAD BUTTON -->
+
 Once the distribution is downloaded and extracted, the user can run the
 program with the following commands (from the extracted directory):  
 Windows:
